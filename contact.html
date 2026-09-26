@@ -2,249 +2,887 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>تماس با ما | سایت هواداری لامین یامال</title>
+    <title>تماس با ما | YAMAL FAN</title>
 
     <style>
 
         * {
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: #f1f5f9;
+            background: #eef2f7;
             color: #172033;
+            transition: 0.3s;
         }
 
-        nav {
-            background: #111827;
-            text-align: center;
-            padding: 12px;
+        /* NAVBAR */
+
+        .navbar {
+            background: rgba(8, 15, 30, 0.97);
+
+            padding: 12px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+            backdrop-filter: blur(10px);
         }
 
-        nav a {
+        .logo {
+            color: white;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
             color: white;
             text-decoration: none;
-            display: inline-block;
-            padding: 10px 14px;
-            margin: 3px;
-            border-radius: 8px;
+
+            padding: 10px 13px;
+
+            border-radius: 10px;
+
+            transition: 0.3s;
         }
 
-        nav a:hover {
+        .nav-links a:hover {
             background: #2563eb;
+            transform: translateY(-2px);
         }
+
+        /* HERO */
+
+        .hero {
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(37,99,235,0.35),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #020617,
+                    #0f2b5b,
+                    #2563eb
+                );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 60px 20px;
+        }
+
+        .hero-icon {
+            font-size: 65px;
+
+            animation:
+                floating 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin: 15px 0;
+        }
+
+        .hero p {
+            color: #dbeafe;
+            line-height: 2;
+        }
+
+        /* CONTAINER */
 
         .container {
-            width: 90%;
-            max-width: 650px;
-            margin: 40px auto;
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding: 50px 18px;
         }
 
-        .contact-box {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        h1 {
+        .title {
             text-align: center;
+
             color: #2563eb;
+
+            font-size: 30px;
+
+            margin-bottom: 12px;
         }
 
         .description {
             text-align: center;
+
+            color: #64748b;
+
+            line-height: 2;
+
+            margin-bottom: 35px;
+        }
+
+        /* CONTACT GRID */
+
+        .contact-grid {
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 25px;
+
+            align-items: stretch;
+        }
+
+        /* INFO */
+
+        .info {
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .info h2 {
+            color: #2563eb;
+        }
+
+        .info p {
+            color: #64748b;
             line-height: 2;
         }
 
-        label {
+        .info-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 15px;
+
+            margin-top: 12px;
+
+            background: #f8fafc;
+
+            border-radius: 13px;
+
+            text-align: right;
+        }
+
+        .info-icon {
+            font-size: 28px;
+        }
+
+        .info-item strong {
             display: block;
-            margin-top: 18px;
+
+            color: #2563eb;
+
+            margin-bottom: 4px;
+        }
+
+        .info-item span {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* FORM */
+
+        .form-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .form-card h2 {
+            color: #2563eb;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+
             margin-bottom: 7px;
+
+            color: #334155;
+
             font-weight: bold;
         }
 
-        input,
-        textarea {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
+
             padding: 13px;
+
             border: 1px solid #cbd5e1;
-            border-radius: 10px;
+
+            border-radius: 11px;
+
             font-family: inherit;
-            font-size: 16px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.25s;
         }
 
-        textarea {
-            height: 150px;
+        .form-group textarea {
+            min-height: 140px;
+
             resize: vertical;
         }
 
-        input:focus,
-        textarea:focus {
-            outline: none;
+        .form-group input:focus,
+        .form-group textarea:focus {
             border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px rgba(37,99,235,0.1);
         }
 
-        .send-button {
+        .submit-btn {
             width: 100%;
-            margin-top: 20px;
-            padding: 14px;
-            background: #2563eb;
-            color: white;
+
+            padding: 13px;
+
             border: none;
-            border-radius: 10px;
-            font-size: 17px;
+
+            border-radius: 11px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 16px;
+
             cursor: pointer;
+
+            transition: 0.25s;
         }
 
-        .send-button:hover {
+        .submit-btn:hover {
             background: #1d4ed8;
+
+            transform: translateY(-2px);
         }
+
+        /* SUCCESS */
+
+        .success {
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            line-height: 1.8;
+
+            animation: fadeUp 0.5s ease;
+        }
+
+        /* DARK MODE */
+
+        body.dark {
+            background: #020617;
+            color: white;
+        }
+
+        body.dark .info,
+        body.dark .form-card {
+            background: #111827;
+        }
+
+        body.dark .info p,
+        body.dark .description {
+            color: #cbd5e1;
+        }
+
+        body.dark .info-item {
+            background: #1f2937;
+        }
+
+        body.dark .info-item span {
+            color: #cbd5e1;
+        }
+
+        body.dark .form-group label {
+            color: #e2e8f0;
+        }
+
+        body.dark .form-group input,
+        body.dark .form-group textarea {
+            background: #1f2937;
+
+            color: white;
+
+            border-color: #475569;
+        }
+
+        body.dark .success {
+            background: #14532d;
+            color: #bbf7d0;
+        }
+
+        /* DARK BUTTON */
+
+        .dark-button {
+            display: block;
+
+            margin: 0 auto 40px;
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #2563eb;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            transition: 0.25s;
+        }
+
+        .dark-button:hover {
+            background: #1d4ed8;
+
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
 
         footer {
-            margin-top: 50px;
-            background: #111827;
+            background: #020617;
+
             color: white;
+
             text-align: center;
-            padding: 25px;
+
+            padding: 30px;
+
+            line-height: 2;
         }
 
-        @media (max-width: 600px) {
+        footer strong {
+            color: #60a5fa;
+        }
 
-            .contact-box {
-                padding: 20px;
+        /* ANIMATION */
+
+        @keyframes floating {
+
+            0%, 100% {
+                transform: translateY(0);
             }
 
-            nav {
-                overflow-x: auto;
-                white-space: nowrap;
+            50% {
+                transform: translateY(-10px);
+            }
+
+        }
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .navbar {
+                flex-direction: column;
+
+                gap: 10px;
+
+                padding: 12px 8px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+
+                padding: 8px 9px;
+            }
+
+            .hero {
+                padding: 50px 15px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
 
         }
 
     </style>
-
 </head>
+
 
 <body>
 
-    <nav>
 
-        <a href="index.html">
-            🏠 خانه
-        </a>
+    <!-- NAVBAR -->
 
-        <a href="news.html">
-            📰 اخبار
-        </a>
+    <nav class="navbar">
 
-        <a href="contact.html">
-            📞 تماس با ما
-        </a>
+        <div class="logo">
+            ⚽ YAMAL
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                🏠 خانه
+            </a>
+
+            <a href="news.html">
+                📰 اخبار
+            </a>
+
+            <a href="honors.html">
+                🏆 افتخارات
+            </a>
+
+            <a href="login.html">
+                👤 حساب
+            </a>
+
+            <a href="contact.html">
+                📞 تماس
+            </a>
+
+        </div>
 
     </nav>
 
 
-    <div class="container">
+    <!-- HERO -->
 
-        <div class="contact-box">
+    <section class="hero">
 
-            <h1>
-                📞 تماس با ما
-            </h1>
-
-            <p class="description">
-                اگر پیشنهادی برای سایت دارید،
-                می‌توانید از طریق فرم زیر پیام خود را ارسال کنید.
-            </p>
-
-
-            <form onsubmit="sendMessage(event)">
-
-                <label>
-                    نام شما
-                </label>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="نام خود را وارد کنید"
-                    required
-                >
-
-
-                <label>
-                    ایمیل
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="example@gmail.com"
-                    required
-                >
-
-
-                <label>
-                    پیام شما
-                </label>
-
-                <textarea
-                    id="message"
-                    placeholder="پیام خود را بنویسید..."
-                    required
-                ></textarea>
-
-
-                <button
-                    class="send-button"
-                    type="submit"
-                >
-                    📩 ارسال پیام
-                </button>
-
-            </form>
-
+        <div class="hero-icon">
+            📞
         </div>
 
-    </div>
+        <h1>
+            تماس با ما
+        </h1>
 
+        <p>
+            اگر پیشنهادی برای بهتر شدن سایت داری، پیام خودت را ارسال کن.
+        </p>
+
+    </section>
+
+
+    <!-- CONTENT -->
+
+    <main class="container">
+
+        <h2 class="title">
+            با ما در ارتباط باش
+        </h2>
+
+        <p class="description">
+            پیام شما در همین مرورگر ثبت می‌شود و برای نسخه فعلی سایت
+            ارسال اینترنتی به سرور انجام نمی‌شود.
+        </p>
+
+
+        <section class="contact-grid">
+
+
+            <!-- INFO -->
+
+            <div class="info">
+
+                <h2>
+                    💙 YAMAL FAN
+                </h2>
+
+                <p>
+                    این سایت یک پروژه هواداری برای لامین یامال است.
+                </p>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        📰
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            اخبار
+                        </strong>
+
+                        <span>
+                            جدیدترین مطالب سایت
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        🏆
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            افتخارات
+                        </strong>
+
+                        <span>
+                            مشاهده صفحه افتخارات
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            پیشنهاد
+                        </strong>
+
+                        <span>
+                            ایده‌هایت را با ما به اشتراک بگذار
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <div class="form-card">
+
+                <h2>
+                    ✉️ ارسال پیام
+                </h2>
+
+
+                <form
+                    id="contactForm"
+                >
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            نام
+                        </label>
+
+                        <input
+                            id="name"
+                            type="text"
+                            placeholder="نام شما"
+                            maxlength="40"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            ایمیل
+                        </label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="example@email.com"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="message">
+                            پیام
+                        </label>
+
+                        <textarea
+                            id="message"
+                            placeholder="پیام خود را بنویسید..."
+                            maxlength="1000"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        class="submit-btn"
+                        type="submit"
+                    >
+                        🚀 ارسال پیام
+                    </button>
+
+
+                </form>
+
+
+                <div
+                    class="success"
+                    id="successMessage"
+                >
+                    ✅ پیام شما با موفقیت در این مرورگر ثبت شد.
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <br><br>
+
+
+        <button
+            class="dark-button"
+            onclick="toggleDarkMode()"
+        >
+            🌙 تغییر حالت نمایش
+        </button>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
 
     <footer>
 
-        <p>
-            © 2026 Yamal Fan Site
-        </p>
+        <strong>
+            ⚽ YAMAL FAN
+        </strong>
 
-        <p>
-            ساخته شده با ❤️ توسط علیسان
-        </p>
+        <br>
+
+        سایت هواداری لامین یامال ❤️
+
+        <br>
+
+        © ۲۰۲۶
+
+        <br>
+
+        ساخته شده توسط علیسان
 
     </footer>
 
 
     <script>
 
-        function sendMessage(event) {
+        /* CONTACT FORM */
 
-            event.preventDefault();
+        document
+            .getElementById("contactForm")
+            .addEventListener(
+                "submit",
+                function(event) {
 
-            let name = document.getElementById("name").value;
+                    event.preventDefault();
 
-            alert(
-                "ممنون " + name + " عزیز! پیام شما دریافت شد. ⚽"
+
+                    const name =
+                        document
+                            .getElementById("name")
+                            .value
+                            .trim();
+
+                    const email =
+                        document
+                            .getElementById("email")
+                            .value
+                            .trim();
+
+                    const message =
+                        document
+                            .getElementById("message")
+                            .value
+                            .trim();
+
+
+                    if (
+                        !name ||
+                        !email ||
+                        !message
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    /* ذخیره محلی */
+
+                    const contactMessage = {
+
+                        name: name,
+
+                        email: email,
+
+                        message: message,
+
+                        date:
+                            new Date()
+                                .toLocaleString(
+                                    "fa-IR"
+                                )
+
+                    };
+
+
+                    localStorage.setItem(
+                        "yamalContactMessage",
+                        JSON.stringify(
+                            contactMessage
+                        )
+                    );
+
+
+                    document
+                        .getElementById(
+                            "successMessage"
+                        )
+                        .style.display = "block";
+
+
+                    document
+                        .getElementById(
+                            "contactForm"
+                        )
+                        .reset();
+
+                }
+            );
+
+
+        /* DARK MODE */
+
+        function toggleDarkMode() {
+
+            document.body
+                .classList
+                .toggle("dark");
+
+
+            const dark =
+                document.body
+                    .classList
+                    .contains("dark");
+
+
+            localStorage.setItem(
+                "yamalDarkMode",
+                dark
             );
 
         }
 
+
+        /* حفظ حالت تاریک */
+
+        if (
+            localStorage.getItem(
+                "yamalDarkMode"
+            ) === "true"
+        ) {
+
+            document.body
+                .classList
+                .add("dark");
+
+        }
+
     </script>
+
 
 </body>
 
