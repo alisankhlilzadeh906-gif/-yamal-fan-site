@@ -5,16 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>اخبار لامین یامال | Yamal Fan Site</title>
-
-    <meta name="description"
-        content="آخرین مطالب و اخبار مربوط به لامین یامال در سایت هواداری یامال">
+    <title>اخبار لامین یامال</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
@@ -23,131 +16,66 @@
         }
 
         header {
-            background: linear-gradient(135deg, #071a35, #2563eb);
+            background: #2563eb;
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 10px;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
-
-        header p {
-            color: #dbeafe;
+            margin: 10px;
         }
 
         nav {
-            background: #0f172a;
-            display: flex;
-            justify-content: center;
-            gap: 8px;
+            background: #111827;
+            text-align: center;
             padding: 12px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 10px;
-        }
-
-        nav a:hover {
-            background: #2563eb;
+            margin: 8px;
         }
 
         .container {
-            max-width: 1050px;
-            margin: 35px auto;
-            padding: 0 20px;
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
         }
 
-        .title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .title h2 {
-            font-size: 30px;
-            margin-bottom: 5px;
-        }
-
-        .title p {
-            color: #64748b;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .news-card {
+        .news {
             background: white;
-            border-radius: 18px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            transition: 0.3s;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            border-right: 5px solid #2563eb;
         }
 
-        .news-card:hover {
-            transform: translateY(-6px);
-        }
-
-        .news-icon {
-            font-size: 45px;
-        }
-
-        .date {
+        .news h2 {
             color: #2563eb;
-            font-size: 13px;
-            margin-top: 10px;
+            line-height: 1.7;
         }
 
-        .news-card h3 {
-            font-size: 20px;
-        }
-
-        .news-card p {
-            color: #64748b;
-            line-height: 1.9;
-        }
-
-        .button {
-            display: inline-block;
-            margin-top: 10px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 10px;
-        }
-
-        .button:hover {
-            background: #1d4ed8;
+        .news p {
+            line-height: 2;
+            font-size: 16px;
         }
 
         footer {
-            margin-top: 60px;
-            background: #0f172a;
+            background: #111827;
             color: white;
             text-align: center;
-            padding: 25px;
+            padding: 20px;
         }
 
-        @media (max-width: 750px) {
-            .news-grid {
-                grid-template-columns: 1fr;
+        @media (max-width: 600px) {
+            .container {
+                width: 92%;
             }
 
-            nav {
-                overflow-x: auto;
-                justify-content: flex-start;
-            }
-
-            nav a {
-                white-space: nowrap;
+            .news {
+                padding: 15px;
             }
         }
     </style>
@@ -156,8 +84,9 @@
 <body>
 
     <header>
+        <div style="font-size: 45px;">⚽</div>
         <h1>📰 اخبار لامین یامال</h1>
-        <p>جدیدترین مطالب سایت هواداری</p>
+        <p>جدیدترین اخبار و مطالب</p>
     </header>
 
     <nav>
@@ -166,83 +95,63 @@
         <a href="contact.html">📞 تماس با ما</a>
     </nav>
 
-    <main class="container">
+    <div class="container">
 
-        <div class="title">
-            <h2>آخرین مطالب</h2>
-            <p>اخبار و مطالب مربوط به دنیای فوتبال</p>
+        <div class="news">
+            <h2>
+                مصاحبه جدید یامال: یک سر و گردن بالاتر از همه‌ام!
+            </h2>
+
+            <p>
+                لامین یامال تقریباً هر روز یک مصاحبه جدید دارد
+                و هر بار درباره توپ طلا هم حرف می‌زند.
+            </p>
+
+            <p>
+                یامال در جدیدترین مصاحبه خود که امروز با
+                تلویزیون اسپانیایی RTVE انجام شد، خودش را
+                شایسته فتح توپ طلای ۲۰۲۶ دانست.
+            </p>
+
+            <p>
+                ستاره بارسلونا در گفت‌وگویی صریح با تلویزیون
+                ملی اسپانیا گفت که خودش را شایسته توپ طلا می‌داند.
+            </p>
         </div>
 
-        <section class="news-grid">
+        <div class="news">
+            <h2>
+                یامال: اعتراضات رئال به داوری برایم اهمیتی ندارد
+            </h2>
 
-            <article class="news-card">
-                <div class="news-icon">⚽</div>
+            <p>
+                لامین یامال، ستاره بارسلونا، ترجیح داده وارد
+                جنجال اخیر مربوط به رئال مادرید و ژوزه مورینیو
+                درباره اشتباهات داوری نشود.
+            </p>
 
-                <div class="date">
-                    ۲۰۲۶
-                </div>
+            <p>
+                یامال درباره اعتراضات رئالی‌ها به داوری گفت:
+                «راستش را بخواهید، من خیلی درگیر این مسائل نیستم
+                و چندان هم برایم اهمیتی ندارد.»
+            </p>
 
-                <h3>
-                    لامین یامال؛ ستاره جوان فوتبال
-                </h3>
+            <p>
+                او در ادامه افزود:
+                «تا زمانی که بارسلونا به پیروزی‌هایش ادامه دهد،
+                چیزی برای صحبت کردن وجود ندارد. ما فقط روی سبک
+                بازی و پیروزی‌هایمان تمرکز می‌کنیم.»
+            </p>
 
-                <p>
-                    در این بخش می‌توانیم مطالب و اخبار جدید
-                    مربوط به عملکرد یامال را قرار دهیم.
-                </p>
+            <p>
+                یامال درباره خریدهای جدید بارسلونا نیز گفت:
+                «گوردون که خیلی خوب با تیم هماهنگ شده،
+                رودری و کریم آدیمی هم همین‌طور؛
+                همه آن‌ها عملکرد فوق‌العاده‌ای دارند.»
+            </p>
+        </div>
 
-                <a href="#" class="button">
-                    ادامه مطلب
-                </a>
-            </article>
-
-
-            <article class="news-card">
-                <div class="news-icon">🏆</div>
-
-                <div class="date">
-                    مطالب ویژه
-                </div>
-
-                <h3>
-                    افتخارات و دستاوردها
-                </h3>
-
-                <p>
-                    این کارت برای معرفی افتخارات و اتفاقات
-                    مهم دوران فوتبال یامال آماده شده است.
-                </p>
-
-                <a href="#" class="button">
-                    ادامه مطلب
-                </a>
-            </article>
-
-
-            <article class="news-card">
-                <div class="news-icon">🔥</div>
-
-                <div class="date">
-                    اخبار فوتبال
-                </div>
-
-                <h3>
-                    یامال و آینده فوتبال
-                </h3>
-
-                <p>
-                    اینجا می‌توانیم مطالب تحلیلی و اطلاعات
-                    مربوط به آینده فوتبالی او را منتشر کنیم.
-                </p>
-
-                <a href="#" class="button">
-                    ادامه مطلب
-                </a>
-            </article>
-
-        </section>
-
-    </main>
+    </div>
 
     <footer>
         <p>© 2026 Yamal Fan Site</p>

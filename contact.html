@@ -1,82 +1,251 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>تماس با ما</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تماس با ما | سایت هواداری لامین یامال</title>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial;
-            direction: rtl;
-            background: #f1f5f9;
-            text-align: center;
             margin: 0;
+            font-family: Tahoma, Arial, sans-serif;
+            background: #f1f5f9;
+            color: #172033;
         }
 
-        header {
+        nav {
             background: #111827;
-            color: white;
-            padding: 25px;
-        }
-
-        .contact {
-            background: white;
-            padding: 25px;
-            margin: 30px auto;
-            max-width: 450px;
-            border-radius: 15px;
-        }
-
-        input, textarea {
-            width: 90%;
+            text-align: center;
             padding: 12px;
-            margin: 8px;
-            border: 1px solid #ccc;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 14px;
+            margin: 3px;
             border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: #2563eb;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            margin: 40px auto;
+        }
+
+        .contact-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        .description {
+            text-align: center;
+            line-height: 2;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-family: inherit;
             font-size: 16px;
         }
 
-        button {
-            padding: 12px 25px;
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .send-button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
             background: #2563eb;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 17px;
+            cursor: pointer;
         }
 
-        a {
-            text-decoration: none;
-            color: #2563eb;
+        .send-button:hover {
+            background: #1d4ed8;
         }
+
+        footer {
+            margin-top: 50px;
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 600px) {
+
+            .contact-box {
+                padding: 20px;
+            }
+
+            nav {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+        }
+
     </style>
+
 </head>
 
 <body>
 
-    <header>
-        <h1>📞 تماس با ما</h1>
-    </header>
+    <nav>
 
-    <div class="contact">
+        <a href="index.html">
+            🏠 خانه
+        </a>
 
-        <h2>با ما در ارتباط باشید</h2>
+        <a href="news.html">
+            📰 اخبار
+        </a>
 
-        <input type="text" placeholder="نام شما">
+        <a href="contact.html">
+            📞 تماس با ما
+        </a>
 
-        <input type="email" placeholder="ایمیل شما">
+    </nav>
 
-        <textarea rows="5" placeholder="پیام شما"></textarea>
 
-        <br>
+    <div class="container">
 
-        <button>ارسال پیام</button>
+        <div class="contact-box">
 
-        <br><br>
+            <h1>
+                📞 تماس با ما
+            </h1>
 
-        <a href="index.html">🏠 برگشت به صفحه اصلی</a>
+            <p class="description">
+                اگر پیشنهادی برای سایت دارید،
+                می‌توانید از طریق فرم زیر پیام خود را ارسال کنید.
+            </p>
+
+
+            <form onsubmit="sendMessage(event)">
+
+                <label>
+                    نام شما
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="نام خود را وارد کنید"
+                    required
+                >
+
+
+                <label>
+                    ایمیل
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="example@gmail.com"
+                    required
+                >
+
+
+                <label>
+                    پیام شما
+                </label>
+
+                <textarea
+                    id="message"
+                    placeholder="پیام خود را بنویسید..."
+                    required
+                ></textarea>
+
+
+                <button
+                    class="send-button"
+                    type="submit"
+                >
+                    📩 ارسال پیام
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
+
+    <footer>
+
+        <p>
+            © 2026 Yamal Fan Site
+        </p>
+
+        <p>
+            ساخته شده با ❤️ توسط علیسان
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        function sendMessage(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+
+            alert(
+                "ممنون " + name + " عزیز! پیام شما دریافت شد. ⚽"
+            );
+
+        }
+
+    </script>
+
 </body>
+
 </html>

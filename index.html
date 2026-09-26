@@ -2,10 +2,12 @@
 <html lang="fa" dir="rtl">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>لامین یامال | سایت هواداری</title>
+    <title>سایت هواداری لامین یامال | اخبار و اطلاعات</title>
 
     <meta name="description"
         content="سایت هواداری لامین یامال؛ اخبار، افتخارات و اطلاعات فوتبالی">
@@ -16,53 +18,27 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             margin: 0;
-            font-family: Arial, Tahoma, sans-serif;
+            font-family: Tahoma, Arial, sans-serif;
             background: #f1f5f9;
             color: #172033;
-        }
-
-        /* هدر */
-
-        header {
-            background: linear-gradient(135deg, #071a35, #2563eb);
-            color: white;
             text-align: center;
-            padding: 60px 20px;
-        }
-
-        header .ball {
-            font-size: 65px;
-        }
-
-        header h1 {
-            font-size: 40px;
-            margin: 10px 0;
-        }
-
-        header p {
-            font-size: 18px;
-            color: #dbeafe;
+            transition: 0.3s;
         }
 
         /* منو */
 
         nav {
-            background: #0f172a;
+            background: #111827;
             padding: 12px;
-            text-align: center;
         }
 
         nav a {
-            display: inline-block;
             color: white;
             text-decoration: none;
-            padding: 10px 15px;
+            display: inline-block;
+            padding: 10px 14px;
             margin: 3px;
             border-radius: 8px;
         }
@@ -71,128 +47,169 @@
             background: #2563eb;
         }
 
-        /* بخش اصلی */
 
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
+        /* بخش معرفی */
+
+        .hero {
+            background: linear-gradient(135deg, #071a35, #2563eb);
+            color: white;
+            padding: 60px 20px;
         }
 
-        .welcome {
-            background: white;
-            text-align: center;
-            padding: 40px 20px;
+        .hero h1 {
+            font-size: 38px;
+            margin: 10px 0;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 2;
+            color: #dbeafe;
+            animation: fadeIn 1.8s ease;
+        }
+
+        .hero img {
+            width: 250px;
+            max-width: 80%;
             border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .welcome h2 {
-            font-size: 30px;
-            color: #1d4ed8;
-        }
-
-        .welcome p {
-            color: #64748b;
-            font-size: 17px;
-        }
 
         /* دکمه */
 
-        .button {
+        .btn {
             display: inline-block;
+            background: white;
+            color: #2563eb;
+            text-decoration: none;
+            padding: 13px 25px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin: 10px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        button {
             background: #2563eb;
             color: white;
-            text-decoration: none;
-            padding: 12px 22px;
-            margin-top: 15px;
+            border: none;
+            padding: 12px 20px;
             border-radius: 10px;
-            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
         }
 
-        .button:hover {
-            background: #1d4ed8;
+
+        /* افتخارات */
+
+        .honors {
+            padding: 50px 15px;
         }
 
-        /* عنوان بخش */
-
-        .title {
-            text-align: center;
-            margin: 50px 0 25px;
-        }
-
-        .title h2 {
+        .honors h2 {
+            color: #2563eb;
             font-size: 28px;
+            margin-bottom: 30px;
         }
 
-        .title p {
-            color: #64748b;
-        }
-
-        /* کارت‌ها */
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .honor-cards {
+            display: flex;
+            justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .card {
+        .honor-card {
             background: white;
+            width: 250px;
             padding: 25px;
             border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
         }
 
-        .card .icon {
-            font-size: 45px;
+        .honor-card:hover {
+            transform: translateY(-10px) scale(1.03);
         }
 
-        .card h3 {
+        .honor-card .icon {
+            font-size: 50px;
+        }
+
+        .honor-card h3 {
             color: #2563eb;
         }
 
-        .card p {
-            color: #64748b;
+        .honor-card p {
+            line-height: 1.8;
+            color: #475569;
         }
 
-        /* بخش افتخارات */
 
-        .honors {
-            background: white;
-            padding: 25px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        /* حالت تاریک */
+
+        body.dark {
+            background: #111827;
+            color: #f9fafb;
         }
 
-        .honor {
-            background: #eff6ff;
-            padding: 15px;
-            margin: 10px 0;
-            border-right: 5px solid #2563eb;
-            border-radius: 8px;
+        body.dark .honors h2 {
+            color: #60a5fa;
         }
 
-        /* فوتر */
-
-        footer {
-            background: #0f172a;
+        body.dark .honor-card {
+            background: #1f2937;
             color: white;
-            text-align: center;
-            padding: 30px 15px;
-            margin-top: 60px;
         }
+
+        body.dark .honor-card h3 {
+            color: #60a5fa;
+        }
+
+        body.dark .honor-card p {
+            color: #e5e7eb;
+        }
+
+
+        /* انیمیشن */
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
 
         /* موبایل */
 
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
 
-            header h1 {
-                font-size: 30px;
+            .hero h1 {
+                font-size: 28px;
             }
 
-            .cards {
-                grid-template-columns: 1fr;
+            .hero p {
+                font-size: 16px;
+            }
+
+            .honor-card {
+                width: 85%;
             }
 
             nav {
@@ -203,30 +220,14 @@
         }
 
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- هدر سایت -->
 
-    <header>
-
-        <div class="ball">
-            ⚽
-        </div>
-
-        <h1>
-            لامین یامال
-        </h1>
-
-        <p>
-            سایت هواداری لامین یامال
-        </p>
-
-    </header>
-
-
-    <!-- منوی سایت -->
+    <!-- منو -->
 
     <nav>
 
@@ -245,168 +246,121 @@
     </nav>
 
 
-    <!-- محتوای اصلی -->
+    <!-- معرفی اصلی -->
 
-    <main class="container">
+    <section class="hero">
 
-        <!-- معرفی -->
+        <div style="font-size: 55px;">
+            ⚽
+        </div>
 
-        <section class="welcome">
+        <h1>
+            سایت هواداری لامین یامال
+        </h1>
 
-            <h2>
-                به سایت هواداری لامین یامال خوش آمدید! ⚽
-            </h2>
+        <p>
+            به دنیای لامین یامال خوش آمدید!
+            <br>
+            اخبار، افتخارات و مطالب فوتبالی درباره یکی از
+            استعدادهای جوان فوتبال.
+        </p>
 
-            <p>
-                اینجا می‌توانید اخبار، اطلاعات و مطالب
-                فوتبالی مربوط به لامین یامال را دنبال کنید.
-            </p>
+        <img src="yamal.jpg" alt="لامین یامال">
 
-            <a class="button" href="news.html">
-                📰 مشاهده اخبار
-            </a>
+        <br>
 
-        </section>
+        <a class="btn" href="news.html">
+            📰 مشاهده اخبار
+        </a>
+
+    </section>
 
 
-        <!-- امکانات -->
+    <!-- دکمه حالت تاریک -->
 
-        <section>
+    <button onclick="darkMode()">
+        🌙 حالت تاریک
+    </button>
 
-            <div class="title">
 
-                <h2>
-                    امکانات سایت
-                </h2>
+    <!-- افتخارات -->
+
+    <section class="honors">
+
+        <h2>
+            🏆 افتخارات لامین یامال
+        </h2>
+
+
+        <div class="honor-cards">
+
+
+            <div class="honor-card">
+
+                <div class="icon">
+                    🏆
+                </div>
+
+                <h3>
+                    قهرمانی یورو ۲۰۲۴
+                </h3>
 
                 <p>
-                    بخش‌های مختلف سایت را مشاهده کنید
+                    قهرمانی با تیم ملی اسپانیا در رقابت‌های یورو ۲۰۲۴
                 </p>
 
             </div>
 
 
-            <div class="cards">
+            <div class="honor-card">
 
-
-                <div class="card">
-
-                    <div class="icon">
-                        📰
-                    </div>
-
-                    <h3>
-                        اخبار
-                    </h3>
-
-                    <p>
-                        مشاهده مطالب و اخبار مربوط
-                        به فوتبال و لامین یامال.
-                    </p>
-
-                    <a class="button" href="news.html">
-                        مشاهده
-                    </a>
-
+                <div class="icon">
+                    🥇
                 </div>
 
+                <h3>
+                    بهترین بازیکن جوان یورو
+                </h3>
 
-                <div class="card">
-
-                    <div class="icon">
-                        🏆
-                    </div>
-
-                    <h3>
-                        افتخارات
-                    </h3>
-
-                    <p>
-                        اطلاعات مربوط به افتخارات
-                        و دستاوردهای فوتبالی.
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="icon">
-                        📞
-                    </div>
-
-                    <h3>
-                        تماس با ما
-                    </h3>
-
-                    <p>
-                        برای ارسال پیشنهاد و نظر
-                        می‌توانید با ما تماس بگیرید.
-                    </p>
-
-                    <a class="button" href="contact.html">
-                        تماس
-                    </a>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- افتخارات -->
-
-        <section>
-
-            <div class="title">
-
-                <h2>
-                    🏆 افتخارات و اطلاعات
-                </h2>
+                <p>
+                    کسب عنوان بهترین بازیکن جوان مسابقات یورو ۲۰۲۴
+                </p>
 
             </div>
 
 
-            <div class="honors">
+            <div class="honor-card">
 
-                <div class="honor">
-                    ⚽ بازیکن جوان فوتبال
+                <div class="icon">
+                    ⭐
                 </div>
 
-                <div class="honor">
-                    🌟 استعداد برجسته
-                </div>
+                <h3>
+                    استعداد بزرگ فوتبال
+                </h3>
 
-                <div class="honor">
-                    🇪🇸 بازیکن تیم ملی اسپانیا
-                </div>
-
-                <div class="honor">
-                    🔥 یکی از چهره‌های جوان فوتبال
-                </div>
+                <p>
+                    درخشش در بارسلونا و تیم ملی اسپانیا
+                </p>
 
             </div>
 
-        </section>
 
-    </main>
+        </div>
+
+    </section>
 
 
-    <!-- پایین سایت -->
+    <script>
 
-    <footer>
+        function darkMode() {
 
-        <p>
-            © 2026 Yamal Fan Site
-        </p>
+            document.body.classList.toggle("dark");
 
-        <p>
-            ساخته شده با ❤️ توسط علیسان
-        </p>
+        }
 
-    </footer>
+    </script>
+
 
 </body>
 
