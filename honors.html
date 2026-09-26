@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>افتخارات لامین یامال | YAMAL FAN</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Tahoma, Arial, sans-serif;
+            background: #eef2f7;
+            color: #172033;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: rgba(8, 15, 30, 0.97);
+            padding: 12px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            color: white;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 13px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* HERO */
+
+        .hero {
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(37,99,235,0.35),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #020617,
+                    #0f2b5b,
+                    #2563eb
+                );
+
+            color: white;
+            padding: 65px 20px;
+        }
+
+        .trophy {
+            font-size: 70px;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin: 15px 0;
+        }
+
+        .hero p {
+            color: #dbeafe;
+            line-height: 2;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 18px;
+        }
+
+        .section-title {
+            color: #2563eb;
+            font-size: 31px;
+            margin-bottom: 12px;
+        }
+
+        .section-description {
+            color: #64748b;
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        /* HONORS GRID */
+
+        .honors-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .honor-card {
+            background: white;
+
+            padding: 30px 22px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+
+            position: relative;
+
+            overflow: hidden;
+
+            animation: fadeUp 0.7s ease;
+        }
+
+        .honor-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            right: 0;
+            left: 0;
+
+            height: 5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #60a5fa
+                );
+        }
+
+        .honor-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 18px 40px rgba(0,0,0,0.14);
+        }
+
+        .honor-icon {
+            font-size: 55px;
+
+            margin-bottom: 15px;
+
+            display: inline-block;
+
+            animation: trophyPulse 2.5s infinite;
+        }
+
+        .honor-card h2 {
+            color: #2563eb;
+
+            font-size: 21px;
+
+            line-height: 1.7;
+        }
+
+        .honor-card p {
+            color: #475569;
+
+            line-height: 2;
+
+            font-size: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 7px 13px;
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        /* FEATURE */
+
+        .featured {
+            margin-top: 45px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a
+                );
+
+            color: white;
+
+            padding: 40px 25px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .featured h2 {
+            font-size: 28px;
+        }
+
+        .featured p {
+            color: #dbeafe;
+            line-height: 2;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        /* DARK MODE */
+
+        body.dark {
+            background: #020617;
+            color: white;
+        }
+
+        body.dark .honor-card {
+            background: #111827;
+        }
+
+        body.dark .honor-card h2 {
+            color: #60a5fa;
+        }
+
+        body.dark .honor-card p,
+        body.dark .section-description {
+            color: #cbd5e1;
+        }
+
+        body.dark .badge {
+            background: #1e3a8a;
+            color: #bfdbfe;
+        }
+
+        /* BUTTON */
+
+        .dark-button {
+            margin: 0 auto 40px;
+
+            background: #2563eb;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            transition: 0.25s;
+        }
+
+        .dark-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #020617;
+
+            color: white;
+
+            padding: 30px;
+
+            line-height: 2;
+        }
+
+        footer strong {
+            color: #60a5fa;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes floating {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+        }
+
+        @keyframes trophyPulse {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+
+        }
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .honors-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 8px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+                padding: 8px 9px;
+            }
+
+            .hero {
+                padding: 50px 15px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .honors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .honor-card {
+                padding: 28px 20px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ⚽ YAMAL
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                🏠 خانه
+            </a>
+
+            <a href="news.html">
+                📰 اخبار
+            </a>
+
+            <a href="honors.html">
+                🏆 افتخارات
+            </a>
+
+            <a href="login.html">
+                👤 حساب
+            </a>
+
+            <a href="contact.html">
+                📞 تماس
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="trophy">
+            🏆
+        </div>
+
+        <h1>
+            افتخارات لامین یامال
+        </h1>
+
+        <p>
+            نگاهی به موفقیت‌ها و لحظات مهم دوران حرفه‌ای یامال
+        </p>
+
+    </section>
+
+
+    <!-- CONTENT -->
+
+    <main class="container">
+
+        <h2 class="section-title">
+            🏆 افتخارات و دستاوردها
+        </h2>
+
+        <p class="section-description">
+            در این بخش می‌توانید با برخی از مهم‌ترین
+            افتخارات و دستاوردهای لامین یامال آشنا شوید.
+        </p>
+
+
+        <!-- CARDS -->
+
+        <section class="honors-grid">
+
+
+            <article class="honor-card">
+
+                <div class="honor-icon">
+                    🏆
+                </div>
+
+                <h2>
+                    قهرمانی یورو ۲۰۲۴
+                </h2>
+
+                <p>
+                    یامال در رقابت‌های یورو ۲۰۲۴
+                    همراه تیم ملی اسپانیا حضور داشت.
+                </p>
+
+                <span class="badge">
+                    تیم ملی اسپانیا
+                </span>
+
+            </article>
+
+
+            <article class="honor-card">
+
+                <div class="honor-icon">
+                    🌟
+                </div>
+
+                <h2>
+                    بهترین بازیکن جوان یورو ۲۰۲۴
+                </h2>
+
+                <p>
+                    یامال در یورو ۲۰۲۴ یکی از
+                    جوان‌ترین بازیکنان برجسته مسابقات بود.
+                </p>
+
+                <span class="badge">
+                    یورو ۲۰۲۴
+                </span>
+
+            </article>
+
+
+            <article class="honor-card">
+
+                <div class="honor-icon">
+                    🔵🔴
+                </div>
+
+                <h2>
+                    افتخارات با بارسلونا
+                </h2>
+
+                <p>
+                    یامال از بازیکنان جوانی است که
+                    در ترکیب تیم اصلی بارسلونا حضور پیدا کرده است.
+                </p>
+
+                <span class="badge">
+                    FC Barcelona
+                </span>
+
+            </article>
+
+
+            <article class="honor-card">
+
+                <div class="honor-icon">
+                    🇪🇸
+                </div>
+
+                <h2>
+                    موفقیت با اسپانیا
+                </h2>
+
+                <p>
+                    حضور در تیم ملی اسپانیا یکی از
+                    مهم‌ترین بخش‌های دوران حرفه‌ای یامال است.
+                </p>
+
+                <span class="badge">
+                    تیم ملی
+                </span>
+
+            </article>
+
+
+            <article class="honor-card">
+
+                <div class="honor-icon">
+                    ⚡
+                </div>
+
+                <h2>
+                    رکوردهای جوانی
+                </h2>
+
+                <p>
+                    یامال در سن بسیار کم به رکوردهای
+                    قابل توجهی در فوتبال حرفه‌ای دست یافته است.
+                </p>
+
+                <span class="badge">
+                    رکورد
+                </span>
+
+            </article>
+
+
+            <article class="honor-card">
+
+                <div class="honor-icon">
+                    👑
+                </div>
+
+                <h2>
+                    ستاره نسل جدید
+                </h2>
+
+                <p>
+                    یامال یکی از چهره‌های شناخته‌شده
+                    نسل جدید فوتبال اروپا محسوب می‌شود.
+                </p>
+
+                <span class="badge">
+                    نسل جدید
+                </span>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- FEATURE -->
+
+        <section class="featured">
+
+            <div style="font-size:55px;">
+                ⭐
+            </div>
+
+            <h2>
+                مسیر ادامه دارد...
+            </h2>
+
+            <p>
+                دوران حرفه‌ای یامال هنوز در ابتدای مسیر خود قرار دارد
+                و این صفحه می‌تواند در آینده با افتخارات و دستاوردهای
+                جدید به‌روزرسانی شود.
+            </p>
+
+        </section>
+
+
+        <br>
+
+
+        <button
+            class="dark-button"
+            onclick="toggleDarkMode()"
+        >
+            🌙 تغییر حالت نمایش
+        </button>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>
+            ⚽ YAMAL FAN
+        </strong>
+
+        <br>
+
+        سایت هواداری لامین یامال ❤️
+
+        <br>
+
+        © ۲۰۲۶
+
+        <br>
+
+        ساخته شده توسط علیسان
+
+    </footer>
+
+
+    <script>
+
+        function toggleDarkMode() {
+
+            document.body.classList.toggle("dark");
+
+            const dark =
+                document.body.classList.contains("dark");
+
+            localStorage.setItem(
+                "yamalDarkMode",
+                dark
+            );
+
+        }
+
+
+        /* حفظ حالت تاریک بین صفحات */
+
+        if (
+            localStorage.getItem(
+                "yamalDarkMode"
+            ) === "true"
+        ) {
+
+            document.body.classList.add("dark");
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود و ثبت‌نام | هواداران لامین یامال</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Tahoma, Arial, sans-serif;
+            background: #f1f5f9;
+            color: #172033;
+            text-align: center;
+        }
+
+        nav {
+            background: #111827;
+            padding: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 14px;
+            margin: 3px;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: #2563eb;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            color: #2563eb;
+            margin-bottom: 25px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tabs button {
+            flex: 1;
+            margin: 0;
+            background: #e5e7eb;
+            color: #172033;
+        }
+
+        .tabs button.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 15px;
+            direction: rtl;
+        }
+
+        .main-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        .main-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .message {
+            min-height: 25px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .welcome {
+            font-size: 20px;
+            line-height: 2;
+        }
+
+        .logout {
+            background: #dc2626;
+        }
+
+        .logout:hover {
+            background: #b91c1c;
+        }
+
+        .hint {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 25px auto;
+            }
+
+            .box {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">🏠 خانه</a>
+        <a href="news.html">📰 اخبار</a>
+        <a href="login.html">👤 ورود / ثبت‌نام</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- قسمت ورود و ثبت نام -->
+        <div class="box" id="authBox">
+
+            <h1>👤 حساب کاربری</h1>
+
+            <div class="tabs">
+                <button id="loginTab" class="active" onclick="showLogin()">
+                    ورود
+                </button>
+
+                <button id="registerTab" onclick="showRegister()">
+                    ثبت‌نام
+                </button>
+            </div>
+
+            <!-- ورود -->
+            <div id="loginForm">
+
+                <input
+                    type="text"
+                    id="loginUsername"
+                    placeholder="نام کاربری"
+                    maxlength="20"
+                >
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="رمز عبور"
+                    maxlength="50"
+                >
+
+                <button class="main-btn" onclick="login()">
+                    🔐 ورود
+                </button>
+
+            </div>
+
+            <!-- ثبت نام -->
+            <div id="registerForm" class="hidden">
+
+                <input
+                    type="text"
+                    id="registerUsername"
+                    placeholder="نام کاربری"
+                    maxlength="20"
+                >
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="رمز عبور حداقل ۶ کاراکتر"
+                    maxlength="50"
+                >
+
+                <input
+                    type="password"
+                    id="registerConfirm"
+                    placeholder="تکرار رمز عبور"
+                    maxlength="50"
+                >
+
+                <button class="main-btn" onclick="register()">
+                    📝 ثبت‌نام
+                </button>
+
+            </div>
+
+            <div id="message" class="message"></div>
+
+            <p class="hint">
+                ⚠️ این نسخه آزمایشی است و اطلاعات حساب فقط در همین مرورگر ذخیره می‌شود.
+                برای تست از رمز واقعی حساب‌های خودت استفاده نکن.
+            </p>
+
+        </div>
+
+
+        <!-- قسمت بعد از ورود -->
+        <div class="box hidden" id="loggedInBox">
+
+            <h1>🎉 خوش آمدی!</h1>
+
+            <div class="welcome">
+                سلام <strong id="welcomeUsername"></strong> 👋
+                <br>
+                به سایت هواداری لامین یامال خوش آمدی!
+            </div>
+
+            <button class="main-btn logout" onclick="logout()">
+                🚪 خروج از حساب
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const ACCOUNT_KEY = "yamalAccount";
+        const SESSION_KEY = "yamalSession";
+
+
+        // تبدیل رمز به هش
+        async function hashPassword(password) {
+
+            if (window.crypto && crypto.subtle) {
+
+                const data = new TextEncoder().encode(password);
+
+                const hashBuffer =
+                    await crypto.subtle.digest("SHA-256", data);
+
+                const hashArray =
+                    Array.from(new Uint8Array(hashBuffer));
+
+                return hashArray
+                    .map(byte => byte.toString(16).padStart(2, "0"))
+                    .join("");
+
+            }
+
+            // حالت جایگزین برای بعضی فایل‌های محلی
+            let hash = 0;
+
+            for (let i = 0; i < password.length; i++) {
+                hash =
+                    ((hash << 5) - hash) +
+                    password.charCodeAt(i);
+
+                hash |= 0;
+            }
+
+            return "demo-" + hash;
+        }
+
+
+        // نمایش فرم ورود
+        function showLogin() {
+
+            document.getElementById("loginForm")
+                .classList.remove("hidden");
+
+            document.getElementById("registerForm")
+                .classList.add("hidden");
+
+            document.getElementById("loginTab")
+                .classList.add("active");
+
+            document.getElementById("registerTab")
+                .classList.remove("active");
+
+            clearMessage();
+        }
+
+
+        // نمایش فرم ثبت نام
+        function showRegister() {
+
+            document.getElementById("loginForm")
+                .classList.add("hidden");
+
+            document.getElementById("registerForm")
+                .classList.remove("hidden");
+
+            document.getElementById("loginTab")
+                .classList.remove("active");
+
+            document.getElementById("registerTab")
+                .classList.add("active");
+
+            clearMessage();
+        }
+
+
+        // ثبت نام
+        async function register() {
+
+            const username =
+                document.getElementById("registerUsername")
+                .value.trim();
+
+            const password =
+                document.getElementById("registerPassword")
+                .value;
+
+            const confirm =
+                document.getElementById("registerConfirm")
+                .value;
+
+
+            if (username.length < 3) {
+                showMessage(
+                    "❌ نام کاربری باید حداقل ۳ کاراکتر باشد.",
+                    "red"
+                );
+                return;
+            }
+
+
+            if (password.length < 6) {
+                showMessage(
+                    "❌ رمز عبور باید حداقل ۶ کاراکتر باشد.",
+                    "red"
+                );
+                return;
+            }
+
+
+            if (password !== confirm) {
+                showMessage(
+                    "❌ رمزهای عبور یکسان نیستند.",
+                    "red"
+                );
+                return;
+            }
+
+
+            const oldAccount =
+                localStorage.getItem(ACCOUNT_KEY);
+
+
+            if (oldAccount) {
+                showMessage(
+                    "⚠️ در این مرورگر قبلاً یک حساب ساخته شده است.",
+                    "orange"
+                );
+                return;
+            }
+
+
+            const passwordHash =
+                await hashPassword(password);
+
+
+            const account = {
+                username: username,
+                passwordHash: passwordHash
+            };
+
+
+            localStorage.setItem(
+                ACCOUNT_KEY,
+                JSON.stringify(account)
+            );
+
+
+            showMessage(
+                "✅ ثبت‌نام با موفقیت انجام شد! حالا وارد شو.",
+                "green"
+            );
+
+
+            document.getElementById("registerUsername")
+                .value = "";
+
+            document.getElementById("registerPassword")
+                .value = "";
+
+            document.getElementById("registerConfirm")
+                .value = "";
+
+
+            setTimeout(showLogin, 800);
+        }
+
+
+        // ورود
+        async function login() {
+
+            const username =
+                document.getElementById("loginUsername")
+                .value.trim();
+
+            const password =
+                document.getElementById("loginPassword")
+                .value;
+
+
+            const savedAccount =
+                localStorage.getItem(ACCOUNT_KEY);
+
+
+            if (!savedAccount) {
+                showMessage(
+                    "❌ هنوز حسابی ثبت‌نام نشده است.",
+                    "red"
+                );
+                return;
+            }
+
+
+            const account =
+                JSON.parse(savedAccount);
+
+
+            const passwordHash =
+                await hashPassword(password);
+
+
+            if (
+                username === account.username &&
+                passwordHash === account.passwordHash
+            ) {
+
+                localStorage.setItem(
+                    SESSION_KEY,
+                    JSON.stringify({
+                        username: account.username
+                    })
+                );
+
+
+                showLoggedIn(account.username);
+
+            } else {
+
+                showMessage(
+                    "❌ نام کاربری یا رمز عبور اشتباه است.",
+                    "red"
+                );
+            }
+        }
+
+
+        // نمایش صفحه کاربر
+        function showLoggedIn(username) {
+
+            document.getElementById("authBox")
+                .classList.add("hidden");
+
+            document.getElementById("loggedInBox")
+                .classList.remove("hidden");
+
+            document.getElementById("welcomeUsername")
+                .textContent = username;
+        }
+
+
+        // خروج
+        function logout() {
+
+            localStorage.removeItem(SESSION_KEY);
+
+            document.getElementById("loggedInBox")
+                .classList.add("hidden");
+
+            document.getElementById("authBox")
+                .classList.remove("hidden");
+
+            showLogin();
+        }
+
+
+        // پیام
+        function showMessage(text, color) {
+
+            const message =
+                document.getElementById("message");
+
+            message.textContent = text;
+            message.style.color = color;
+        }
+
+
+        function clearMessage() {
+
+            document.getElementById("message")
+                .textContent = "";
+        }
+
+
+        // بررسی وضعیت ورود هنگام باز شدن صفحه
+        function checkSession() {
+
+            const session =
+                localStorage.getItem(SESSION_KEY);
+
+            if (session) {
+
+                const data =
+                    JSON.parse(session);
+
+                showLoggedIn(data.username);
+            }
+        }
+
+
+        checkSession();
+
+    </script>
+
+</body>
+
+</html>

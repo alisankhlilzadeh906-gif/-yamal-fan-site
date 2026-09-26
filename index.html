@@ -2,356 +2,763 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>سایت هواداری لامین یامال | اخبار و اطلاعات</title>
-
-    <meta name="description"
-        content="سایت هواداری لامین یامال؛ اخبار، افتخارات و اطلاعات فوتبالی">
+    <title>اخبار لامین یامال | YAMAL FAN</title>
 
     <style>
-
         * {
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
-            background: #f1f5f9;
+            background: #eef2f7;
             color: #172033;
             text-align: center;
             transition: 0.3s;
         }
 
-        /* منو */
+        /* =====================
+           NAVBAR
+        ====================== */
 
-        nav {
-            background: #111827;
-            padding: 12px;
+        .navbar {
+            background: rgba(8, 15, 30, 0.97);
+            padding: 12px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+            backdrop-filter: blur(10px);
         }
 
-        nav a {
+        .logo {
+            color: white;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links a {
             color: white;
             text-decoration: none;
-            display: inline-block;
-            padding: 10px 14px;
-            margin: 3px;
-            border-radius: 8px;
+            padding: 10px 13px;
+            border-radius: 10px;
+            transition: 0.3s;
         }
 
-        nav a:hover {
+        .nav-links a:hover {
             background: #2563eb;
+            transform: translateY(-2px);
         }
 
-
-        /* بخش معرفی */
+        /* =====================
+           HEADER
+        ====================== */
 
         .hero {
-            background: linear-gradient(135deg, #071a35, #2563eb);
+            background:
+                radial-gradient(circle at 20% 20%,
+                    rgba(37,99,235,0.3),
+                    transparent 30%),
+                linear-gradient(
+                    135deg,
+                    #020617,
+                    #0f2b5b,
+                    #2563eb
+                );
+
             color: white;
-            padding: 60px 20px;
+            padding: 55px 20px;
+        }
+
+        .hero-icon {
+            font-size: 60px;
+            animation: floating 3s ease-in-out infinite;
         }
 
         .hero h1 {
             font-size: 38px;
-            margin: 10px 0;
-            animation: fadeIn 1.2s ease;
+            margin: 12px 0;
         }
 
         .hero p {
-            font-size: 18px;
-            line-height: 2;
             color: #dbeafe;
-            animation: fadeIn 1.8s ease;
+            line-height: 2;
         }
 
-        .hero img {
-            width: 250px;
-            max-width: 80%;
-            border-radius: 20px;
-            margin: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        /* =====================
+           SEARCH
+        ====================== */
+
+        .search-area {
+            background: #0b1220;
+            padding: 15px;
+
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
+        .search-area input {
+            width: 320px;
+            max-width: 90%;
 
-        /* دکمه */
+            padding: 13px 15px;
 
-        .btn {
-            display: inline-block;
-            background: white;
-            color: #2563eb;
-            text-decoration: none;
-            padding: 13px 25px;
+            border: none;
             border-radius: 12px;
-            font-weight: bold;
-            margin: 10px;
-            transition: 0.3s;
+
+            outline: none;
+            font-size: 15px;
         }
 
-        .btn:hover {
-            transform: translateY(-4px);
+        .search-area button {
+            margin: 0;
         }
 
         button {
             background: #2563eb;
             color: white;
             border: none;
-            padding: 12px 20px;
+
+            padding: 11px 18px;
+
             border-radius: 10px;
-            font-size: 16px;
+
             cursor: pointer;
-            margin: 10px;
+            font-size: 15px;
+
+            transition: 0.25s;
         }
 
-
-        /* افتخارات */
-
-        .honors {
-            padding: 50px 15px;
+        button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
         }
 
-        .honors h2 {
+        /* =====================
+           NEWS CONTAINER
+        ====================== */
+
+        .news-container {
+            max-width: 900px;
+            margin: auto;
+            padding: 45px 15px;
+        }
+
+        .news-title {
             color: #2563eb;
-            font-size: 28px;
+            font-size: 30px;
             margin-bottom: 30px;
         }
 
-        .honor-cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+        /* =====================
+           NEWS CARD
+        ====================== */
 
-        .honor-card {
+        .news {
             background: white;
-            width: 250px;
-            padding: 25px;
-            border-radius: 18px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+            margin-bottom: 30px;
+            padding: 30px;
+
+            border-radius: 22px;
+
+            text-align: right;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.09);
+
             transition: 0.3s;
+
+            animation: fadeUp 0.7s ease;
         }
 
-        .honor-card:hover {
-            transform: translateY(-10px) scale(1.03);
+        .news:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.13);
         }
 
-        .honor-card .icon {
-            font-size: 50px;
+        .news-icon {
+            font-size: 48px;
+            text-align: center;
         }
 
-        .honor-card h3 {
+        .news h2 {
+            color: #2563eb;
+            line-height: 1.7;
+        }
+
+        .news p {
+            color: #475569;
+            line-height: 2;
+        }
+
+        .date {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* =====================
+           LIKE
+        ====================== */
+
+        .like-section {
+            border-top: 1px solid #e2e8f0;
+            margin-top: 25px;
+            padding-top: 18px;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .like-btn {
+            background: #f1f5f9;
+            color: #172033;
+
+            font-size: 15px;
+        }
+
+        .like-btn:hover {
+            background: #dbeafe;
+        }
+
+        .like-btn.liked {
+            background: #2563eb;
+            color: white;
+        }
+
+        .like-count {
+            color: #64748b;
+            font-weight: bold;
+        }
+
+        /* =====================
+           COMMENTS
+        ====================== */
+
+        .comments {
+            margin-top: 25px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+
+        .comments h3 {
             color: #2563eb;
         }
 
-        .honor-card p {
-            line-height: 1.8;
-            color: #475569;
+        .comment-form input,
+        .comment-form textarea {
+            width: 100%;
+
+            padding: 12px;
+
+            margin: 7px 0;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            font-family: inherit;
+
+            outline: none;
         }
 
+        .comment-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
 
-        /* حالت تاریک */
+        .comment-form input:focus,
+        .comment-form textarea:focus {
+            border-color: #2563eb;
+        }
+
+        .comment {
+            background: #f8fafc;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            margin-top: 12px;
+
+            border-right: 4px solid #2563eb;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .comment-text {
+            color: #475569;
+            line-height: 1.8;
+            margin-top: 7px;
+            white-space: pre-wrap;
+        }
+
+        .delete-comment {
+            background: #dc2626;
+            padding: 7px 12px;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .delete-comment:hover {
+            background: #b91c1c;
+        }
+
+        .empty-comments {
+            color: #94a3b8;
+            padding: 15px;
+        }
+
+        /* =====================
+           DARK MODE
+        ====================== */
 
         body.dark {
-            background: #111827;
-            color: #f9fafb;
+            background: #020617;
+            color: white;
         }
 
-        body.dark .honors h2 {
+        body.dark .news {
+            background: #111827;
+        }
+
+        body.dark .news p,
+        body.dark .comment-text {
+            color: #cbd5e1;
+        }
+
+        body.dark .news h2,
+        body.dark .comments h3 {
             color: #60a5fa;
         }
 
-        body.dark .honor-card {
+        body.dark .comment {
+            background: #1f2937;
+        }
+
+        body.dark .like-btn {
             background: #1f2937;
             color: white;
         }
 
-        body.dark .honor-card h3 {
+        body.dark .like-btn.liked {
+            background: #2563eb;
+        }
+
+        body.dark .comment-form input,
+        body.dark .comment-form textarea {
+            background: #1f2937;
+            color: white;
+            border-color: #475569;
+        }
+
+        /* =====================
+           FOOTER
+        ====================== */
+
+        footer {
+            background: #020617;
+            color: white;
+
+            padding: 30px;
+
+            line-height: 2;
+        }
+
+        footer strong {
             color: #60a5fa;
         }
 
-        body.dark .honor-card p {
-            color: #e5e7eb;
+        /* =====================
+           ANIMATIONS
+        ====================== */
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
-
-        /* انیمیشن */
-
-        @keyframes fadeIn {
-
+        @keyframes fadeUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(25px);
             }
 
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
-
         }
 
+        /* =====================
+           MOBILE
+        ====================== */
 
-        /* موبایل */
+        @media (max-width: 700px) {
 
-        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 8px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+                padding: 8px 9px;
+            }
 
             .hero h1 {
                 font-size: 28px;
             }
 
-            .hero p {
-                font-size: 16px;
+            .news {
+                padding: 22px 16px;
             }
 
-            .honor-card {
-                width: 85%;
+            .news h2 {
+                font-size: 21px;
             }
 
-            nav {
-                overflow-x: auto;
-                white-space: nowrap;
+            .like-section {
+                flex-wrap: wrap;
             }
-
         }
 
     </style>
-
 </head>
 
 
 <body>
 
 
-    <!-- منو -->
+    <!-- =====================
+         NAVBAR
+    ====================== -->
 
-    <nav>
+    <nav class="navbar">
 
-        <a href="index.html">
-            🏠 خانه
-        </a>
+        <div class="logo">
+            ⚽ YAMAL
+        </div>
 
-        <a href="news.html">
-            📰 اخبار
-        </a>
+        <div class="nav-links">
 
-        <a href="contact.html">
-            📞 تماس با ما
-        </a>
+            <a href="index.html">
+                🏠 خانه
+            </a>
+
+            <a href="news.html">
+                📰 اخبار
+            </a>
+
+            <a href="honors.html">
+                🏆 افتخارات
+            </a>
+
+            <a href="login.html">
+                👤 حساب
+            </a>
+
+            <a href="contact.html">
+                📞 تماس
+            </a>
+
+        </div>
 
     </nav>
 
 
-    <!-- معرفی اصلی -->
+    <!-- =====================
+         HEADER
+    ====================== -->
 
     <section class="hero">
 
-        <div style="font-size: 55px;">
-            ⚽
+        <div class="hero-icon">
+            📰
         </div>
 
         <h1>
-            سایت هواداری لامین یامال
+            اخبار لامین یامال
         </h1>
 
         <p>
-            به دنیای لامین یامال خوش آمدید!
-            <br>
-            اخبار، افتخارات و مطالب فوتبالی درباره یکی از
-            استعدادهای جوان فوتبال.
+            جدیدترین مطالب و خبرهای سایت هواداری یامال
         </p>
-
-        <img src="yamal.jpg" alt="لامین یامال">
-
-        <br>
-
-        <a class="btn" href="news.html">
-            📰 مشاهده اخبار
-        </a>
 
     </section>
 
 
-    <!-- دکمه حالت تاریک -->
+    <!-- =====================
+         SEARCH
+    ====================== -->
+
+    <div class="search-area">
+
+        <input
+            type="text"
+            id="newsSearch"
+            placeholder="🔎 جستجو در اخبار..."
+        >
+
+        <button onclick="clearSearch()">
+            پاک کردن
+        </button>
+
+    </div>
+
+
+    <!-- =====================
+         NEWS
+    ====================== -->
+
+    <main class="news-container">
+
+        <h2 class="news-title">
+            📰 آخرین مطالب
+        </h2>
+
+
+        <!-- NEWS 1 -->
+
+        <article class="news" data-news-id="0">
+
+            <div class="news-icon">
+                ⚽
+            </div>
+
+            <h2>
+                لامین یامال؛ یکی از ستاره‌های جوان فوتبال
+            </h2>
+
+            <div class="date">
+                📅 ۲۰۲۶
+            </div>
+
+            <p>
+                لامین یامال در سال‌های اخیر با عملکرد خود
+                در بارسلونا و تیم ملی اسپانیا توجه زیادی
+                از طرف هواداران فوتبال به خود جلب کرده است.
+            </p>
+
+
+            <!-- LIKE -->
+
+            <div class="like-section">
+
+                <button
+                    class="like-btn"
+                    id="likeBtn-0"
+                    onclick="toggleLike(0)"
+                >
+                    ❤️ لایک
+                </button>
+
+                <span
+                    class="like-count"
+                    id="likeCount-0"
+                >
+                    ۰ لایک
+                </span>
+
+            </div>
+
+
+            <!-- COMMENTS -->
+
+            <div class="comments">
+
+                <h3>
+                    💬 نظرات
+                </h3>
+
+                <div class="comment-form">
+
+                    <input
+                        type="text"
+                        id="name-0"
+                        placeholder="نام شما"
+                        maxlength="30"
+                    >
+
+                    <textarea
+                        id="comment-0"
+                        placeholder="نظر خود را بنویسید..."
+                        maxlength="500"
+                    ></textarea>
+
+                    <button onclick="addComment(0)">
+                        💬 ارسال نظر
+                    </button>
+
+                </div>
+
+                <div id="comments-0"></div>
+
+            </div>
+
+        </article>
+
+
+        <!-- NEWS 2 -->
+
+        <article class="news" data-news-id="1">
+
+            <div class="news-icon">
+                🇪🇸
+            </div>
+
+            <h2>
+                یامال و تیم ملی اسپانیا
+            </h2>
+
+            <div class="date">
+                📅 ۲۰۲۶
+            </div>
+
+            <p>
+                یامال در سن کم وارد سطح بالای فوتبال ملی شد
+                و حضور او در تیم ملی اسپانیا توجه بسیاری
+                از هواداران فوتبال را به خود جلب کرده است.
+            </p>
+
+
+            <!-- LIKE -->
+
+            <div class="like-section">
+
+                <button
+                    class="like-btn"
+                    id="likeBtn-1"
+                    onclick="toggleLike(1)"
+                >
+                    ❤️ لایک
+                </button>
+
+                <span
+                    class="like-count"
+                    id="likeCount-1"
+                >
+                    ۰ لایک
+                </span>
+
+            </div>
+
+
+            <!-- COMMENTS -->
+
+            <div class="comments">
+
+                <h3>
+                    💬 نظرات
+                </h3>
+
+                <div class="comment-form">
+
+                    <input
+                        type="text"
+                        id="name-1"
+                        placeholder="نام شما"
+                        maxlength="30"
+                    >
+
+                    <textarea
+                        id="comment-1"
+                        placeholder="نظر خود را بنویسید..."
+                        maxlength="500"
+                    ></textarea>
+
+                    <button onclick="addComment(1)">
+                        💬 ارسال نظر
+                    </button>
+
+                </div>
+
+                <div id="comments-1"></div>
+
+            </div>
+
+        </article>
+
+
+    </main>
+
+
+    <!-- =====================
+         DARK MODE
+    ====================== -->
 
     <button onclick="darkMode()">
         🌙 حالت تاریک
     </button>
 
 
-    <!-- افتخارات -->
+    <!-- =====================
+         FOOTER
+    ====================== -->
 
-    <section class="honors">
+    <footer>
 
-        <h2>
-            🏆 افتخارات لامین یامال
-        </h2>
+        <strong>
+            ⚽ YAMAL FAN
+        </strong>
 
+        <br>
 
-        <div class="honor-cards">
+        سایت هواداری لامین یامال ❤️
 
+        <br>
 
-            <div class="honor-card">
+        © ۲۰۲۶
 
-                <div class="icon">
-                    🏆
-                </div>
+        <br>
 
-                <h3>
-                    قهرمانی یورو ۲۰۲۴
-                </h3>
+        ساخته شده توسط علیسان
 
-                <p>
-                    قهرمانی با تیم ملی اسپانیا در رقابت‌های یورو ۲۰۲۴
-                </p>
-
-            </div>
-
-
-            <div class="honor-card">
-
-                <div class="icon">
-                    🥇
-                </div>
-
-                <h3>
-                    بهترین بازیکن جوان یورو
-                </h3>
-
-                <p>
-                    کسب عنوان بهترین بازیکن جوان مسابقات یورو ۲۰۲۴
-                </p>
-
-            </div>
-
-
-            <div class="honor-card">
-
-                <div class="icon">
-                    ⭐
-                </div>
-
-                <h3>
-                    استعداد بزرگ فوتبال
-                </h3>
-
-                <p>
-                    درخشش در بارسلونا و تیم ملی اسپانیا
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
+    </footer>
 
 
     <script>
+
+        /* =====================
+           DARK MODE
+        ====================== */
 
         function darkMode() {
 
@@ -359,8 +766,444 @@
 
         }
 
-    </script>
 
+        /* =====================
+           SEARCH
+        ====================== */
+
+        const searchInput =
+            document.getElementById("newsSearch");
+
+
+        searchInput.addEventListener(
+            "input",
+            searchNews
+        );
+
+
+        function searchNews() {
+
+            const query =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const articles =
+                document.querySelectorAll(".news");
+
+
+            articles.forEach(article => {
+
+                const text =
+                    article.innerText.toLowerCase();
+
+                if (
+                    query === "" ||
+                    text.includes(query)
+                ) {
+                    article.style.display = "";
+                } else {
+                    article.style.display = "none";
+                }
+
+            });
+
+        }
+
+
+        function clearSearch() {
+
+            searchInput.value = "";
+
+            searchNews();
+
+            searchInput.focus();
+
+        }
+
+
+        /* =====================
+           LIKES
+        ====================== */
+
+        function getLikes(id) {
+
+            return Number(
+                localStorage.getItem(
+                    "newsLikes_" + id
+                ) || 0
+            );
+
+        }
+
+
+        function getLiked(id) {
+
+            return (
+                localStorage.getItem(
+                    "newsLiked_" + id
+                ) === "true"
+            );
+
+        }
+
+
+        function updateLike(id) {
+
+            const count =
+                getLikes(id);
+
+            const button =
+                document.getElementById(
+                    "likeBtn-" + id
+                );
+
+            const counter =
+                document.getElementById(
+                    "likeCount-" + id
+                );
+
+
+            counter.textContent =
+                count + " لایک";
+
+
+            if (getLiked(id)) {
+
+                button.classList.add("liked");
+
+                button.textContent =
+                    "❤️ لایک شد";
+
+            } else {
+
+                button.classList.remove("liked");
+
+                button.textContent =
+                    "❤️ لایک";
+
+            }
+
+        }
+
+
+        function toggleLike(id) {
+
+            let count =
+                getLikes(id);
+
+            const liked =
+                getLiked(id);
+
+
+            if (liked) {
+
+                count--;
+
+                localStorage.setItem(
+                    "newsLiked_" + id,
+                    "false"
+                );
+
+            } else {
+
+                count++;
+
+                localStorage.setItem(
+                    "newsLiked_" + id,
+                    "true"
+                );
+
+            }
+
+
+            localStorage.setItem(
+                "newsLikes_" + id,
+                count
+            );
+
+
+            updateLike(id);
+
+        }
+
+
+        /* =====================
+           COMMENTS
+        ====================== */
+
+        function getComments(id) {
+
+            try {
+
+                return JSON.parse(
+                    localStorage.getItem(
+                        "newsComments_" + id
+                    )
+                ) || [];
+
+            } catch {
+
+                return [];
+
+            }
+
+        }
+
+
+        function saveComments(id, comments) {
+
+            localStorage.setItem(
+                "newsComments_" + id,
+                JSON.stringify(comments)
+            );
+
+        }
+
+
+        function addComment(id) {
+
+            const nameInput =
+                document.getElementById(
+                    "name-" + id
+                );
+
+            const commentInput =
+                document.getElementById(
+                    "comment-" + id
+                );
+
+
+            const name =
+                nameInput.value.trim();
+
+            const text =
+                commentInput.value.trim();
+
+
+            if (!name || !text) {
+
+                alert(
+                    "لطفاً نام و نظر خود را وارد کنید."
+                );
+
+                return;
+
+            }
+
+
+            if (name.length > 30) {
+
+                alert(
+                    "نام خیلی طولانی است."
+                );
+
+                return;
+
+            }
+
+
+            if (text.length > 500) {
+
+                alert(
+                    "نظر خیلی طولانی است."
+                );
+
+                return;
+
+            }
+
+
+            const comments =
+                getComments(id);
+
+
+            comments.push({
+
+                name: name,
+
+                text: text,
+
+                time:
+                    new Date().toLocaleString(
+                        "fa-IR"
+                    )
+
+            });
+
+
+            saveComments(
+                id,
+                comments
+            );
+
+
+            nameInput.value = "";
+            commentInput.value = "";
+
+
+            showComments(id);
+
+        }
+
+
+        function deleteComment(
+            newsId,
+            commentIndex
+        ) {
+
+            const comments =
+                getComments(newsId);
+
+
+            comments.splice(
+                commentIndex,
+                1
+            );
+
+
+            saveComments(
+                newsId,
+                comments
+            );
+
+
+            showComments(newsId);
+
+        }
+
+
+        function showComments(id) {
+
+            const container =
+                document.getElementById(
+                    "comments-" + id
+                );
+
+
+            const comments =
+                getComments(id);
+
+
+            if (comments.length === 0) {
+
+                container.innerHTML =
+                    `<div class="empty-comments">
+                        هنوز نظری ثبت نشده است.
+                    </div>`;
+
+                return;
+
+            }
+
+
+            container.innerHTML = "";
+
+
+            comments.forEach(
+                (comment, index) => {
+
+                    const box =
+                        document.createElement(
+                            "div"
+                        );
+
+                    box.className =
+                        "comment";
+
+
+                    const name =
+                        document.createElement(
+                            "div"
+                        );
+
+                    name.className =
+                        "comment-name";
+
+                    name.textContent =
+                        "👤 " + comment.name;
+
+
+                    const text =
+                        document.createElement(
+                            "div"
+                        );
+
+                    text.className =
+                        "comment-text";
+
+                    text.textContent =
+                        comment.text;
+
+
+                    const time =
+                        document.createElement(
+                            "small"
+                        );
+
+                    time.style.color =
+                        "#94a3b8";
+
+                    time.textContent =
+                        comment.time;
+
+
+                    const deleteBtn =
+                        document.createElement(
+                            "button"
+                        );
+
+                    deleteBtn.className =
+                        "delete-comment";
+
+                    deleteBtn.textContent =
+                        "🗑 حذف";
+
+
+                    deleteBtn.onclick =
+                        function() {
+
+                            deleteComment(
+                                id,
+                                index
+                            );
+
+                        };
+
+
+                    box.appendChild(name);
+
+                    box.appendChild(text);
+
+                    box.appendChild(time);
+
+                    box.appendChild(
+                        document.createElement("br")
+                    );
+
+                    box.appendChild(deleteBtn);
+
+
+                    container.appendChild(box);
+
+                }
+            );
+
+        }
+
+
+        /* =====================
+           INITIALIZE
+        ====================== */
+
+        updateLike(0);
+        updateLike(1);
+
+        showComments(0);
+        showComments(1);
+
+    </script>
 
 </body>
 

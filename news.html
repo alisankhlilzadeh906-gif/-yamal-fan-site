@@ -8,6 +8,11 @@
     <title>اخبار لامین یامال</title>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Tahoma, Arial, sans-serif;
@@ -35,7 +40,48 @@
         nav a {
             color: white;
             text-decoration: none;
-            margin: 8px;
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: #2563eb;
+        }
+
+        /* جستجو */
+
+        .search-box {
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #dbeafe;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-info {
+            text-align: center;
+            margin: 15px;
+            color: #475569;
         }
 
         .container {
@@ -44,12 +90,15 @@
             margin: 30px auto;
         }
 
+        /* خبر */
+
         .news {
             background: white;
             padding: 20px;
             margin-bottom: 25px;
             border-radius: 15px;
             border-right: 5px solid #2563eb;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .news h2 {
@@ -62,6 +111,118 @@
             font-size: 16px;
         }
 
+        /* لایک */
+
+        .like-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .like-button {
+            background: #f1f5f9;
+            color: #172033;
+            border: 2px solid #e2e8f0;
+            padding: 10px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .like-button.liked {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #dc2626;
+        }
+
+        .like-count {
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* نظرات */
+
+        .comments {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .comments h3 {
+            color: #2563eb;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        .comment-form textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .comment-form button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .comment {
+            background: #f8fafc;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: right;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .comment-text {
+            margin: 7px 0;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+
+        .delete-comment {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .no-comments {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .no-result {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            color: #64748b;
+            font-size: 18px;
+        }
+
         footer {
             background: #111827;
             color: white;
@@ -70,6 +231,7 @@
         }
 
         @media (max-width: 600px) {
+
             .container {
                 width: 92%;
             }
@@ -77,86 +239,688 @@
             .news {
                 padding: 15px;
             }
+
+            .search-box {
+                width: 90%;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <header>
-        <div style="font-size: 45px;">⚽</div>
-        <h1>📰 اخبار لامین یامال</h1>
-        <p>جدیدترین اخبار و مطالب</p>
-    </header>
 
-    <nav>
-        <a href="index.html">🏠 خانه</a>
-        <a href="news.html">📰 اخبار</a>
-        <a href="contact.html">📞 تماس با ما</a>
-    </nav>
+<header>
 
-    <div class="container">
+    <div style="font-size: 45px;">
+        ⚽
+    </div>
 
-        <div class="news">
-            <h2>
-                مصاحبه جدید یامال: یک سر و گردن بالاتر از همه‌ام!
-            </h2>
+    <h1>
+        📰 اخبار لامین یامال
+    </h1>
 
-            <p>
-                لامین یامال تقریباً هر روز یک مصاحبه جدید دارد
-                و هر بار درباره توپ طلا هم حرف می‌زند.
-            </p>
+    <p>
+        جدیدترین اخبار و مطالب
+    </p>
 
-            <p>
-                یامال در جدیدترین مصاحبه خود که امروز با
-                تلویزیون اسپانیایی RTVE انجام شد، خودش را
-                شایسته فتح توپ طلای ۲۰۲۶ دانست.
-            </p>
+</header>
 
-            <p>
-                ستاره بارسلونا در گفت‌وگویی صریح با تلویزیون
-                ملی اسپانیا گفت که خودش را شایسته توپ طلا می‌داند.
-            </p>
+
+<nav>
+
+    <a href="index.html">
+        🏠 خانه
+    </a>
+
+    <a href="news.html">
+        📰 اخبار
+    </a>
+
+    <a href="contact.html">
+        📞 تماس با ما
+    </a>
+
+  <a href="login.html">👤 ورود / ثبت‌نام</a>
+  <a href="honors.html">🏆 افتخارات</a>
+</nav>
+
+
+<!-- جستجو -->
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="newsSearch"
+        placeholder="🔎 داخل خبرها جستجو کنید..."
+        oninput="searchNews()"
+    >
+
+    <button onclick="clearSearch()">
+        پاک کردن
+    </button>
+
+</div>
+
+
+<div id="searchInfo" class="search-info"></div>
+
+
+<div class="container">
+
+
+    <!-- خبر اول -->
+
+    <div class="news">
+
+        <h2>
+            مصاحبه جدید یامال: یک سر و گردن بالاتر از همه‌ام!
+        </h2>
+
+        <p>
+            لامین یامال تقریباً هر روز یک مصاحبه جدید دارد
+            و هر بار درباره توپ طلا هم حرف می‌زند.
+        </p>
+
+        <p>
+            یامال در جدیدترین مصاحبه خود که امروز با
+            تلویزیون اسپانیایی RTVE انجام شد، خودش را
+            شایسته فتح توپ طلای ۲۰۲۶ دانست.
+        </p>
+
+        <p>
+            ستاره بارسلونا در گفت‌وگویی صریح با تلویزیون
+            ملی اسپانیا گفت که خودش را شایسته توپ طلا می‌داند.
+        </p>
+
+
+        <!-- لایک -->
+
+        <div class="like-section">
+
+            <button
+                class="like-button"
+                onclick="toggleLike(0, this)"
+            >
+                ❤️ لایک
+            </button>
+
+            <span
+                class="like-count"
+                id="like-count-0"
+            >
+                0
+            </span>
+
+            نفر پسندیده‌اند
+
         </div>
 
-        <div class="news">
-            <h2>
-                یامال: اعتراضات رئال به داوری برایم اهمیتی ندارد
-            </h2>
 
-            <p>
-                لامین یامال، ستاره بارسلونا، ترجیح داده وارد
-                جنجال اخیر مربوط به رئال مادرید و ژوزه مورینیو
-                درباره اشتباهات داوری نشود.
-            </p>
+        <!-- نظرات -->
 
-            <p>
-                یامال درباره اعتراضات رئالی‌ها به داوری گفت:
-                «راستش را بخواهید، من خیلی درگیر این مسائل نیستم
-                و چندان هم برایم اهمیتی ندارد.»
-            </p>
+        <div class="comments">
 
-            <p>
-                او در ادامه افزود:
-                «تا زمانی که بارسلونا به پیروزی‌هایش ادامه دهد،
-                چیزی برای صحبت کردن وجود ندارد. ما فقط روی سبک
-                بازی و پیروزی‌هایمان تمرکز می‌کنیم.»
-            </p>
+            <h3>
+                💬 نظرات
+            </h3>
 
-            <p>
-                یامال درباره خریدهای جدید بارسلونا نیز گفت:
-                «گوردون که خیلی خوب با تیم هماهنگ شده،
-                رودری و کریم آدیمی هم همین‌طور؛
-                همه آن‌ها عملکرد فوق‌العاده‌ای دارند.»
-            </p>
+            <div class="comment-form">
+
+                <input
+                    type="text"
+                    id="name-0"
+                    placeholder="نام شما"
+                    maxlength="30"
+                >
+
+                <textarea
+                    id="comment-0"
+                    placeholder="نظر خود را بنویسید..."
+                    maxlength="500"
+                ></textarea>
+
+                <button onclick="addComment(0)">
+                    📤 ارسال نظر
+                </button>
+
+            </div>
+
+            <div id="comments-0"></div>
+
         </div>
 
     </div>
 
-    <footer>
-        <p>© 2026 Yamal Fan Site</p>
-        <p>ساخته شده با ❤️ توسط علیسان</p>
-    </footer>
+
+    <!-- خبر دوم -->
+
+    <div class="news">
+
+        <h2>
+            یامال: اعتراضات رئال به داوری برایم اهمیتی ندارد
+        </h2>
+
+        <p>
+            لامین یامال، ستاره بارسلونا، ترجیح داده وارد
+            جنجال اخیر مربوط به رئال مادرید و ژوزه مورینیو
+            درباره اشتباهات داوری نشود.
+        </p>
+
+        <p>
+            یامال درباره اعتراضات رئالی‌ها به داوری گفت:
+            «راستش را بخواهید، من خیلی درگیر این مسائل نیستم
+            و چندان هم برایم اهمیتی ندارد.»
+        </p>
+
+        <p>
+            او در ادامه افزود:
+            «تا زمانی که بارسلونا به پیروزی‌هایش ادامه دهد،
+            چیزی برای صحبت کردن وجود ندارد. ما فقط روی سبک
+            بازی و پیروزی‌هایمان تمرکز می‌کنیم.»
+        </p>
+
+        <p>
+            یامال درباره خریدهای جدید بارسلونا نیز گفت:
+            «گوردون که خیلی خوب با تیم هماهنگ شده،
+            رودری و کریم آدیمی هم همین‌طور؛
+            همه آن‌ها عملکرد فوق‌العاده‌ای دارند.»
+        </p>
+
+
+        <!-- لایک -->
+
+        <div class="like-section">
+
+            <button
+                class="like-button"
+                onclick="toggleLike(1, this)"
+            >
+                ❤️ لایک
+            </button>
+
+            <span
+                class="like-count"
+                id="like-count-1"
+            >
+                0
+            </span>
+
+            نفر پسندیده‌اند
+
+        </div>
+
+
+        <!-- نظرات -->
+
+        <div class="comments">
+
+            <h3>
+                💬 نظرات
+            </h3>
+
+            <div class="comment-form">
+
+                <input
+                    type="text"
+                    id="name-1"
+                    placeholder="نام شما"
+                    maxlength="30"
+                >
+
+                <textarea
+                    id="comment-1"
+                    placeholder="نظر خود را بنویسید..."
+                    maxlength="500"
+                ></textarea>
+
+                <button onclick="addComment(1)">
+                    📤 ارسال نظر
+                </button>
+
+            </div>
+
+            <div id="comments-1"></div>
+
+        </div>
+
+    </div>
+
+
+    <div id="noResult" class="no-result">
+        ❌ هیچ خبری با این عبارت پیدا نشد.
+    </div>
+
+
+</div>
+
+
+<footer>
+
+    <p>
+        © 2026 Yamal Fan Site
+    </p>
+
+    <p>
+        ساخته شده با ❤️ توسط علیسان
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* =========================
+   جستجو
+========================= */
+
+function searchNews() {
+
+    const searchInput =
+        document.getElementById("newsSearch");
+
+    const searchText =
+        searchInput.value.trim().toLowerCase();
+
+    const news =
+        document.querySelectorAll(".news");
+
+    const noResult =
+        document.getElementById("noResult");
+
+    const searchInfo =
+        document.getElementById("searchInfo");
+
+    let found = 0;
+
+
+    news.forEach(function(article) {
+
+        const text =
+            article.innerText.toLowerCase();
+
+        if (
+            searchText === "" ||
+            text.includes(searchText)
+        ) {
+
+            article.style.display = "block";
+            found++;
+
+        } else {
+
+            article.style.display = "none";
+
+        }
+
+    });
+
+
+    if (searchText === "") {
+
+        searchInfo.innerText = "";
+
+    } else {
+
+        searchInfo.innerText =
+            found + " خبر پیدا شد";
+
+    }
+
+
+    if (found === 0 && searchText !== "") {
+
+        noResult.style.display = "block";
+
+    } else {
+
+        noResult.style.display = "none";
+
+    }
+
+}
+
+
+function clearSearch() {
+
+    const input =
+        document.getElementById("newsSearch");
+
+    input.value = "";
+
+    searchNews();
+
+    input.focus();
+
+}
+
+
+/* =========================
+   لایک
+========================= */
+
+function getLikes(index) {
+
+    return Number(
+        localStorage.getItem("newsLikes_" + index)
+    ) || 0;
+
+}
+
+
+function getLiked(index) {
+
+    return localStorage.getItem(
+        "newsLiked_" + index
+    ) === "true";
+
+}
+
+
+function updateLike(index, button) {
+
+    const count =
+        getLikes(index);
+
+    const liked =
+        getLiked(index);
+
+
+    document.getElementById(
+        "like-count-" + index
+    ).innerText = count;
+
+
+    if (liked) {
+
+        button.classList.add("liked");
+
+        button.innerText =
+            "💖 پسندیده شد";
+
+    } else {
+
+        button.classList.remove("liked");
+
+        button.innerText =
+            "❤️ لایک";
+
+    }
+
+}
+
+
+function toggleLike(index, button) {
+
+    let count =
+        getLikes(index);
+
+    let liked =
+        getLiked(index);
+
+
+    if (liked) {
+
+        count--;
+        liked = false;
+
+    } else {
+
+        count++;
+        liked = true;
+
+    }
+
+
+    localStorage.setItem(
+        "newsLikes_" + index,
+        count
+    );
+
+    localStorage.setItem(
+        "newsLiked_" + index,
+        liked
+    );
+
+
+    updateLike(index, button);
+
+}
+
+
+/* =========================
+   نظرات
+========================= */
+
+function getComments(index) {
+
+    return JSON.parse(
+        localStorage.getItem(
+            "newsComments_" + index
+        )
+    ) || [];
+
+}
+
+
+function saveComments(index, comments) {
+
+    localStorage.setItem(
+        "newsComments_" + index,
+        JSON.stringify(comments)
+    );
+
+}
+
+
+function addComment(index) {
+
+    const nameInput =
+        document.getElementById("name-" + index);
+
+    const commentInput =
+        document.getElementById("comment-" + index);
+
+    const name =
+        nameInput.value.trim();
+
+    const text =
+        commentInput.value.trim();
+
+
+    if (name === "") {
+
+        alert("لطفاً نام خود را وارد کنید.");
+
+        nameInput.focus();
+
+        return;
+
+    }
+
+
+    if (text === "") {
+
+        alert("لطفاً نظر خود را بنویسید.");
+
+        commentInput.focus();
+
+        return;
+
+    }
+
+
+    const comments =
+        getComments(index);
+
+
+    comments.push({
+
+        name: name,
+        text: text,
+        id: Date.now()
+
+    });
+
+
+    saveComments(index, comments);
+
+
+    nameInput.value = "";
+    commentInput.value = "";
+
+
+    showComments(index);
+
+}
+
+
+function deleteComment(index, commentId) {
+
+    const comments =
+        getComments(index);
+
+
+    const newComments =
+        comments.filter(function(comment) {
+
+            return comment.id !== commentId;
+
+        });
+
+
+    saveComments(index, newComments);
+
+    showComments(index);
+
+}
+
+
+function showComments(index) {
+
+    const container =
+        document.getElementById(
+            "comments-" + index
+        );
+
+
+    const comments =
+        getComments(index);
+
+
+    if (comments.length === 0) {
+
+        container.innerHTML =
+            '<p class="no-comments">هنوز نظری ثبت نشده است.</p>';
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    comments.forEach(function(comment) {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "comment";
+
+
+        const name =
+            document.createElement("div");
+
+        name.className =
+            "comment-name";
+
+        name.textContent =
+            "👤 " + comment.name;
+
+
+        const text =
+            document.createElement("div");
+
+        text.className =
+            "comment-text";
+
+        text.textContent =
+            comment.text;
+
+
+        const deleteButton =
+            document.createElement("button");
+
+        deleteButton.className =
+            "delete-comment";
+
+        deleteButton.textContent =
+            "🗑️ حذف";
+
+
+        deleteButton.onclick =
+            function() {
+
+                deleteComment(
+                    index,
+                    comment.id
+                );
+
+            };
+
+
+        div.appendChild(name);
+
+        div.appendChild(text);
+
+        div.appendChild(deleteButton);
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================
+   هنگام باز شدن صفحه
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const likeButtons =
+            document.querySelectorAll(
+                ".like-button"
+            );
+
+
+        likeButtons.forEach(
+            function(button, index) {
+
+                updateLike(
+                    index,
+                    button
+                );
+
+                showComments(index);
+
+            }
+        );
+
+    }
+);
+
+</script>
+
 
 </body>
 
