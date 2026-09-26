@@ -19,7 +19,6 @@
       transition: 0.3s;
     }
 
-    /* Navbar */
     nav {
       background: #111;
       color: white;
@@ -65,7 +64,6 @@
       font-size: 16px;
     }
 
-    /* Hamburger */
     .hamburger {
       display: none;
       font-size: 28px;
@@ -75,7 +73,6 @@
       cursor: pointer;
     }
 
-    /* Hero */
     .hero {
       background: linear-gradient(135deg, #004d98, #a50044);
       color: white;
@@ -92,7 +89,6 @@
       font-size: 18px;
     }
 
-    /* Container */
     .container {
       max-width: 700px;
       margin: auto;
@@ -149,17 +145,30 @@
       background: #00376e;
     }
 
-    .success {
+    .send-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .success,
+    .error {
       display: none;
       margin-top: 18px;
       padding: 13px;
       border-radius: 9px;
-      background: #d9f7df;
-      color: #126b25;
       text-align: center;
     }
 
-    /* Footer */
+    .success {
+      background: #d9f7df;
+      color: #126b25;
+    }
+
+    .error {
+      background: #ffdede;
+      color: #a00000;
+    }
+
     footer {
       background: #111;
       color: white;
@@ -168,7 +177,6 @@
       margin-top: 20px;
     }
 
-    /* Dark */
     body.dark {
       background: #181818;
       color: white;
@@ -189,7 +197,6 @@
       border-color: #555;
     }
 
-    /* Mobile */
     @media (max-width: 768px) {
 
       nav {
@@ -237,7 +244,6 @@
 
 <body>
 
-  <!-- Navbar -->
   <nav>
 
     <div class="logo">
@@ -269,7 +275,6 @@
   </nav>
 
 
-  <!-- Hero -->
   <section class="hero">
 
     <h1>📩 تماس با ما</h1>
@@ -281,7 +286,6 @@
   </section>
 
 
-  <!-- Contact -->
   <main class="container">
 
     <div class="contact-box">
@@ -290,7 +294,7 @@
         ارسال پیام
       </h2>
 
-      <form onsubmit="sendMessage(event)">
+      <form id="contact-form">
 
         <label for="name">
           نام
@@ -299,10 +303,10 @@
         <input
           type="text"
           id="name"
+          name="name"
           placeholder="نام خود را وارد کنید"
           required
         >
-
 
         <label for="email">
           ایمیل
@@ -311,10 +315,10 @@
         <input
           type="email"
           id="email"
+          name="email"
           placeholder="example@email.com"
           required
         >
-
 
         <label for="message">
           پیام
@@ -322,24 +326,26 @@
 
         <textarea
           id="message"
+          name="message"
           placeholder="پیام خود را بنویسید..."
           required
         ></textarea>
 
-
         <button
           type="submit"
-          class="send-btn">
+          class="send-btn"
+          id="sendButton">
           ارسال پیام
         </button>
 
       </form>
 
+      <div id="successMessage" class="success">
+        ✅ پیام شما با موفقیت ارسال شد!
+      </div>
 
-      <div
-        id="successMessage"
-        class="success">
-        ✅ پیام شما با موفقیت ثبت شد!
+      <div id="errorMessage" class="error">
+        ❌ ارسال پیام ناموفق بود. دوباره تلاش کنید.
       </div>
 
     </div>
@@ -347,17 +353,24 @@
   </main>
 
 
-  <!-- Footer -->
   <footer>
-
     <p>
       © 2026 Lamine Yamal Fan Website
     </p>
-
   </footer>
 
 
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
+
+    /* EmailJS */
+
+    emailjs.init({
+      publicKey: "UrmDIfyGXYH0n1QeS"
+    });
+
 
     /* Mobile Menu */
 
@@ -398,8 +411,6 @@
 
     }
 
-
-    /* Load Dark Mode */
 
     if (
       localStorage.getItem("yamalDarkMode") === "true"
@@ -449,50 +460,59 @@
 
     /* Contact Form */
 
-    function sendMessage(event) {
+    const contactForm =
+      document.getElementById("contact-form");
+
+    const sendButton =
+      document.getElementById("sendButton");
+
+    const successMessage =
+      document.getElementById("successMessage");
+
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+
+    contactForm.addEventListener("submit", function(event) {
 
       event.preventDefault();
 
-      const name =
-        document.getElementById("name").value.trim();
+      successMessage.style.display = "none";
+      errorMessage.style.display = "none";
 
-      const email =
-        document.getElementById("email").value.trim();
-
-      const message =
-        document.getElementById("message").value.trim();
+      sendButton.disabled = true;
+      sendButton.textContent = "در حال ارسال...";
 
 
-      const data = {
+      emailjs.sendForm(
+        "service_nfzwg99",
+        "template_ch7tvtg",
+        contactForm
+      )
 
-        name: name,
+      .then(function() {
 
-        email: email,
+        successMessage.style.display = "block";
 
-        message: message,
+        contactForm.reset();
 
-        date: new Date().toLocaleString()
+        sendButton.disabled = false;
+        sendButton.textContent = "ارسال پیام";
 
-      };
+      })
 
+      .catch(function(error) {
 
-      localStorage.setItem(
-        "yamalContactMessage",
-        JSON.stringify(data)
-      );
+        console.error("EmailJS Error:", error);
 
+        errorMessage.style.display = "block";
 
-      document.getElementById("successMessage")
-        .style.display = "block";
+        sendButton.disabled = false;
+        sendButton.textContent = "ارسال پیام";
 
+      });
 
-      document.getElementById("name").value = "";
-
-      document.getElementById("email").value = "";
-
-      document.getElementById("message").value = "";
-
-    }
+    });
 
   </script>
 
