@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تماس با ما | Lamine Yamal</title>
+  <title>پروفایل لامین یامال</title>
 
   <style>
     * {
@@ -19,7 +19,6 @@
       transition: 0.3s;
     }
 
-    /* Navbar */
     nav {
       background: #111;
       color: white;
@@ -65,7 +64,6 @@
       font-size: 16px;
     }
 
-    /* Hamburger */
     .hamburger {
       display: none;
       font-size: 28px;
@@ -75,7 +73,6 @@
       cursor: pointer;
     }
 
-    /* Hero */
     .hero {
       background: linear-gradient(135deg, #004d98, #a50044);
       color: white;
@@ -85,81 +82,66 @@
 
     .hero h1 {
       font-size: 40px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .hero p {
       font-size: 18px;
     }
 
-    /* Container */
     .container {
-      max-width: 700px;
+      max-width: 950px;
       margin: auto;
       padding: 45px 20px;
     }
 
-    .contact-box {
+    .profile {
       background: white;
+      border-radius: 20px;
       padding: 30px;
-      border-radius: 18px;
       box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      gap: 40px;
     }
 
-    .contact-box h2 {
-      text-align: center;
+    .profile img {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 5px solid #004d98;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .info h2 {
       color: #004d98;
-      margin-bottom: 25px;
+      font-size: 30px;
+      margin-bottom: 20px;
     }
 
-    label {
-      display: block;
-      margin: 14px 0 7px;
-      font-weight: bold;
+    .info p {
+      font-size: 18px;
+      line-height: 2;
+      border-bottom: 1px solid #ddd;
+      padding: 7px 0;
     }
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ccc;
-      border-radius: 9px;
-      font-family: inherit;
-      font-size: 16px;
+    .info strong {
+      color: #a50044;
     }
 
-    textarea {
-      min-height: 150px;
-      resize: vertical;
+    .note {
+      margin-top: 25px;
+      background: #fff8d6;
+      padding: 15px;
+      border-radius: 10px;
+      line-height: 1.8;
     }
 
-    .send-btn {
-      width: 100%;
-      margin-top: 20px;
-      padding: 13px;
-      border: none;
-      border-radius: 9px;
-      background: #004d98;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .send-btn:hover {
-      background: #00376e;
-    }
-
-    .success {
-      display: none;
-      margin-top: 18px;
-      padding: 13px;
-      border-radius: 9px;
-      background: #d9f7df;
-      color: #126b25;
-      text-align: center;
-    }
-
-    /* Footer */
     footer {
       background: #111;
       color: white;
@@ -168,28 +150,27 @@
       margin-top: 20px;
     }
 
-    /* Dark */
     body.dark {
       background: #181818;
       color: white;
     }
 
-    body.dark .contact-box {
+    body.dark .profile {
       background: #252525;
     }
 
-    body.dark .contact-box h2 {
+    body.dark .info h2 {
       color: #66aaff;
     }
 
-    body.dark input,
-    body.dark textarea {
-      background: #333;
-      color: white;
-      border-color: #555;
+    body.dark .info p {
+      border-color: #444;
     }
 
-    /* Mobile */
+    body.dark .note {
+      background: #333;
+    }
+
     @media (max-width: 768px) {
 
       nav {
@@ -228,8 +209,23 @@
         font-size: 32px;
       }
 
-      .contact-box {
-        padding: 22px;
+      .profile {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 18px;
+      }
+
+      .profile img {
+        width: 210px;
+        height: 210px;
+      }
+
+      .info h2 {
+        font-size: 26px;
+      }
+
+      .info p {
+        font-size: 16px;
       }
     }
   </style>
@@ -237,7 +233,6 @@
 
 <body>
 
-  <!-- Navbar -->
   <nav>
 
     <div class="logo">
@@ -269,85 +264,65 @@
   </nav>
 
 
-  <!-- Hero -->
   <section class="hero">
 
-    <h1>📩 تماس با ما</h1>
+    <h1>👤 پروفایل لامین یامال</h1>
 
     <p>
-      پیام خودت را برای ما ارسال کن
+      اطلاعاتی درباره ستاره جوان فوتبال
     </p>
 
   </section>
 
 
-  <!-- Contact -->
   <main class="container">
 
-    <div class="contact-box">
+    <div class="profile">
 
-      <h2>
-        ارسال پیام
-      </h2>
+      <img src="yamal.jpg" alt="Lamine Yamal">
 
-      <form onsubmit="sendMessage(event)">
+      <div class="info">
 
-        <label for="name">
-          نام
-        </label>
+        <h2>لامین یامال</h2>
 
-        <input
-          type="text"
-          id="name"
-          placeholder="نام خود را وارد کنید"
-          required
-        >
+        <p>
+          <strong>باشگاه:</strong>
+          بارسلونا
+        </p>
 
+        <p>
+          <strong>تیم ملی:</strong>
+          اسپانیا
+        </p>
 
-        <label for="email">
-          ایمیل
-        </label>
+        <p>
+          <strong>شماره پیراهن:</strong>
+          19
+        </p>
 
-        <input
-          type="email"
-          id="email"
-          placeholder="example@email.com"
-          required
-        >
+        <p>
+          <strong>تاریخ تولد:</strong>
+          13 ژوئیه 2007
+        </p>
 
+        <p>
+          <strong>پست:</strong>
+          وینگر
+        </p>
 
-        <label for="message">
-          پیام
-        </label>
-
-        <textarea
-          id="message"
-          placeholder="پیام خود را بنویسید..."
-          required
-        ></textarea>
-
-
-        <button
-          type="submit"
-          class="send-btn">
-          ارسال پیام
-        </button>
-
-      </form>
-
-
-      <div
-        id="successMessage"
-        class="success">
-        ✅ پیام شما با موفقیت ثبت شد!
       </div>
 
+    </div>
+
+    <div class="note">
+      ℹ️ این صفحه یک پروفایل هواداری است و اطلاعات آن ممکن است
+      در طول زمان با تغییر باشگاه، شماره پیراهن یا سایر مشخصات
+      به‌روزرسانی شود.
     </div>
 
   </main>
 
 
-  <!-- Footer -->
   <footer>
 
     <p>
@@ -359,7 +334,7 @@
 
   <script>
 
-    /* Mobile Menu */
+    /* Mobile menu */
 
     function toggleMenu() {
 
@@ -385,7 +360,7 @@
     });
 
 
-    /* Dark Mode */
+    /* Dark mode */
 
     function toggleDarkMode() {
 
@@ -399,7 +374,7 @@
     }
 
 
-    /* Load Dark Mode */
+    /* Load dark mode */
 
     if (
       localStorage.getItem("yamalDarkMode") === "true"
@@ -424,8 +399,7 @@
 
         try {
 
-          const user =
-            JSON.parse(session);
+          const user = JSON.parse(session);
 
           if (user.username) {
 
@@ -445,54 +419,6 @@
     }
 
     updateAccount();
-
-
-    /* Contact Form */
-
-    function sendMessage(event) {
-
-      event.preventDefault();
-
-      const name =
-        document.getElementById("name").value.trim();
-
-      const email =
-        document.getElementById("email").value.trim();
-
-      const message =
-        document.getElementById("message").value.trim();
-
-
-      const data = {
-
-        name: name,
-
-        email: email,
-
-        message: message,
-
-        date: new Date().toLocaleString()
-
-      };
-
-
-      localStorage.setItem(
-        "yamalContactMessage",
-        JSON.stringify(data)
-      );
-
-
-      document.getElementById("successMessage")
-        .style.display = "block";
-
-
-      document.getElementById("name").value = "";
-
-      document.getElementById("email").value = "";
-
-      document.getElementById("message").value = "";
-
-    }
 
   </script>
 

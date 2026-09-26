@@ -1,549 +1,767 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
+<html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ورود و ثبت‌نام | هواداران لامین یامال</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ورود و ثبت‌نام</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            margin: 0;
-            font-family: Tahoma, Arial, sans-serif;
-            background: #f1f5f9;
-            color: #172033;
-            text-align: center;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+      transition: 0.3s;
+    }
 
-        nav {
-            background: #111827;
-            padding: 12px;
-        }
+    nav {
+      background: #111;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            padding: 10px 14px;
-            margin: 3px;
-            border-radius: 8px;
-        }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffd700;
+    }
 
-        nav a:hover {
-            background: #2563eb;
-        }
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .container {
-            max-width: 450px;
-            margin: 50px auto;
-            padding: 20px;
-        }
+    .menu a,
+    .dark-btn {
+      color: white;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
 
-        .box {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
+    .menu a:hover,
+    .dark-btn:hover {
+      background: #333;
+    }
 
-        h1 {
-            color: #2563eb;
-            margin-bottom: 25px;
-        }
+    .dark-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
 
-        .tabs button {
-            flex: 1;
-            margin: 0;
-            background: #e5e7eb;
-            color: #172033;
-        }
+    .hero {
+      background: linear-gradient(135deg, #004d98, #a50044);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
 
-        .tabs button.active {
-            background: #2563eb;
-            color: white;
-        }
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
 
-        input {
-            width: 100%;
-            padding: 14px;
-            margin: 8px 0;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            font-size: 15px;
-            direction: rtl;
-        }
+    .hero p {
+      font-size: 18px;
+    }
 
-        .main-btn {
-            width: 100%;
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 12px;
-        }
+    .container {
+      max-width: 500px;
+      margin: 45px auto;
+      padding: 0 20px;
+    }
 
-        .main-btn:hover {
-            background: #1d4ed8;
-        }
+    .account-box {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+    }
 
-        .message {
-            min-height: 25px;
-            margin-top: 15px;
-            font-weight: bold;
-        }
+    .tabs {
+      display: flex;
+      margin-bottom: 25px;
+    }
 
-        .welcome {
-            font-size: 20px;
-            line-height: 2;
-        }
+    .tab {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      background: #eee;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-        .logout {
-            background: #dc2626;
-        }
+    .tab:first-child {
+      border-radius: 10px 0 0 10px;
+    }
 
-        .logout:hover {
-            background: #b91c1c;
-        }
+    .tab:last-child {
+      border-radius: 0 10px 10px 0;
+    }
 
-        .hint {
-            color: #64748b;
-            font-size: 13px;
-            line-height: 1.8;
-            margin-top: 20px;
-        }
+    .tab.active {
+      background: #004d98;
+      color: white;
+    }
 
-        .hidden {
-            display: none;
-        }
+    .form {
+      display: none;
+    }
 
-        @media (max-width: 600px) {
-            .container {
-                margin: 25px auto;
-            }
+    .form.active {
+      display: block;
+    }
 
-            .box {
-                padding: 22px;
-            }
-        }
-    </style>
+    label {
+      display: block;
+      margin: 12px 0 7px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+
+    .main-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 13px;
+      border: none;
+      border-radius: 9px;
+      background: #004d98;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .main-btn:hover {
+      background: #00376e;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+      text-align: center;
+    }
+
+    .success {
+      background: #d9f7df;
+      color: #126b25;
+    }
+
+    .error {
+      background: #ffdede;
+      color: #9b1111;
+    }
+
+    .welcome {
+      text-align: center;
+      display: none;
+    }
+
+    .welcome h2 {
+      color: #004d98;
+      margin-bottom: 15px;
+    }
+
+    .logout-btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 9px;
+      background: #a50044;
+      color: white;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 40px;
+    }
+
+    body.dark {
+      background: #181818;
+      color: white;
+    }
+
+    body.dark .account-box {
+      background: #252525;
+    }
+
+    body.dark .tab {
+      background: #333;
+      color: white;
+    }
+
+    body.dark .tab.active {
+      background: #0066cc;
+    }
+
+    body.dark .welcome h2 {
+      color: #66aaff;
+    }
+
+    @media (max-width: 768px) {
+
+      nav {
+        padding: 14px 18px;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .menu {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background: #111;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+      }
+
+      .menu.active {
+        display: flex;
+      }
+
+      .menu a,
+      .dark-btn {
+        width: 100%;
+        text-align: center;
+        padding: 13px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <nav>
-        <a href="index.html">🏠 خانه</a>
-        <a href="news.html">📰 اخبار</a>
-        <a href="login.html">👤 ورود / ثبت‌نام</a>
-    </nav>
+  <nav>
 
-    <div class="container">
+    <div class="logo">
+      LAMINE YAMAL
+    </div>
 
-        <!-- قسمت ورود و ثبت نام -->
-        <div class="box" id="authBox">
+    <button class="hamburger" onclick="toggleMenu()">
+      ☰
+    </button>
 
-            <h1>👤 حساب کاربری</h1>
+    <div class="menu" id="menu">
 
-            <div class="tabs">
-                <button id="loginTab" class="active" onclick="showLogin()">
-                    ورود
-                </button>
+      <a href="index.html">خانه</a>
+      <a href="news.html">اخبار</a>
+      <a href="honors.html">افتخارات</a>
+      <a href="profile.html">پروفایل</a>
+      <a href="contact.html">تماس با ما</a>
 
-                <button id="registerTab" onclick="showRegister()">
-                    ثبت‌نام
-                </button>
-            </div>
+      <a href="login.html" id="accountLink">
+        ورود / ثبت‌نام
+      </a>
 
-            <!-- ورود -->
-            <div id="loginForm">
-
-                <input
-                    type="text"
-                    id="loginUsername"
-                    placeholder="نام کاربری"
-                    maxlength="20"
-                >
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="رمز عبور"
-                    maxlength="50"
-                >
-
-                <button class="main-btn" onclick="login()">
-                    🔐 ورود
-                </button>
-
-            </div>
-
-            <!-- ثبت نام -->
-            <div id="registerForm" class="hidden">
-
-                <input
-                    type="text"
-                    id="registerUsername"
-                    placeholder="نام کاربری"
-                    maxlength="20"
-                >
-
-                <input
-                    type="password"
-                    id="registerPassword"
-                    placeholder="رمز عبور حداقل ۶ کاراکتر"
-                    maxlength="50"
-                >
-
-                <input
-                    type="password"
-                    id="registerConfirm"
-                    placeholder="تکرار رمز عبور"
-                    maxlength="50"
-                >
-
-                <button class="main-btn" onclick="register()">
-                    📝 ثبت‌نام
-                </button>
-
-            </div>
-
-            <div id="message" class="message"></div>
-
-            <p class="hint">
-                ⚠️ این نسخه آزمایشی است و اطلاعات حساب فقط در همین مرورگر ذخیره می‌شود.
-                برای تست از رمز واقعی حساب‌های خودت استفاده نکن.
-            </p>
-
-        </div>
-
-
-        <!-- قسمت بعد از ورود -->
-        <div class="box hidden" id="loggedInBox">
-
-            <h1>🎉 خوش آمدی!</h1>
-
-            <div class="welcome">
-                سلام <strong id="welcomeUsername"></strong> 👋
-                <br>
-                به سایت هواداری لامین یامال خوش آمدی!
-            </div>
-
-            <button class="main-btn logout" onclick="logout()">
-                🚪 خروج از حساب
-            </button>
-
-        </div>
+      <button class="dark-btn" onclick="toggleDarkMode()">
+        🌙 حالت تاریک
+      </button>
 
     </div>
 
+  </nav>
 
-    <script>
 
-        const ACCOUNT_KEY = "yamalAccount";
-        const SESSION_KEY = "yamalSession";
+  <section class="hero">
 
+    <h1>👤 حساب کاربری</h1>
 
-        // تبدیل رمز به هش
-        async function hashPassword(password) {
+    <p>
+      ورود یا ساخت حساب در سایت هواداری لامین یامال
+    </p>
 
-            if (window.crypto && crypto.subtle) {
+  </section>
 
-                const data = new TextEncoder().encode(password);
 
-                const hashBuffer =
-                    await crypto.subtle.digest("SHA-256", data);
+  <main class="container">
 
-                const hashArray =
-                    Array.from(new Uint8Array(hashBuffer));
+    <div class="account-box">
 
-                return hashArray
-                    .map(byte => byte.toString(16).padStart(2, "0"))
-                    .join("");
+      <div id="accountForms">
 
-            }
+        <div class="tabs">
 
-            // حالت جایگزین برای بعضی فایل‌های محلی
-            let hash = 0;
+          <button
+            class="tab active"
+            onclick="showForm('login')"
+            id="loginTab">
+            ورود
+          </button>
 
-            for (let i = 0; i < password.length; i++) {
-                hash =
-                    ((hash << 5) - hash) +
-                    password.charCodeAt(i);
+          <button
+            class="tab"
+            onclick="showForm('register')"
+            id="registerTab">
+            ثبت‌نام
+          </button>
 
-                hash |= 0;
-            }
+        </div>
 
-            return "demo-" + hash;
-        }
 
+        <!-- Login -->
 
-        // نمایش فرم ورود
-        function showLogin() {
+        <div class="form active" id="loginForm">
 
-            document.getElementById("loginForm")
-                .classList.remove("hidden");
+          <label>نام کاربری</label>
 
-            document.getElementById("registerForm")
-                .classList.add("hidden");
+          <input
+            type="text"
+            id="loginUsername"
+            placeholder="نام کاربری"
+          >
 
-            document.getElementById("loginTab")
-                .classList.add("active");
+          <label>رمز عبور</label>
 
-            document.getElementById("registerTab")
-                .classList.remove("active");
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="رمز عبور"
+          >
 
-            clearMessage();
-        }
+          <button class="main-btn" onclick="login()">
+            ورود
+          </button>
 
+          <div id="loginMessage" class="message"></div>
 
-        // نمایش فرم ثبت نام
-        function showRegister() {
+        </div>
 
-            document.getElementById("loginForm")
-                .classList.add("hidden");
 
-            document.getElementById("registerForm")
-                .classList.remove("hidden");
+        <!-- Register -->
 
-            document.getElementById("loginTab")
-                .classList.remove("active");
+        <div class="form" id="registerForm">
 
-            document.getElementById("registerTab")
-                .classList.add("active");
+          <label>نام کاربری</label>
 
-            clearMessage();
-        }
+          <input
+            type="text"
+            id="registerUsername"
+            placeholder="نام کاربری"
+          >
 
+          <label>رمز عبور</label>
 
-        // ثبت نام
-        async function register() {
+          <input
+            type="password"
+            id="registerPassword"
+            placeholder="رمز عبور"
+          >
 
-            const username =
-                document.getElementById("registerUsername")
-                .value.trim();
+          <label>تکرار رمز عبور</label>
 
-            const password =
-                document.getElementById("registerPassword")
-                .value;
+          <input
+            type="password"
+            id="registerPassword2"
+            placeholder="تکرار رمز عبور"
+          >
 
-            const confirm =
-                document.getElementById("registerConfirm")
-                .value;
+          <button class="main-btn" onclick="register()">
+            ثبت‌نام
+          </button>
 
+          <div id="registerMessage" class="message"></div>
 
-            if (username.length < 3) {
-                showMessage(
-                    "❌ نام کاربری باید حداقل ۳ کاراکتر باشد.",
-                    "red"
-                );
-                return;
-            }
+        </div>
 
+      </div>
 
-            if (password.length < 6) {
-                showMessage(
-                    "❌ رمز عبور باید حداقل ۶ کاراکتر باشد.",
-                    "red"
-                );
-                return;
-            }
 
+      <!-- Welcome -->
 
-            if (password !== confirm) {
-                showMessage(
-                    "❌ رمزهای عبور یکسان نیستند.",
-                    "red"
-                );
-                return;
-            }
+      <div class="welcome" id="welcome">
 
+        <h2 id="welcomeName"></h2>
 
-            const oldAccount =
-                localStorage.getItem(ACCOUNT_KEY);
+        <p>
+          با موفقیت وارد حساب کاربری شدی! 🎉
+        </p>
 
+        <button
+          class="logout-btn"
+          onclick="logout()">
+          خروج از حساب
+        </button>
 
-            if (oldAccount) {
-                showMessage(
-                    "⚠️ در این مرورگر قبلاً یک حساب ساخته شده است.",
-                    "orange"
-                );
-                return;
-            }
+      </div>
 
+    </div>
 
-            const passwordHash =
-                await hashPassword(password);
+  </main>
 
 
-            const account = {
-                username: username,
-                passwordHash: passwordHash
-            };
+  <footer>
 
+    <p>
+      © 2026 Lamine Yamal Fan Website
+    </p>
 
-            localStorage.setItem(
-                ACCOUNT_KEY,
-                JSON.stringify(account)
-            );
+  </footer>
 
 
-            showMessage(
-                "✅ ثبت‌نام با موفقیت انجام شد! حالا وارد شو.",
-                "green"
-            );
+  <script>
 
+    /* Mobile menu */
 
-            document.getElementById("registerUsername")
-                .value = "";
+    function toggleMenu() {
 
-            document.getElementById("registerPassword")
-                .value = "";
+      document
+        .getElementById("menu")
+        .classList.toggle("active");
 
-            document.getElementById("registerConfirm")
-                .value = "";
+    }
 
 
-            setTimeout(showLogin, 800);
-        }
+    document.querySelectorAll(".menu a").forEach(function(link) {
 
+      link.addEventListener("click", function() {
 
-        // ورود
-        async function login() {
+        document
+          .getElementById("menu")
+          .classList.remove("active");
 
-            const username =
-                document.getElementById("loginUsername")
-                .value.trim();
+      });
 
-            const password =
-                document.getElementById("loginPassword")
-                .value;
+    });
 
 
-            const savedAccount =
-                localStorage.getItem(ACCOUNT_KEY);
+    /* Dark mode */
 
+    function toggleDarkMode() {
 
-            if (!savedAccount) {
-                showMessage(
-                    "❌ هنوز حسابی ثبت‌نام نشده است.",
-                    "red"
-                );
-                return;
-            }
+      document.body.classList.toggle("dark");
 
+      localStorage.setItem(
+        "yamalDarkMode",
+        document.body.classList.contains("dark")
+      );
 
-            const account =
-                JSON.parse(savedAccount);
+    }
 
 
-            const passwordHash =
-                await hashPassword(password);
+    if (
+      localStorage.getItem("yamalDarkMode") === "true"
+    ) {
 
+      document.body.classList.add("dark");
 
-            if (
-                username === account.username &&
-                passwordHash === account.passwordHash
-            ) {
+    }
 
-                localStorage.setItem(
-                    SESSION_KEY,
-                    JSON.stringify({
-                        username: account.username
-                    })
-                );
 
+    /* Tabs */
 
-                showLoggedIn(account.username);
+    function showForm(type) {
 
-            } else {
+      const loginForm =
+        document.getElementById("loginForm");
 
-                showMessage(
-                    "❌ نام کاربری یا رمز عبور اشتباه است.",
-                    "red"
-                );
-            }
-        }
+      const registerForm =
+        document.getElementById("registerForm");
 
+      const loginTab =
+        document.getElementById("loginTab");
 
-        // نمایش صفحه کاربر
-        function showLoggedIn(username) {
+      const registerTab =
+        document.getElementById("registerTab");
 
-            document.getElementById("authBox")
-                .classList.add("hidden");
+      if (type === "login") {
 
-            document.getElementById("loggedInBox")
-                .classList.remove("hidden");
+        loginForm.classList.add("active");
+        registerForm.classList.remove("active");
 
-            document.getElementById("welcomeUsername")
-                .textContent = username;
-        }
+        loginTab.classList.add("active");
+        registerTab.classList.remove("active");
 
+      } else {
 
-        // خروج
-        function logout() {
+        registerForm.classList.add("active");
+        loginForm.classList.remove("active");
 
-            localStorage.removeItem(SESSION_KEY);
+        registerTab.classList.add("active");
+        loginTab.classList.remove("active");
 
-            document.getElementById("loggedInBox")
-                .classList.add("hidden");
+      }
 
-            document.getElementById("authBox")
-                .classList.remove("hidden");
+    }
 
-            showLogin();
-        }
 
+    /* Password hash */
 
-        // پیام
-        function showMessage(text, color) {
+    async function hashPassword(password) {
 
-            const message =
-                document.getElementById("message");
+      if (window.crypto && crypto.subtle) {
 
-            message.textContent = text;
-            message.style.color = color;
-        }
+        const data =
+          new TextEncoder().encode(password);
 
+        const hash =
+          await crypto.subtle.digest("SHA-256", data);
 
-        function clearMessage() {
+        return Array
+          .from(new Uint8Array(hash))
+          .map(b => b.toString(16).padStart(2, "0"))
+          .join("");
 
-            document.getElementById("message")
-                .textContent = "";
-        }
+      }
 
+      return btoa(password);
 
-        // بررسی وضعیت ورود هنگام باز شدن صفحه
-        function checkSession() {
+    }
 
-            const session =
-                localStorage.getItem(SESSION_KEY);
 
-            if (session) {
+    /* Message */
 
-                const data =
-                    JSON.parse(session);
+    function showMessage(id, text, type) {
 
-                showLoggedIn(data.username);
-            }
-        }
+      const box =
+        document.getElementById(id);
 
+      box.textContent = text;
 
-        checkSession();
+      box.className =
+        "message " + type;
 
-    </script>
+      box.style.display = "block";
+
+    }
+
+
+    /* Register */
+
+    async function register() {
+
+      const username =
+        document
+          .getElementById("registerUsername")
+          .value
+          .trim();
+
+      const password =
+        document
+          .getElementById("registerPassword")
+          .value;
+
+      const password2 =
+        document
+          .getElementById("registerPassword2")
+          .value;
+
+      if (!username || !password || !password2) {
+
+        showMessage(
+          "registerMessage",
+          "لطفاً همه قسمت‌ها را پر کن.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      if (password !== password2) {
+
+        showMessage(
+          "registerMessage",
+          "رمزهای عبور یکسان نیستند.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      const passwordHash =
+        await hashPassword(password);
+
+      localStorage.setItem(
+        "yamalAccount",
+        JSON.stringify({
+          username: username,
+          password: passwordHash
+        })
+      );
+
+      showMessage(
+        "registerMessage",
+        "ثبت‌نام با موفقیت انجام شد! حالا وارد شو.",
+        "success"
+      );
+
+      document.getElementById("registerUsername").value = "";
+      document.getElementById("registerPassword").value = "";
+      document.getElementById("registerPassword2").value = "";
+
+      setTimeout(function() {
+        showForm("login");
+      }, 1000);
+
+    }
+
+
+    /* Login */
+
+    async function login() {
+
+      const username =
+        document
+          .getElementById("loginUsername")
+          .value
+          .trim();
+
+      const password =
+        document
+          .getElementById("loginPassword")
+          .value;
+
+      const saved =
+        localStorage.getItem("yamalAccount");
+
+      if (!saved) {
+
+        showMessage(
+          "loginMessage",
+          "هنوز حسابی ساخته نشده. ابتدا ثبت‌نام کن.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      const account =
+        JSON.parse(saved);
+
+      const passwordHash =
+        await hashPassword(password);
+
+      if (
+        username === account.username &&
+        passwordHash === account.password
+      ) {
+
+        localStorage.setItem(
+          "yamalSession",
+          JSON.stringify({
+            username: account.username
+          })
+        );
+
+        showAccount();
+
+      } else {
+
+        showMessage(
+          "loginMessage",
+          "نام کاربری یا رمز عبور اشتباه است.",
+          "error"
+        );
+
+      }
+
+    }
+
+
+    /* Show account */
+
+    function showAccount() {
+
+      const session =
+        localStorage.getItem("yamalSession");
+
+      if (!session) return;
+
+      try {
+
+        const user =
+          JSON.parse(session);
+
+        document
+          .getElementById("accountForms")
+          .style.display = "none";
+
+        document
+          .getElementById("welcome")
+          .style.display = "block";
+
+        document
+          .getElementById("welcomeName")
+          .textContent =
+          "سلام " + user.username + " 👋";
+
+        document
+          .getElementById("accountLink")
+          .textContent =
+          "👤 " + user.username;
+
+      } catch (error) {
+
+        console.log("Session error");
+
+      }
+
+    }
+
+
+    /* Logout */
+
+    function logout() {
+
+      localStorage.removeItem("yamalSession");
+
+      location.reload();
+
+    }
+
+
+    showAccount();
+
+  </script>
 
 </body>
-
 </html>

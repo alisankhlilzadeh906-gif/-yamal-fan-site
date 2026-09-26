@@ -1,927 +1,530 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
+<html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اخبار لامین یامال</title>
 
-    <title>اخبار لامین یامال</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+      transition: 0.3s;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    nav {
+      background: #111;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        body {
-            margin: 0;
-            font-family: Tahoma, Arial, sans-serif;
-            background: #f1f5f9;
-            color: #172033;
-        }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffd700;
+    }
 
-        header {
-            background: #2563eb;
-            color: white;
-            text-align: center;
-            padding: 30px 10px;
-        }
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        header h1 {
-            margin: 10px;
-        }
+    .menu a,
+    .dark-btn {
+      color: white;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
 
-        nav {
-            background: #111827;
-            text-align: center;
-            padding: 12px;
-        }
+    .menu a:hover,
+    .dark-btn:hover {
+      background: #333;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            margin: 5px;
-            padding: 8px 12px;
-            border-radius: 8px;
-        }
+    .dark-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-        nav a:hover {
-            background: #2563eb;
-        }
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
 
-        /* جستجو */
+    .hero {
+      background: linear-gradient(135deg, #004d98, #a50044);
+      color: white;
+      text-align: center;
+      padding: 55px 20px;
+    }
 
-        .search-box {
-            max-width: 600px;
-            margin: 20px auto;
-            display: flex;
-            gap: 8px;
-        }
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
 
-        .search-box input {
-            flex: 1;
-            padding: 14px;
-            border: 2px solid #dbeafe;
-            border-radius: 12px;
-            font-size: 16px;
-            outline: none;
-        }
+    .hero p {
+      font-size: 18px;
+    }
 
-        .search-box button {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
 
-        .search-info {
-            text-align: center;
-            margin: 15px;
-            color: #475569;
-        }
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
 
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 30px auto;
-        }
+    .search-box input {
+      flex: 1;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
 
-        /* خبر */
+    .search-box button {
+      padding: 13px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #004d98;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-        .news {
-            background: white;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 15px;
-            border-right: 5px solid #2563eb;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+    .article {
+      background: white;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
 
-        .news h2 {
-            color: #2563eb;
-            line-height: 1.7;
-        }
+    .article h2 {
+      color: #004d98;
+      margin-bottom: 15px;
+    }
 
-        .news p {
-            line-height: 2;
-            font-size: 16px;
-        }
+    .article-text {
+      line-height: 1.9;
+    }
 
-        /* لایک */
+    .like-btn {
+      margin-top: 20px;
+      border: none;
+      background: #eee;
+      padding: 10px 15px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 15px;
+    }
 
-        .like-section {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #e5e7eb;
-            text-align: center;
-        }
+    .comment-box {
+      margin-top: 20px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
 
-        .like-button {
-            background: #f1f5f9;
-            color: #172033;
-            border: 2px solid #e2e8f0;
-            padding: 10px 18px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 17px;
-        }
+    .comment-box textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      resize: vertical;
+      font-family: inherit;
+    }
 
-        .like-button.liked {
-            background: #fee2e2;
-            border-color: #ef4444;
-            color: #dc2626;
-        }
+    .comment-box button {
+      margin-top: 10px;
+      padding: 10px 17px;
+      border: none;
+      border-radius: 9px;
+      background: #004d98;
+      color: white;
+      cursor: pointer;
+    }
 
-        .like-count {
-            margin-right: 8px;
-            font-weight: bold;
-        }
+    .comments {
+      margin-top: 15px;
+    }
 
-        /* نظرات */
+    .comment {
+      background: #f1f1f1;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 8px;
+    }
 
-        .comments {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
-        }
+    .no-result {
+      text-align: center;
+      display: none;
+      margin: 20px;
+    }
 
-        .comments h3 {
-            color: #2563eb;
-        }
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
 
-        .comment-form input,
-        .comment-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 6px 0;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 15px;
-        }
+    body.dark {
+      background: #181818;
+      color: white;
+    }
 
-        .comment-form textarea {
-            min-height: 90px;
-            resize: vertical;
-        }
+    body.dark .article {
+      background: #252525;
+    }
 
-        .comment-form button {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 11px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 15px;
-        }
+    body.dark .article h2 {
+      color: #66aaff;
+    }
 
-        .comment {
-            background: #f8fafc;
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 10px;
-            text-align: right;
-        }
+    body.dark .like-btn {
+      background: #333;
+      color: white;
+    }
 
-        .comment-name {
-            font-weight: bold;
-            color: #2563eb;
-        }
+    body.dark .comment {
+      background: #333;
+    }
 
-        .comment-text {
-            margin: 7px 0;
-            line-height: 1.8;
-            white-space: pre-wrap;
-        }
+    body.dark .comment-box {
+      border-color: #444;
+    }
 
-        .delete-comment {
-            background: #dc2626;
-            color: white;
-            border: none;
-            padding: 6px 10px;
-            border-radius: 7px;
-            cursor: pointer;
-            font-size: 12px;
-        }
+    @media (max-width: 768px) {
 
-        .no-comments {
-            color: #64748b;
-            font-size: 14px;
-        }
+      nav {
+        padding: 14px 18px;
+      }
 
-        .no-result {
-            display: none;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            color: #64748b;
-            font-size: 18px;
-        }
+      .hamburger {
+        display: block;
+      }
 
-        footer {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+      .menu {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background: #111;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+      }
 
-        @media (max-width: 600px) {
+      .menu.active {
+        display: flex;
+      }
 
-            .container {
-                width: 92%;
-            }
+      .menu a,
+      .dark-btn {
+        width: 100%;
+        text-align: center;
+        padding: 13px;
+      }
 
-            .news {
-                padding: 15px;
-            }
+      .hero h1 {
+        font-size: 32px;
+      }
 
-            .search-box {
-                width: 90%;
-            }
+      .search-box {
+        flex-direction: column;
+      }
 
-        }
-
-    </style>
-
+      .search-box button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-
-<header>
-
-    <div style="font-size: 45px;">
-        ⚽
-    </div>
-
-    <h1>
-        📰 اخبار لامین یامال
-    </h1>
-
-    <p>
-        جدیدترین اخبار و مطالب
-    </p>
-
-</header>
-
-
 <nav>
+  <div class="logo">LAMINE YAMAL</div>
 
-    <a href="index.html">
-        🏠 خانه
-    </a>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
 
-    <a href="news.html">
-        📰 اخبار
-    </a>
+  <div class="menu" id="menu">
+    <a href="index.html">خانه</a>
+    <a href="news.html">اخبار</a>
+    <a href="honors.html">افتخارات</a>
+    <a href="profile.html">پروفایل</a>
+    <a href="contact.html">تماس با ما</a>
+    <a href="login.html" id="accountLink">ورود / ثبت‌نام</a>
 
-    <a href="contact.html">
-        📞 تماس با ما
-    </a>
-
-  <a href="login.html">👤 ورود / ثبت‌نام</a>
-  <a href="honors.html">🏆 افتخارات</a>
+    <button class="dark-btn" onclick="toggleDarkMode()">
+      🌙 حالت تاریک
+    </button>
+  </div>
 </nav>
 
+<section class="hero">
+  <h1>📰 اخبار لامین یامال</h1>
+  <p>جدیدترین مطالب مربوط به لامین یامال</p>
+</section>
 
-<!-- جستجو -->
+<main class="container">
 
-<div class="search-box">
-
+  <div class="search-box">
     <input
-        type="text"
-        id="newsSearch"
-        placeholder="🔎 داخل خبرها جستجو کنید..."
-        oninput="searchNews()"
+      type="text"
+      id="searchInput"
+      placeholder="جستجو در اخبار..."
+      oninput="searchNews()"
     >
+    <button onclick="searchNews()">جستجو</button>
+  </div>
 
-    <button onclick="clearSearch()">
-        پاک کردن
+  <div id="noResult" class="no-result">
+    خبری با این عبارت پیدا نشد.
+  </div>
+
+  <article class="article">
+    <h2>⭐ لامین یامال؛ ستاره جوان بارسلونا</h2>
+
+    <p class="article-text">
+      لامین یامال یکی از بازیکنان جوان و مطرح فوتبال است که در سال‌های اخیر
+      توجه بسیاری از علاقه‌مندان فوتبال را به خود جلب کرده است.
+    </p>
+
+    <button class="like-btn" onclick="likeNews(0)">
+      ❤️ پسندیدن <span id="likeCount0">0</span>
     </button>
 
-</div>
+    <div class="comment-box">
+      <textarea id="commentInput0" placeholder="نظر خود را بنویس..."></textarea>
+      <button onclick="addComment(0)">ارسال نظر</button>
 
-
-<div id="searchInfo" class="search-info"></div>
-
-
-<div class="container">
-
-
-    <!-- خبر اول -->
-
-    <div class="news">
-
-        <h2>
-            مصاحبه جدید یامال: یک سر و گردن بالاتر از همه‌ام!
-        </h2>
-
-        <p>
-            لامین یامال تقریباً هر روز یک مصاحبه جدید دارد
-            و هر بار درباره توپ طلا هم حرف می‌زند.
-        </p>
-
-        <p>
-            یامال در جدیدترین مصاحبه خود که امروز با
-            تلویزیون اسپانیایی RTVE انجام شد، خودش را
-            شایسته فتح توپ طلای ۲۰۲۶ دانست.
-        </p>
-
-        <p>
-            ستاره بارسلونا در گفت‌وگویی صریح با تلویزیون
-            ملی اسپانیا گفت که خودش را شایسته توپ طلا می‌داند.
-        </p>
-
-
-        <!-- لایک -->
-
-        <div class="like-section">
-
-            <button
-                class="like-button"
-                onclick="toggleLike(0, this)"
-            >
-                ❤️ لایک
-            </button>
-
-            <span
-                class="like-count"
-                id="like-count-0"
-            >
-                0
-            </span>
-
-            نفر پسندیده‌اند
-
-        </div>
-
-
-        <!-- نظرات -->
-
-        <div class="comments">
-
-            <h3>
-                💬 نظرات
-            </h3>
-
-            <div class="comment-form">
-
-                <input
-                    type="text"
-                    id="name-0"
-                    placeholder="نام شما"
-                    maxlength="30"
-                >
-
-                <textarea
-                    id="comment-0"
-                    placeholder="نظر خود را بنویسید..."
-                    maxlength="500"
-                ></textarea>
-
-                <button onclick="addComment(0)">
-                    📤 ارسال نظر
-                </button>
-
-            </div>
-
-            <div id="comments-0"></div>
-
-        </div>
-
+      <div class="comments" id="comments0"></div>
     </div>
+  </article>
 
+  <article class="article">
+    <h2>⚽ درخشش یامال در زمین فوتبال</h2>
 
-    <!-- خبر دوم -->
+    <p class="article-text">
+      عملکرد یامال در مسابقات باعث شده است که هواداران فوتبال با دقت بیشتری
+      بازی‌های او را دنبال کنند.
+    </p>
 
-    <div class="news">
+    <button class="like-btn" onclick="likeNews(1)">
+      ❤️ پسندیدن <span id="likeCount1">0</span>
+    </button>
 
-        <h2>
-            یامال: اعتراضات رئال به داوری برایم اهمیتی ندارد
-        </h2>
+    <div class="comment-box">
+      <textarea id="commentInput1" placeholder="نظر خود را بنویس..."></textarea>
+      <button onclick="addComment(1)">ارسال نظر</button>
 
-        <p>
-            لامین یامال، ستاره بارسلونا، ترجیح داده وارد
-            جنجال اخیر مربوط به رئال مادرید و ژوزه مورینیو
-            درباره اشتباهات داوری نشود.
-        </p>
-
-        <p>
-            یامال درباره اعتراضات رئالی‌ها به داوری گفت:
-            «راستش را بخواهید، من خیلی درگیر این مسائل نیستم
-            و چندان هم برایم اهمیتی ندارد.»
-        </p>
-
-        <p>
-            او در ادامه افزود:
-            «تا زمانی که بارسلونا به پیروزی‌هایش ادامه دهد،
-            چیزی برای صحبت کردن وجود ندارد. ما فقط روی سبک
-            بازی و پیروزی‌هایمان تمرکز می‌کنیم.»
-        </p>
-
-        <p>
-            یامال درباره خریدهای جدید بارسلونا نیز گفت:
-            «گوردون که خیلی خوب با تیم هماهنگ شده،
-            رودری و کریم آدیمی هم همین‌طور؛
-            همه آن‌ها عملکرد فوق‌العاده‌ای دارند.»
-        </p>
-
-
-        <!-- لایک -->
-
-        <div class="like-section">
-
-            <button
-                class="like-button"
-                onclick="toggleLike(1, this)"
-            >
-                ❤️ لایک
-            </button>
-
-            <span
-                class="like-count"
-                id="like-count-1"
-            >
-                0
-            </span>
-
-            نفر پسندیده‌اند
-
-        </div>
-
-
-        <!-- نظرات -->
-
-        <div class="comments">
-
-            <h3>
-                💬 نظرات
-            </h3>
-
-            <div class="comment-form">
-
-                <input
-                    type="text"
-                    id="name-1"
-                    placeholder="نام شما"
-                    maxlength="30"
-                >
-
-                <textarea
-                    id="comment-1"
-                    placeholder="نظر خود را بنویسید..."
-                    maxlength="500"
-                ></textarea>
-
-                <button onclick="addComment(1)">
-                    📤 ارسال نظر
-                </button>
-
-            </div>
-
-            <div id="comments-1"></div>
-
-        </div>
-
+      <div class="comments" id="comments1"></div>
     </div>
+  </article>
 
-
-    <div id="noResult" class="no-result">
-        ❌ هیچ خبری با این عبارت پیدا نشد.
-    </div>
-
-
-</div>
-
+</main>
 
 <footer>
-
-    <p>
-        © 2026 Yamal Fan Site
-    </p>
-
-    <p>
-        ساخته شده با ❤️ توسط علیسان
-    </p>
-
+  <p>© 2026 Lamine Yamal Fan Website</p>
 </footer>
-
 
 <script>
 
+  /* منوی موبایل */
+  function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+  }
 
-/* =========================
-   جستجو
-========================= */
-
-function searchNews() {
-
-    const searchInput =
-        document.getElementById("newsSearch");
-
-    const searchText =
-        searchInput.value.trim().toLowerCase();
-
-    const news =
-        document.querySelectorAll(".news");
-
-    const noResult =
-        document.getElementById("noResult");
-
-    const searchInfo =
-        document.getElementById("searchInfo");
-
-    let found = 0;
-
-
-    news.forEach(function(article) {
-
-        const text =
-            article.innerText.toLowerCase();
-
-        if (
-            searchText === "" ||
-            text.includes(searchText)
-        ) {
-
-            article.style.display = "block";
-            found++;
-
-        } else {
-
-            article.style.display = "none";
-
-        }
-
+  document.querySelectorAll(".menu a").forEach(function(link) {
+    link.addEventListener("click", function() {
+      document.getElementById("menu").classList.remove("active");
     });
+  });
 
+  /* حالت تاریک */
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark");
 
-    if (searchText === "") {
+    localStorage.setItem(
+      "yamalDarkMode",
+      document.body.classList.contains("dark")
+    );
+  }
 
-        searchInfo.innerText = "";
+  if (localStorage.getItem("yamalDarkMode") === "true") {
+    document.body.classList.add("dark");
+  }
 
-    } else {
+  /* حساب کاربری */
+  function updateAccount() {
+    const accountLink = document.getElementById("accountLink");
+    const session = localStorage.getItem("yamalSession");
 
-        searchInfo.innerText =
-            found + " خبر پیدا شد";
+    if (session) {
+      try {
+        const user = JSON.parse(session);
 
+        if (user.username) {
+          accountLink.textContent = "👤 " + user.username;
+        }
+      } catch (error) {
+        console.log("Session error");
+      }
+    }
+  }
+
+  updateAccount();
+
+  /* لایک */
+  function loadLikes() {
+    for (let i = 0; i < 2; i++) {
+      const count = localStorage.getItem("newsLikes_" + i) || 0;
+      document.getElementById("likeCount" + i).textContent = count;
+    }
+  }
+
+  function likeNews(index) {
+
+    const likedKey = "newsLiked_" + index;
+    const countKey = "newsLikes_" + index;
+
+    if (localStorage.getItem(likedKey) === "true") {
+      alert("قبلاً این خبر را پسندیده‌ای ❤️");
+      return;
     }
 
+    let count = Number(localStorage.getItem(countKey) || 0);
 
-    if (found === 0 && searchText !== "") {
+    count++;
 
-        noResult.style.display = "block";
+    localStorage.setItem(countKey, count);
+    localStorage.setItem(likedKey, "true");
 
-    } else {
+    document.getElementById("likeCount" + index).textContent = count;
+  }
 
-        noResult.style.display = "none";
+  loadLikes();
 
+  /* کامنت */
+  function loadComments(index) {
+
+    const commentsBox = document.getElementById("comments" + index);
+
+    const saved =
+      JSON.parse(localStorage.getItem("newsComments_" + index) || "[]");
+
+    commentsBox.innerHTML = "";
+
+    saved.forEach(function(comment) {
+
+      const div = document.createElement("div");
+
+      div.className = "comment";
+      div.textContent = comment;
+
+      commentsBox.appendChild(div);
+    });
+  }
+
+  function addComment(index) {
+
+    const input = document.getElementById("commentInput" + index);
+
+    const text = input.value.trim();
+
+    if (!text) {
+      alert("لطفاً نظر خود را بنویس.");
+      return;
     }
 
-}
+    const key = "newsComments_" + index;
 
+    const comments =
+      JSON.parse(localStorage.getItem(key) || "[]");
 
-function clearSearch() {
+    comments.push(text);
 
-    const input =
-        document.getElementById("newsSearch");
+    localStorage.setItem(key, JSON.stringify(comments));
 
     input.value = "";
 
-    searchNews();
+    loadComments(index);
+  }
 
-    input.focus();
+  loadComments(0);
+  loadComments(1);
 
-}
+  /* جستجوی اخبار */
+  function searchNews() {
 
+    const query =
+      document.getElementById("searchInput").value
+      .trim()
+      .toLowerCase();
 
-/* =========================
-   لایک
-========================= */
+    const articles =
+      document.querySelectorAll(".article");
 
-function getLikes(index) {
+    let found = false;
 
-    return Number(
-        localStorage.getItem("newsLikes_" + index)
-    ) || 0;
+    articles.forEach(function(article) {
 
-}
+      const text =
+        article.querySelector(".article-text").textContent.toLowerCase();
 
+      const title =
+        article.querySelector("h2").textContent.toLowerCase();
 
-function getLiked(index) {
-
-    return localStorage.getItem(
-        "newsLiked_" + index
-    ) === "true";
-
-}
-
-
-function updateLike(index, button) {
-
-    const count =
-        getLikes(index);
-
-    const liked =
-        getLiked(index);
-
-
-    document.getElementById(
-        "like-count-" + index
-    ).innerText = count;
-
-
-    if (liked) {
-
-        button.classList.add("liked");
-
-        button.innerText =
-            "💖 پسندیده شد";
-
-    } else {
-
-        button.classList.remove("liked");
-
-        button.innerText =
-            "❤️ لایک";
-
-    }
-
-}
-
-
-function toggleLike(index, button) {
-
-    let count =
-        getLikes(index);
-
-    let liked =
-        getLiked(index);
-
-
-    if (liked) {
-
-        count--;
-        liked = false;
-
-    } else {
-
-        count++;
-        liked = true;
-
-    }
-
-
-    localStorage.setItem(
-        "newsLikes_" + index,
-        count
-    );
-
-    localStorage.setItem(
-        "newsLiked_" + index,
-        liked
-    );
-
-
-    updateLike(index, button);
-
-}
-
-
-/* =========================
-   نظرات
-========================= */
-
-function getComments(index) {
-
-    return JSON.parse(
-        localStorage.getItem(
-            "newsComments_" + index
-        )
-    ) || [];
-
-}
-
-
-function saveComments(index, comments) {
-
-    localStorage.setItem(
-        "newsComments_" + index,
-        JSON.stringify(comments)
-    );
-
-}
-
-
-function addComment(index) {
-
-    const nameInput =
-        document.getElementById("name-" + index);
-
-    const commentInput =
-        document.getElementById("comment-" + index);
-
-    const name =
-        nameInput.value.trim();
-
-    const text =
-        commentInput.value.trim();
-
-
-    if (name === "") {
-
-        alert("لطفاً نام خود را وارد کنید.");
-
-        nameInput.focus();
-
-        return;
-
-    }
-
-
-    if (text === "") {
-
-        alert("لطفاً نظر خود را بنویسید.");
-
-        commentInput.focus();
-
-        return;
-
-    }
-
-
-    const comments =
-        getComments(index);
-
-
-    comments.push({
-
-        name: name,
-        text: text,
-        id: Date.now()
-
+      if (
+        text.includes(query) ||
+        title.includes(query)
+      ) {
+        article.style.display = "block";
+        found = true;
+      } else {
+        article.style.display = "none";
+      }
     });
 
+    document.getElementById("noResult").style.display =
+      found ? "none" : "block";
 
-    saveComments(index, comments);
-
-
-    nameInput.value = "";
-    commentInput.value = "";
-
-
-    showComments(index);
-
-}
-
-
-function deleteComment(index, commentId) {
-
-    const comments =
-        getComments(index);
-
-
-    const newComments =
-        comments.filter(function(comment) {
-
-            return comment.id !== commentId;
-
-        });
-
-
-    saveComments(index, newComments);
-
-    showComments(index);
-
-}
-
-
-function showComments(index) {
-
-    const container =
-        document.getElementById(
-            "comments-" + index
-        );
-
-
-    const comments =
-        getComments(index);
-
-
-    if (comments.length === 0) {
-
-        container.innerHTML =
-            '<p class="no-comments">هنوز نظری ثبت نشده است.</p>';
-
-        return;
-
+    if (query === "") {
+      document.getElementById("noResult").style.display = "none";
     }
-
-
-    container.innerHTML = "";
-
-
-    comments.forEach(function(comment) {
-
-        const div =
-            document.createElement("div");
-
-        div.className = "comment";
-
-
-        const name =
-            document.createElement("div");
-
-        name.className =
-            "comment-name";
-
-        name.textContent =
-            "👤 " + comment.name;
-
-
-        const text =
-            document.createElement("div");
-
-        text.className =
-            "comment-text";
-
-        text.textContent =
-            comment.text;
-
-
-        const deleteButton =
-            document.createElement("button");
-
-        deleteButton.className =
-            "delete-comment";
-
-        deleteButton.textContent =
-            "🗑️ حذف";
-
-
-        deleteButton.onclick =
-            function() {
-
-                deleteComment(
-                    index,
-                    comment.id
-                );
-
-            };
-
-
-        div.appendChild(name);
-
-        div.appendChild(text);
-
-        div.appendChild(deleteButton);
-
-        container.appendChild(div);
-
-    });
-
-}
-
-
-/* =========================
-   هنگام باز شدن صفحه
-========================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        const likeButtons =
-            document.querySelectorAll(
-                ".like-button"
-            );
-
-
-        likeButtons.forEach(
-            function(button, index) {
-
-                updateLike(
-                    index,
-                    button
-                );
-
-                showComments(index);
-
-            }
-        );
-
-    }
-);
+  }
 
 </script>
 
-
 </body>
-
 </html>
