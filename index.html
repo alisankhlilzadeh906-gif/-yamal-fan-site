@@ -2,31 +2,17 @@
 <html lang="fa" dir="rtl">
 
 <head>
-    <!-- تنظیمات اصلی صفحه -->
     <meta charset="UTF-8">
-
-    <!-- باعث می‌شود سایت روی موبایل و کامپیوتر درست نمایش داده شود -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- عنوانی که در تب مرورگر دیده می‌شود -->
-    <title>سایت هواداری لامین یامال | اخبار و اطلاعات</title>
+    <title>سایت هواداری لامین یامال</title>
 
-    <!-- توضیح سایت برای موتورهای جست‌وجو -->
     <meta name="description"
-        content="سایت هواداری لامین یامال؛ اخبار، اطلاعات، افتخارات و مطالب فوتبالی درباره لامین یامال.">
+        content="سایت هواداری لامین یامال؛ اخبار، اطلاعات و مطالب فوتبالی">
 
     <style>
-
-        /* =========================
-           تنظیمات کلی سایت
-           ========================= */
-
         * {
             box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
@@ -34,63 +20,31 @@
             font-family: Tahoma, Arial, sans-serif;
             background: #f1f5f9;
             color: #172033;
-            line-height: 1.8;
         }
 
-
-        /* =========================
-           نوار بالای سایت
-           ========================= */
-
         header {
-            background: linear-gradient(135deg, #071a35, #123b70);
+            background: linear-gradient(135deg, #071a35, #2563eb);
             color: white;
             text-align: center;
             padding: 45px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: "";
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.06);
-            top: -100px;
-            left: -70px;
         }
 
         header h1 {
             margin: 0;
-            font-size: 36px;
-            position: relative;
+            font-size: 34px;
         }
 
         header p {
             margin: 10px 0 0;
             color: #dbeafe;
-            font-size: 17px;
-            position: relative;
         }
-
-
-        /* =========================
-           منوی سایت
-           ========================= */
 
         nav {
             background: #0f172a;
             display: flex;
             justify-content: center;
-            align-items: center;
             gap: 8px;
             padding: 12px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
         nav a {
@@ -98,141 +52,183 @@
             text-decoration: none;
             padding: 10px 15px;
             border-radius: 10px;
-            font-size: 15px;
-            transition: 0.3s;
         }
 
         nav a:hover {
             background: #2563eb;
-            transform: translateY(-2px);
         }
 
-
-        /* =========================
-           بخش معرفی اصلی
-           ========================= */
+        .container {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
 
         .hero {
-            max-width: 1100px;
-            margin: 35px auto;
-            padding: 25px;
-        }
-
-        .hero-box {
             background: white;
-            border-radius: 25px;
-            padding: 45px 25px;
             text-align: center;
-            box-shadow: 0 10px 35px rgba(15, 23, 42, 0.10);
-            border: 1px solid #e2e8f0;
+            padding: 45px 20px;
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        .hero-icon {
-            font-size: 65px;
-            margin-bottom: 10px;
+        .ball {
+            font-size: 60px;
         }
 
         .hero h2 {
-            margin: 5px 0;
-            font-size: 30px;
-            color: #0f172a;
+            font-size: 28px;
         }
 
         .hero p {
-            max-width: 700px;
-            margin: 15px auto;
             color: #64748b;
             font-size: 17px;
         }
 
-
-        /* =========================
-           دکمه اصلی
-           ========================= */
-
-        .main-button {
+        .button {
             display: inline-block;
-            margin-top: 15px;
-            padding: 13px 25px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            background: #2563eb;
             color: white;
+            padding: 12px 22px;
+            border-radius: 10px;
             text-decoration: none;
-            border-radius: 12px;
-            font-weight: bold;
             border: none;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+            font-size: 16px;
+            margin-top: 10px;
         }
 
-        .main-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
+        .button:hover {
+            background: #1d4ed8;
         }
-
-
-        /* =========================
-           آمار و اطلاعات
-           ========================= */
-
-        .stats {
-            max-width: 1000px;
-            margin: 20px auto 40px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .stat {
-            background: white;
-            padding: 25px 15px;
-            text-align: center;
-            border-radius: 18px;
-            box-shadow: 0 7px 25px rgba(15,23,42,0.08);
-        }
-
-        .stat .number {
-            font-size: 30px;
-            font-weight: bold;
-            color: #2563eb;
-        }
-
-        .stat p {
-            margin: 5px 0 0;
-            color: #64748b;
-        }
-
-
-        /* =========================
-           عنوان بخش‌ها
-           ========================= */
-
-        .section-title {
-            text-align: center;
-            margin: 50px 0 25px;
-        }
-
-        .section-title h2 {
-            margin: 0;
-            font-size: 28px;
-            color: #0f172a;
-        }
-
-        .section-title p {
-            color: #64748b;
-            margin-top: 5px;
-        }
-
-
-        /* =========================
-           کارت‌ها
-           ========================= */
 
         .cards {
-            max-width: 1100px;
-            margin: auto;
-            padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        }
+
+        .card h3 {
+            color: #1d4ed8;
+        }
+
+        .card p {
+            color: #64748b;
+        }
+
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 28px;
+            }
+
+            nav {
+                overflow-x: auto;
+            }
+
+            nav a {
+                white-space: nowrap;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>⚽ لامین یامال</h1>
+        <p>سایت هواداری لامین یامال</p>
+    </header>
+
+    <nav>
+        <a href="index.html">🏠 خانه</a>
+        <a href="news.html">📰 اخبار</a>
+        <a href="contact.html">📞 تماس با ما</a>
+    </nav>
+
+    <main class="container">
+
+        <section class="hero">
+
+            <div class="ball">⚽</div>
+
+            <h2>به سایت هواداری لامین یامال خوش آمدید!</h2>
+
+            <p>
+                اینجا می‌توانید اخبار، اطلاعات و مطالب فوتبالی
+                مربوط به لامین یامال را دنبال کنید.
+            </p>
+
+            <button class="button" onclick="showInfo()">
+                بیشتر بدانید
+            </button>
+
+        </section>
+
+        <section class="cards">
+
+            <div class="card">
+                <h3>📰 اخبار</h3>
+                <p>
+                    جدیدترین مطالب و اخبار مربوط به لامین یامال.
+                </p>
+
+                <a class="button" href="news.html">
+                    مشاهده اخبار
+                </a>
+            </div>
+
+            <div class="card">
+                <h3>🏆 افتخارات</h3>
+                <p>
+                    اطلاعات و دستاوردهای مهم دوران فوتبال یامال.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📞 تماس با ما</h3>
+                <p>
+                    برای پیشنهادها و نظرات می‌توانید با ما تماس بگیرید.
+                </p>
+
+                <a class="button" href="contact.html">
+                    تماس با ما
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Yamal Fan Site</p>
+        <p>ساخته شده با ❤️ توسط علیسان</p>
+    </footer>
+
+    <script>
+        function showInfo() {
+            alert("به سایت هواداری لامین یامال خوش آمدید! ⚽🔥");
+        }
+    </script>
+
+</body>
+</html>
