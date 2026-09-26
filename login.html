@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ورود و ثبت‌نام</title>
 
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -99,7 +102,7 @@
       background: white;
       padding: 30px;
       border-radius: 18px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+      box-shadow: 0 5px 25px rgba(0,0,0,.12);
     }
 
     .tabs {
@@ -236,7 +239,6 @@
     }
 
     @media (max-width: 768px) {
-
       nav {
         padding: 14px 18px;
       }
@@ -255,7 +257,7 @@
         flex-direction: column;
         align-items: stretch;
         padding: 10px;
-        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        box-shadow: 0 8px 15px rgba(0,0,0,.3);
       }
 
       .menu.active {
@@ -279,46 +281,25 @@
 <body>
 
   <nav>
+    <div class="logo">LAMINE YAMAL</div>
 
-    <div class="logo">
-      LAMINE YAMAL
-    </div>
-
-    <button class="hamburger" onclick="toggleMenu()">
-      ☰
-    </button>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
 
     <div class="menu" id="menu">
-
       <a href="index.html">خانه</a>
       <a href="news.html">اخبار</a>
       <a href="honors.html">افتخارات</a>
       <a href="profile.html">پروفایل</a>
       <a href="contact.html">تماس با ما</a>
-
-      <a href="login.html" id="accountLink">
-        ورود / ثبت‌نام
-      </a>
-
-      <button class="dark-btn" onclick="toggleDarkMode()">
-        🌙 حالت تاریک
-      </button>
-
+      <a href="login.html" id="accountLink">ورود / ثبت‌نام</a>
+      <button class="dark-btn" onclick="toggleDarkMode()">🌙 حالت تاریک</button>
     </div>
-
   </nav>
 
-
   <section class="hero">
-
     <h1>👤 حساب کاربری</h1>
-
-    <p>
-      ورود یا ساخت حساب در سایت هواداری لامین یامال
-    </p>
-
+    <p>ورود یا ساخت حساب در سایت هواداری لامین یامال</p>
   </section>
-
 
   <main class="container">
 
@@ -327,34 +308,25 @@
       <div id="accountForms">
 
         <div class="tabs">
-
-          <button
-            class="tab active"
-            onclick="showForm('login')"
-            id="loginTab">
+          <button class="tab active" onclick="showForm('login')" id="loginTab">
             ورود
           </button>
 
-          <button
-            class="tab"
-            onclick="showForm('register')"
-            id="registerTab">
+          <button class="tab" onclick="showForm('register')" id="registerTab">
             ثبت‌نام
           </button>
-
         </div>
 
-
-        <!-- Login -->
+        <!-- LOGIN -->
 
         <div class="form active" id="loginForm">
 
-          <label>نام کاربری</label>
+          <label>ایمیل</label>
 
           <input
-            type="text"
-            id="loginUsername"
-            placeholder="نام کاربری"
+            type="email"
+            id="loginEmail"
+            placeholder="ایمیل"
           >
 
           <label>رمز عبور</label>
@@ -374,7 +346,7 @@
         </div>
 
 
-        <!-- Register -->
+        <!-- REGISTER -->
 
         <div class="form" id="registerForm">
 
@@ -384,6 +356,14 @@
             type="text"
             id="registerUsername"
             placeholder="نام کاربری"
+          >
+
+          <label>ایمیل</label>
+
+          <input
+            type="email"
+            id="registerEmail"
+            placeholder="example@gmail.com"
           >
 
           <label>رمز عبور</label>
@@ -413,7 +393,7 @@
       </div>
 
 
-      <!-- Welcome -->
+      <!-- ACCOUNT -->
 
       <div class="welcome" id="welcome">
 
@@ -423,9 +403,7 @@
           با موفقیت وارد حساب کاربری شدی! 🎉
         </p>
 
-        <button
-          class="logout-btn"
-          onclick="logout()">
+        <button class="logout-btn" onclick="logout()">
           خروج از حساب
         </button>
 
@@ -435,43 +413,59 @@
 
   </main>
 
-
   <footer>
-
-    <p>
-      © 2026 Lamine Yamal Fan Website
-    </p>
-
+    <p>© 2026 Lamine Yamal Fan Website</p>
   </footer>
 
 
   <script>
 
-    /* Mobile menu */
+    /* =========================
+       SUPABASE
+    ========================= */
+
+    const SUPABASE_URL =
+      "https://kcnxopqwqzxhzaciskwq.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_snszD0JjmcAF8f9BDgKbfg_DezmJl6Y";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =========================
+       MENU
+    ========================= */
 
     function toggleMenu() {
-
       document
         .getElementById("menu")
         .classList.toggle("active");
-
     }
 
 
-    document.querySelectorAll(".menu a").forEach(function(link) {
+    document
+      .querySelectorAll(".menu a")
+      .forEach(function(link) {
 
-      link.addEventListener("click", function() {
+        link.addEventListener("click", function() {
 
-        document
-          .getElementById("menu")
-          .classList.remove("active");
+          document
+            .getElementById("menu")
+            .classList.remove("active");
+
+        });
 
       });
 
-    });
 
-
-    /* Dark mode */
+    /* =========================
+       DARK MODE
+    ========================= */
 
     function toggleDarkMode() {
 
@@ -494,7 +488,9 @@
     }
 
 
-    /* Tabs */
+    /* =========================
+       FORM SWITCH
+    ========================= */
 
     function showForm(type) {
 
@@ -509,6 +505,7 @@
 
       const registerTab =
         document.getElementById("registerTab");
+
 
       if (type === "login") {
 
@@ -531,31 +528,9 @@
     }
 
 
-    /* Password hash */
-
-    async function hashPassword(password) {
-
-      if (window.crypto && crypto.subtle) {
-
-        const data =
-          new TextEncoder().encode(password);
-
-        const hash =
-          await crypto.subtle.digest("SHA-256", data);
-
-        return Array
-          .from(new Uint8Array(hash))
-          .map(b => b.toString(16).padStart(2, "0"))
-          .join("");
-
-      }
-
-      return btoa(password);
-
-    }
-
-
-    /* Message */
+    /* =========================
+       MESSAGE
+    ========================= */
 
     function showMessage(id, text, type) {
 
@@ -572,13 +547,21 @@
     }
 
 
-    /* Register */
+    /* =========================
+       REGISTER
+    ========================= */
 
     async function register() {
 
       const username =
         document
           .getElementById("registerUsername")
+          .value
+          .trim();
+
+      const email =
+        document
+          .getElementById("registerEmail")
           .value
           .trim();
 
@@ -592,7 +575,13 @@
           .getElementById("registerPassword2")
           .value;
 
-      if (!username || !password || !password2) {
+
+      if (
+        !username ||
+        !email ||
+        !password ||
+        !password2
+      ) {
 
         showMessage(
           "registerMessage",
@@ -601,8 +590,8 @@
         );
 
         return;
-
       }
+
 
       if (password !== password2) {
 
@@ -613,44 +602,153 @@
         );
 
         return;
-
       }
 
-      const passwordHash =
-        await hashPassword(password);
 
-      localStorage.setItem(
-        "yamalAccount",
-        JSON.stringify({
-          username: username,
-          password: passwordHash
-        })
-      );
+      if (password.length < 6) {
+
+        showMessage(
+          "registerMessage",
+          "رمز عبور باید حداقل ۶ کاراکتر باشد.",
+          "error"
+        );
+
+        return;
+      }
+
 
       showMessage(
         "registerMessage",
-        "ثبت‌نام با موفقیت انجام شد! حالا وارد شو.",
+        "در حال ساخت حساب...",
         "success"
       );
 
-      document.getElementById("registerUsername").value = "";
-      document.getElementById("registerPassword").value = "";
-      document.getElementById("registerPassword2").value = "";
 
-      setTimeout(function() {
-        showForm("login");
-      }, 1000);
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth.signUp({
+
+            email: email,
+
+            password: password
+
+          });
+
+
+        if (error) {
+
+          showMessage(
+            "registerMessage",
+            error.message,
+            "error"
+          );
+
+          return;
+        }
+
+
+        if (!data.user) {
+
+          showMessage(
+            "registerMessage",
+            "ساخت حساب انجام نشد.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        const userId =
+          data.user.id;
+
+
+        const {
+          error: profileError
+        } =
+          await supabaseClient
+            .from("profiles")
+            .insert({
+
+              id: userId,
+
+              username: username
+
+            });
+
+
+        if (profileError) {
+
+          showMessage(
+            "registerMessage",
+            "حساب ساخته شد، اما ذخیره نام کاربری انجام نشد: " +
+            profileError.message,
+            "error"
+          );
+
+          return;
+        }
+
+
+        showMessage(
+          "registerMessage",
+          "ثبت‌نام با موفقیت انجام شد! 🎉",
+          "success"
+        );
+
+
+        document.getElementById(
+          "registerUsername"
+        ).value = "";
+
+        document.getElementById(
+          "registerEmail"
+        ).value = "";
+
+        document.getElementById(
+          "registerPassword"
+        ).value = "";
+
+        document.getElementById(
+          "registerPassword2"
+        ).value = "";
+
+
+        setTimeout(function() {
+
+          showForm("login");
+
+        }, 1200);
+
+
+      } catch (error) {
+
+        showMessage(
+          "registerMessage",
+          "خطایی رخ داد. دوباره امتحان کن.",
+          "error"
+        );
+
+        console.error(error);
+
+      }
 
     }
 
 
-    /* Login */
+    /* =========================
+       LOGIN
+    ========================= */
 
     async function login() {
 
-      const username =
+      const email =
         document
-          .getElementById("loginUsername")
+          .getElementById("loginEmail")
           .value
           .trim();
 
@@ -659,107 +757,183 @@
           .getElementById("loginPassword")
           .value;
 
-      const saved =
-        localStorage.getItem("yamalAccount");
 
-      if (!saved) {
+      if (!email || !password) {
 
         showMessage(
           "loginMessage",
-          "هنوز حسابی ساخته نشده. ابتدا ثبت‌نام کن.",
+          "ایمیل و رمز عبور را وارد کن.",
           "error"
         );
 
         return;
-
       }
 
-      const account =
-        JSON.parse(saved);
 
-      const passwordHash =
-        await hashPassword(password);
+      showMessage(
+        "loginMessage",
+        "در حال ورود...",
+        "success"
+      );
 
-      if (
-        username === account.username &&
-        passwordHash === account.password
-      ) {
-
-        localStorage.setItem(
-          "yamalSession",
-          JSON.stringify({
-            username: account.username
-          })
-        );
-
-        showAccount();
-
-      } else {
-
-        showMessage(
-          "loginMessage",
-          "نام کاربری یا رمز عبور اشتباه است.",
-          "error"
-        );
-
-      }
-
-    }
-
-
-    /* Show account */
-
-    function showAccount() {
-
-      const session =
-        localStorage.getItem("yamalSession");
-
-      if (!session) return;
 
       try {
 
-        const user =
-          JSON.parse(session);
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth.signInWithPassword({
 
-        document
-          .getElementById("accountForms")
-          .style.display = "none";
+            email: email,
 
-        document
-          .getElementById("welcome")
-          .style.display = "block";
+            password: password
 
-        document
-          .getElementById("welcomeName")
-          .textContent =
-          "سلام " + user.username + " 👋";
+          });
 
-        document
-          .getElementById("accountLink")
-          .textContent =
-          "👤 " + user.username;
+
+        if (error) {
+
+          showMessage(
+            "loginMessage",
+            "ایمیل یا رمز عبور اشتباه است.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        if (data.user) {
+
+          await showAccount(data.user);
+
+        }
+
 
       } catch (error) {
 
-        console.log("Session error");
+        showMessage(
+          "loginMessage",
+          "خطایی در ورود رخ داد.",
+          "error"
+        );
+
+        console.error(error);
 
       }
 
     }
 
 
-    /* Logout */
+    /* =========================
+       SHOW ACCOUNT
+    ========================= */
 
-    function logout() {
+    async function showAccount(user) {
 
-      localStorage.removeItem("yamalSession");
+      if (!user) {
+
+        const result =
+          await supabaseClient.auth.getUser();
+
+        user = result.data.user;
+
+      }
+
+
+      if (!user) return;
+
+
+      let username =
+        user.user_metadata?.username;
+
+
+      const {
+        data: profile
+      } =
+        await supabaseClient
+          .from("profiles")
+          .select("username")
+          .eq("id", user.id)
+          .maybeSingle();
+
+
+      if (profile) {
+
+        username = profile.username;
+
+      }
+
+
+      if (!username) {
+
+        username = user.email;
+
+      }
+
+
+      document.getElementById(
+        "accountForms"
+      ).style.display = "none";
+
+
+      document.getElementById(
+        "welcome"
+      ).style.display = "block";
+
+
+      document.getElementById(
+        "welcomeName"
+      ).textContent =
+        "سلام " + username + " 👋";
+
+
+      document.getElementById(
+        "accountLink"
+      ).textContent =
+        "👤 " + username;
+
+    }
+
+
+    /* =========================
+       LOGOUT
+    ========================= */
+
+    async function logout() {
+
+      await supabaseClient.auth.signOut();
 
       location.reload();
 
     }
 
 
-    showAccount();
+    /* =========================
+       CHECK CURRENT SESSION
+    ========================= */
+
+    async function checkSession() {
+
+      const {
+        data
+      } =
+        await supabaseClient.auth.getSession();
+
+
+      if (data.session) {
+
+        await showAccount(
+          data.session.user
+        );
+
+      }
+
+    }
+
+
+    checkSession();
 
   </script>
 
