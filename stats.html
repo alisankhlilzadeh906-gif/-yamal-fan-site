@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>آمار لامین یامال | هواداران یامال</title>
+  <meta name="description" content="آمار و اطلاعات عملکرد لامین یامال">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+      transition: 0.3s;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #111;
+      color: white;
+      padding: 14px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: 0 3px 15px rgba(0,0,0,.15);
+    }
+
+    .logo {
+      color: #ffd700;
+      font-size: 22px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: #ffd700;
+      color: #111;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dark-btn,
+    .menu-btn {
+      border: none;
+      background: #222;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 45px;
+      background: linear-gradient(135deg, #111, #222, #111);
+      color: white;
+    }
+
+    .hero h1 {
+      color: #ffd700;
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #ddd;
+      font-size: 17px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px 60px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .section-title h2 {
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #777;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 45px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 18px;
+      padding: 25px 15px;
+      text-align: center;
+      box-shadow: 0 7px 25px rgba(0,0,0,.07);
+      transition: .3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .stat-number {
+      font-size: 34px;
+      font-weight: bold;
+      color: #111;
+      margin-bottom: 7px;
+    }
+
+    .stat-name {
+      color: #666;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 45px;
+    }
+
+    .info-card {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,.06);
+    }
+
+    .info-card span {
+      display: block;
+      color: #777;
+      font-size: 13px;
+      margin-bottom: 7px;
+    }
+
+    .info-card strong {
+      font-size: 17px;
+    }
+
+    .performance {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 7px 25px rgba(0,0,0,.07);
+      margin-bottom: 45px;
+    }
+
+    .performance h2 {
+      margin-bottom: 25px;
+    }
+
+    .bar-row {
+      margin-bottom: 22px;
+    }
+
+    .bar-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .bar-bg {
+      height: 12px;
+      background: #e5e5e5;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      background: #ffd700;
+      border-radius: 20px;
+    }
+
+    .season-table {
+      overflow-x: auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 7px 25px rgba(0,0,0,.07);
+      margin-bottom: 45px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    th,
+    td {
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: #111;
+      color: white;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .record-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .record-card {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 7px 25px rgba(0,0,0,.07);
+    }
+
+    .record-card .emoji {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .record-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .record-card p {
+      color: #777;
+      line-height: 1.8;
+    }
+
+    .note {
+      text-align: center;
+      color: #777;
+      margin-top: 30px;
+      line-height: 1.8;
+      font-size: 13px;
+    }
+
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    footer strong {
+      color: #ffd700;
+    }
+
+    /* DARK MODE */
+
+    body.dark {
+      background: #0d0d0d;
+      color: #eee;
+    }
+
+    body.dark .stat-card,
+    body.dark .info-card,
+    body.dark .performance,
+    body.dark .season-table,
+    body.dark .record-card {
+      background: #181818;
+      color: #eee;
+    }
+
+    body.dark .stat-number {
+      color: #ffd700;
+    }
+
+    body.dark .stat-name,
+    body.dark .section-title p,
+    body.dark .info-card span,
+    body.dark .record-card p,
+    body.dark .note {
+      color: #aaa;
+    }
+
+    body.dark .bar-bg {
+      background: #333;
+    }
+
+    body.dark td {
+      border-color: #333;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+
+      header {
+        padding: 12px 18px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 68px;
+        right: 15px;
+        left: 15px;
+        background: #111;
+        padding: 12px;
+        border-radius: 15px;
+        flex-direction: column;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .record-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 20px 10px;
+      }
+
+      .stat-number {
+        font-size: 28px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .performance {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">Lamine Yamal</div>
+
+  <nav id="nav">
+    <a href="index.html">خانه</a>
+    <a href="news.html">اخبار</a>
+    <a href="stats.html" class="active">آمار</a>
+    <a href="honors.html">افتخارات</a>
+    <a href="profile.html">پروفایل</a>
+    <a href="contact.html">تماس با ما</a>
+    <a href="login.html">ورود / ثبت‌نام</a>
+  </nav>
+
+  <div class="header-buttons">
+    <button class="dark-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </div>
+
+</header>
+
+<section class="hero">
+  <h1>📊 آمار لامین یامال</h1>
+  <p>نگاهی به عملکرد و آمار ستاره جوان بارسلونا</p>
+</section>
+
+<main>
+
+  <div class="section-title">
+    <h2>آمار فصل ۲۰۲۶/۲۷</h2>
+    <p>آمار فعلی لالیگا</p>
+  </div>
+
+  <section class="stats-grid">
+
+    <div class="stat-card">
+      <div class="stat-icon">⚽</div>
+      <div class="stat-number">۷</div>
+      <div class="stat-name">گل</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-number">۴</div>
+      <div class="stat-name">پاس گل</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🏟️</div>
+      <div class="stat-number">۷</div>
+      <div class="stat-name">بازی</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">⏱️</div>
+      <div class="stat-number">۵۸۱</div>
+      <div class="stat-name">دقیقه</div>
+    </div>
+
+  </section>
+
+  <div class="section-title">
+    <h2>👤 اطلاعات بازیکن</h2>
+  </div>
+
+  <section class="info-grid">
+
+    <div class="info-card">
+      <span>باشگاه</span>
+      <strong>بارسلونا</strong>
+    </div>
+
+    <div class="info-card">
+      <span>تیم ملی</span>
+      <strong>اسپانیا</strong>
+    </div>
+
+    <div class="info-card">
+      <span>شماره پیراهن</span>
+      <strong>۱۰</strong>
+    </div>
+
+    <div class="info-card">
+      <span>پست</span>
+      <strong>وینگر</strong>
+    </div>
+
+  </section>
+
+  <section class="performance">
+
+    <h2>📈 شاخص‌های نمایشی</h2>
+
+    <div class="bar-row">
+      <div class="bar-top">
+        <span>گلزنی</span>
+        <strong>۹۵٪</strong>
+      </div>
+
+      <div class="bar-bg">
+        <div class="bar" style="width:95%"></div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-top">
+        <span>تکنیک</span>
+        <strong>۹۷٪</strong>
+      </div>
+
+      <div class="bar-bg">
+        <div class="bar" style="width:97%"></div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-top">
+        <span>پاس</span>
+        <strong>۹۱٪</strong>
+      </div>
+
+      <div class="bar-bg">
+        <div class="bar" style="width:91%"></div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-top">
+        <span>دریبل</span>
+        <strong>۹۳٪</strong>
+      </div>
+
+      <div class="bar-bg">
+        <div class="bar" style="width:93%"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="section-title">
+    <h2>📅 آمار فصل‌ها</h2>
+  </div>
+
+  <section class="season-table">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>فصل</th>
+          <th>بازی</th>
+          <th>گل</th>
+          <th>پاس گل</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>۲۰۲۳/۲۴</td>
+          <td>۵۰</td>
+          <td>۷</td>
+          <td>—</td>
+        </tr>
+
+        <tr>
+          <td>۲۰۲۴/۲۵</td>
+          <td>—</td>
+          <td>۱۸</td>
+          <td>۲۱</td>
+        </tr>
+
+        <tr>
+          <td>۲۰۲۵/۲۶</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+
+        <tr>
+          <td>۲۰۲۶/۲۷</td>
+          <td>۷</td>
+          <td>۷</td>
+          <td>۴</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </section>
+
+  <div class="section-title">
+    <h2>🏅 رکوردها و نکات</h2>
+  </div>
+
+  <section class="record-grid">
+
+    <div class="record-card">
+      <div class="emoji">🌟</div>
+      <h3>استعداد جوان</h3>
+      <p>
+        یامال در سن پایین به یکی از چهره‌های مهم فوتبال اروپا تبدیل شده است.
+      </p>
+    </div>
+
+    <div class="record-card">
+      <div class="emoji">⚡</div>
+      <h3>سرعت و دریبل</h3>
+      <p>
+        تکنیک و توانایی دریبل از ویژگی‌های برجسته سبک بازی اوست.
+      </p>
+    </div>
+
+    <div class="record-card">
+      <div class="emoji">🏆</div>
+      <h3>افتخارات</h3>
+      <p>
+        یامال در رده باشگاهی و ملی به افتخارات مهمی دست یافته است.
+      </p>
+    </div>
+
+  </section>
+
+  <p class="note">
+    اعداد بخش آمار فصل جاری ممکن است با برگزاری مسابقات تغییر کنند.
+    شاخص‌های درصدی این صفحه صرفاً نمایشی هستند و آمار رسمی محسوب نمی‌شوند.
+  </p>
+
+</main>
+
+<footer>
+
+  <p>
+    © 2026 <strong>Lamine Yamal Fan Site</strong>
+  </p>
+
+  <p>
+    ساخته شده برای هواداران لامین یامال 💛❤️
+  </p>
+
+</footer>
+
+<script>
+
+function toggleDark() {
+
+  document.body.classList.toggle("dark");
+
+  const dark =
+    document.body.classList.contains("dark");
+
+  localStorage.setItem(
+    "yamalDarkMode",
+    dark
+  );
+
+  document.getElementById("darkBtn").textContent =
+    dark ? "☀️" : "🌙";
+}
+
+function loadDarkMode() {
+
+  const dark =
+    localStorage.getItem("yamalDarkMode") === "true";
+
+  if (dark) {
+
+    document.body.classList.add("dark");
+
+    document.getElementById("darkBtn").textContent =
+      "☀️";
+  }
+}
+
+function toggleMenu() {
+
+  document
+    .getElementById("nav")
+    .classList.toggle("show");
+
+}
+
+loadDarkMode();
+
+</script>
+
+</body>
+</html>

@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>افتخارات | Lamine Yamal</title>
+  <title>افتخارات لامین یامال | هواداران یامال</title>
+  <meta name="description" content="افتخارات و دستاوردهای لامین یامال در فوتبال">
 
   <style>
     * {
@@ -15,249 +16,357 @@
 
     body {
       font-family: Tahoma, Arial, sans-serif;
-      background: #f5f7fb;
-      color: #172033;
+      background: #f5f5f5;
+      color: #222;
       transition: .3s;
     }
 
-    body.dark {
-      background: #101522;
-      color: #f4f7ff;
-    }
-
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    body.dark header {
-      background: rgba(16,21,34,.95);
-      border-color: #293247;
-    }
-
-    nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 15px 20px;
+      z-index: 1000;
+      background: #111;
+      padding: 14px 6%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
+      box-shadow: 0 3px 15px rgba(0,0,0,.15);
     }
 
     .logo {
-      color: #2563eb;
-      text-decoration: none;
+      color: #ffd700;
       font-size: 22px;
       font-weight: bold;
+      white-space: nowrap;
     }
 
-    .nav-links {
+    nav {
       display: flex;
-      gap: 8px;
       align-items: center;
+      gap: 8px;
     }
 
-    .nav-links a,
-    .nav-links button {
-      border: none;
-      background: transparent;
-      color: inherit;
+    nav a {
+      color: white;
       text-decoration: none;
       padding: 9px 12px;
       border-radius: 10px;
-      cursor: pointer;
-      font-family: inherit;
+      font-size: 14px;
+      transition: .3s;
     }
 
-    .nav-links a:hover,
-    .nav-links button:hover {
-      background: #eaf0ff;
-      color: #2563eb;
+    nav a:hover,
+    nav a.active {
+      background: #ffd700;
+      color: #111;
     }
 
-    body.dark .nav-links a:hover,
-    body.dark .nav-links button:hover {
-      background: #202a3d;
+    .header-buttons {
+      display: flex;
+      gap: 8px;
     }
 
-    .mobile-menu {
-      display: none;
+    .dark-btn,
+    .menu-btn {
       border: none;
-      background: #eaf0ff;
-      padding: 9px 12px;
-      border-radius: 10px;
-      font-size: 20px;
+      background: #222;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       cursor: pointer;
+      font-size: 18px;
     }
 
-    body.dark .mobile-menu {
-      background: #202a3d;
+    .menu-btn {
+      display: none;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 65px 20px 45px;
+      background: linear-gradient(135deg, #111, #222, #111);
       color: white;
     }
 
-    .container {
+    .hero h1 {
+      color: #ffd700;
+      font-size: 38px;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      color: #ddd;
+      font-size: 17px;
+    }
+
+    /* MAIN */
+    main {
       max-width: 1100px;
       margin: auto;
-      padding: 55px 20px;
+      padding: 45px 20px 60px;
     }
 
-    .title {
+    .section-title {
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 28px;
     }
 
-    .title h1 {
-      font-size: 42px;
-      margin-bottom: 12px;
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 8px;
     }
 
-    .title p {
-      color: #667085;
-      line-height: 1.8;
+    .section-title p {
+      color: #777;
     }
 
-    body.dark .title p {
-      color: #b9c2d3;
-    }
-
-    .honors {
+    /* SUMMARY */
+    .summary {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      gap: 18px;
+      margin-bottom: 50px;
     }
 
-    .honor {
+    .summary-card {
       background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 22px;
-      padding: 30px 24px;
+      border-radius: 20px;
+      padding: 28px 18px;
       text-align: center;
-      transition: .25s;
+      box-shadow: 0 7px 25px rgba(0,0,0,.07);
+      transition: .3s;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .summary-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .summary-number {
+      font-size: 32px;
+      font-weight: bold;
+      color: #111;
+      margin-bottom: 7px;
+    }
+
+    .summary-text {
+      color: #666;
+    }
+
+    /* HONORS GRID */
+    .honors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .honor-card {
       position: relative;
+      background: white;
+      border-radius: 20px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 7px 25px rgba(0,0,0,.07);
       overflow: hidden;
+      transition: .3s;
     }
 
-    body.dark .honor {
-      background: #171e2d;
-      border-color: #293247;
+    .honor-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 5px;
+      background: #ffd700;
     }
 
-    .honor:hover {
-      transform: translateY(-7px);
-      box-shadow: 0 18px 40px rgba(0,0,0,.09);
+    .honor-card:hover {
+      transform: translateY(-6px);
     }
 
-    .honor-icon {
-      font-size: 55px;
-      margin-bottom: 18px;
+    .trophy {
+      font-size: 48px;
+      margin-bottom: 14px;
     }
 
-    .honor h2 {
-      font-size: 21px;
-      margin-bottom: 12px;
+    .honor-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
     }
 
-    .honor p {
-      color: #667085;
-      line-height: 1.9;
-    }
-
-    body.dark .honor p {
-      color: #bac4d5;
-    }
-
-    .year {
+    .honor-card .year {
       display: inline-block;
-      margin-top: 18px;
-      padding: 7px 14px;
-      background: #eaf0ff;
-      color: #2563eb;
+      background: #ffd700;
+      color: #111;
+      padding: 5px 12px;
       border-radius: 20px;
       font-size: 13px;
       font-weight: bold;
+      margin-bottom: 12px;
     }
 
-    body.dark .year {
-      background: #202a3d;
-      color: #cfe0ff;
+    .honor-card p {
+      color: #666;
+      line-height: 1.9;
+      font-size: 14px;
     }
 
-    .special {
-      grid-column: span 3;
-      background: linear-gradient(135deg, #2563eb, #4f46e5);
-      color: white;
-      border: none;
-    }
-
-    .special p {
-      color: #e7edff;
-    }
-
-    .special .year {
-      background: rgba(255,255,255,.18);
-      color: white;
-    }
-
-    footer {
-      margin-top: 50px;
-      background: #111827;
-      color: white;
-      text-align: center;
+    /* TIMELINE */
+    .timeline {
+      background: white;
+      border-radius: 20px;
       padding: 30px;
+      box-shadow: 0 7px 25px rgba(0,0,0,.07);
+      margin-bottom: 45px;
     }
 
+    .timeline-item {
+      position: relative;
+      padding: 0 35px 30px 0;
+      border-right: 3px solid #ffd700;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      right: -9px;
+      top: 0;
+      width: 15px;
+      height: 15px;
+      background: #ffd700;
+      border-radius: 50%;
+    }
+
+    .timeline-year {
+      font-weight: bold;
+      color: #b18b00;
+      margin-bottom: 7px;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 7px;
+    }
+
+    .timeline-item p {
+      color: #666;
+      line-height: 1.9;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    footer strong {
+      color: #ffd700;
+    }
+
+    /* DARK MODE */
+    body.dark {
+      background: #0d0d0d;
+      color: #eee;
+    }
+
+    body.dark .summary-card,
+    body.dark .honor-card,
+    body.dark .timeline {
+      background: #181818;
+      color: #eee;
+    }
+
+    body.dark .summary-number {
+      color: #ffd700;
+    }
+
+    body.dark .summary-text,
+    body.dark .honor-card p,
+    body.dark .timeline-item p,
+    body.dark .section-title p {
+      color: #aaa;
+    }
+
+    body.dark .timeline-year {
+      color: #ffd700;
+    }
+
+    /* MOBILE */
     @media (max-width: 850px) {
 
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 70px;
-        right: 15px;
-        left: 15px;
-        background: white;
-        padding: 15px;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,.12);
-        flex-direction: column;
+      header {
+        padding: 12px 18px;
       }
 
-      body.dark .nav-links {
-        background: #171e2d;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .mobile-menu {
+      .menu-btn {
         display: block;
       }
 
-      .honors {
-        grid-template-columns: 1fr 1fr;
+      nav {
+        display: none;
+        position: absolute;
+        top: 68px;
+        right: 15px;
+        left: 15px;
+        background: #111;
+        padding: 12px;
+        border-radius: 15px;
+        flex-direction: column;
       }
 
-      .special {
-        grid-column: span 2;
+      nav.show {
+        display: flex;
+      }
+
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      .honors-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
     @media (max-width: 550px) {
 
-      .honors {
+      .honors-grid {
         grid-template-columns: 1fr;
       }
 
-      .special {
-        grid-column: span 1;
+      .hero {
+        padding: 45px 18px 35px;
       }
 
-      .title h1 {
-        font-size: 32px;
+      .hero p {
+        font-size: 15px;
+      }
+
+      .timeline {
+        padding: 22px;
       }
     }
   </style>
@@ -267,200 +376,180 @@
 
 <header>
 
-  <nav>
+  <div class="logo">Lamine Yamal</div>
 
-    <a href="index.html" class="logo">
-      ⚽ Lamine Yamal
-    </a>
-
-    <button
-      class="mobile-menu"
-      onclick="toggleMenu()"
-    >
-      ☰
-    </button>
-
-    <div class="nav-links" id="navLinks">
-
-      <a href="index.html">خانه</a>
-
-      <a href="news.html">اخبار</a>
-
-      <a href="honors.html">افتخارات</a>
-
-      <a href="profile.html">پروفایل</a>
-
-      <a href="contact.html">ارتباط با ما</a>
-
-      <button
-        onclick="toggleDarkMode()"
-        id="darkButton"
-      >
-        🌙
-      </button>
-
-    </div>
-
+  <nav id="nav">
+    <a href="index.html">خانه</a>
+    <a href="news.html">اخبار</a>
+    <a href="stats.html">آمار</a>
+    <a href="honors.html" class="active">افتخارات</a>
+    <a href="profile.html">پروفایل</a>
+    <a href="contact.html">تماس با ما</a>
+    <a href="login.html">ورود / ثبت‌نام</a>
   </nav>
+
+  <div class="header-buttons">
+    <button class="dark-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </div>
 
 </header>
 
+<section class="hero">
+  <h1>🏆 افتخارات لامین یامال</h1>
+  <p>مروری بر جام‌ها، دستاوردها و موفقیت‌های ستاره جوان فوتبال</p>
+</section>
 
-<main class="container">
+<main>
 
-  <div class="title">
-
-    <h1>🏆 افتخارات لامین یامال</h1>
-
-    <p>
-      برخی از مهم‌ترین افتخارات و دستاوردهای دوران حرفه‌ای
-      لامین یامال
-    </p>
-
+  <div class="section-title">
+    <h2>✨ نگاهی به افتخارات</h2>
+    <p>مهم‌ترین موفقیت‌های دوران حرفه‌ای یامال</p>
   </div>
 
+  <section class="summary">
 
-  <section class="honors">
+    <div class="summary-card">
+      <div class="summary-icon">🏆</div>
+      <div class="summary-number">چندین</div>
+      <div class="summary-text">افتخار تیمی</div>
+    </div>
 
+    <div class="summary-card">
+      <div class="summary-icon">🥇</div>
+      <div class="summary-number">چندین</div>
+      <div class="summary-text">جایزه فردی</div>
+    </div>
 
-    <article class="honor special">
+    <div class="summary-card">
+      <div class="summary-icon">🇪🇸</div>
+      <div class="summary-number">اسپانیا</div>
+      <div class="summary-text">موفقیت در رده ملی</div>
+    </div>
 
-      <div class="honor-icon">🇪🇸</div>
+  </section>
 
-      <h2>
-        قهرمانی اروپا با اسپانیا
-      </h2>
+  <div class="section-title">
+    <h2>🏅 افتخارات مهم</h2>
+    <p>برخی از مهم‌ترین دستاوردهای یامال</p>
+  </div>
 
+  <section class="honors-grid">
+
+    <div class="honor-card">
+      <div class="trophy">🏆</div>
+      <span class="year">بارسلونا</span>
+      <h3>قهرمانی لالیگا</h3>
       <p>
-        یامال در مسیر موفقیت تیم ملی اسپانیا در رقابت‌های
-        یورو ۲۰۲۴ نقش مهمی داشت.
+        یامال در مسیر موفقیت‌های بارسلونا در رقابت‌های داخلی نقش داشته است.
       </p>
+    </div>
 
-      <span class="year">
-        EURO 2024
-      </span>
-
-    </article>
-
-
-    <article class="honor">
-
-      <div class="honor-icon">🏆</div>
-
-      <h2>
-        لالیگا
-      </h2>
-
+    <div class="honor-card">
+      <div class="trophy">🏆</div>
+      <span class="year">بارسلونا</span>
+      <h3>کوپا دل ری</h3>
       <p>
-        قهرمانی در رقابت‌های لالیگا با بارسلونا.
+        یکی از جام‌های مهم فوتبال اسپانیا که یامال در مسیر آن برای بارسلونا حضور داشته است.
       </p>
+    </div>
 
-      <span class="year">
-        2024–25
-      </span>
-
-    </article>
-
-
-    <article class="honor">
-
-      <div class="honor-icon">🥇</div>
-
-      <h2>
-        کوپا دل ری
-      </h2>
-
+    <div class="honor-card">
+      <div class="trophy">🏆</div>
+      <span class="year">بارسلونا</span>
+      <h3>سوپرجام اسپانیا</h3>
       <p>
-        حضور در مسیر موفقیت بارسلونا در رقابت‌های
-        جام حذفی اسپانیا.
+        یامال همراه بارسلونا در رقابت برای کسب جام سوپرجام اسپانیا نیز حضور داشته است.
       </p>
+    </div>
 
-      <span class="year">
-        2024–25
-      </span>
-
-    </article>
-
-
-    <article class="honor">
-
-      <div class="honor-icon">🏅</div>
-
-      <h2>
-        سوپرکاپ اسپانیا
-      </h2>
-
+    <div class="honor-card">
+      <div class="trophy">🇪🇸</div>
+      <span class="year">تیم ملی اسپانیا</span>
+      <h3>قهرمانی اروپا</h3>
       <p>
-        کسب عنوان قهرمانی با بارسلونا در سوپرکاپ اسپانیا.
+        یامال در موفقیت تیم ملی اسپانیا در رقابت‌های اروپایی نقش مهمی داشت.
       </p>
+    </div>
 
-      <span class="year">
-        2025
-      </span>
-
-    </article>
-
-
-    <article class="honor">
-
-      <div class="honor-icon">⭐</div>
-
-      <h2>
-        جایزه کوپا
-      </h2>
-
+    <div class="honor-card">
+      <div class="trophy">🌟</div>
+      <span class="year">فردی</span>
+      <h3>جوایز استعداد جوان</h3>
       <p>
-        دریافت جایزه کوپا به عنوان یکی از برترین
-        بازیکنان جوان فوتبال جهان.
+        عملکرد یامال باعث شده جوایز و عناوین مختلفی در رده‌های جوانان و فوتبال حرفه‌ای کسب کند.
       </p>
+    </div>
 
-      <span class="year">
-        2024
-      </span>
-
-    </article>
-
-
-    <article class="honor">
-
-      <div class="honor-icon">🌟</div>
-
-      <h2>
-        بهترین بازیکن جوان
-      </h2>
-
+    <div class="honor-card">
+      <div class="trophy">🥇</div>
+      <span class="year">فردی</span>
+      <h3>دستاوردهای تاریخی</h3>
       <p>
-        کسب جوایز و عناوین مختلف فردی در سنین بسیار پایین.
+        یامال در سن کم به رکوردها و دستاوردهای قابل توجهی در فوتبال اروپا دست یافته است.
       </p>
+    </div>
 
-      <span class="year">
-        Career
-      </span>
+  </section>
 
-    </article>
+  <div class="section-title">
+    <h2>📅 مسیر افتخارات</h2>
+    <p>مروری زمانی بر دوران حرفه‌ای</p>
+  </div>
 
+  <section class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-year">۲۰۲۳</div>
+      <h3>🚀 آغاز درخشان</h3>
+      <p>
+        یامال در سن بسیار پایین وارد سطح حرفه‌ای فوتبال شد و توجه زیادی را به خود جلب کرد.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">۲۰۲۴</div>
+      <h3>🇪🇸 درخشش با اسپانیا</h3>
+      <p>
+        یامال در تیم ملی اسپانیا به یکی از جوان‌ترین چهره‌های مهم فوتبال بین‌المللی تبدیل شد.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">۲۰۲۵</div>
+      <h3>⭐ تبدیل شدن به ستاره</h3>
+      <p>
+        عملکردهای یامال در بارسلونا و تیم ملی باعث افزایش توجه جهانی به او شد.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">۲۰۲۶</div>
+      <h3>🔥 ادامه مسیر</h3>
+      <p>
+        یامال همچنان به پیشرفت خود ادامه می‌دهد و یکی از بازیکنان مورد توجه فوتبال جهان است.
+      </p>
+    </div>
 
   </section>
 
 </main>
 
-
 <footer>
 
   <p>
-    © 2026 Lamine Yamal Fan Website
+    © 2026 <strong>Lamine Yamal Fan Site</strong>
   </p>
 
-  <p style="margin-top:10px; opacity:.7;">
-    ساخته شده برای هواداران فوتبال ⚽
+  <p>
+    ساخته شده برای هواداران لامین یامال 💛❤️
   </p>
 
 </footer>
 
-
 <script>
 
-function toggleDarkMode() {
+function toggleDark() {
 
   document.body.classList.toggle("dark");
 
@@ -469,13 +558,12 @@ function toggleDarkMode() {
 
   localStorage.setItem(
     "yamalDarkMode",
-    dark ? "true" : "false"
+    dark
   );
 
-  document.getElementById("darkButton").textContent =
+  document.getElementById("darkBtn").textContent =
     dark ? "☀️" : "🌙";
 }
-
 
 function loadDarkMode() {
 
@@ -483,23 +571,18 @@ function loadDarkMode() {
     localStorage.getItem("yamalDarkMode") === "true";
 
   if (dark) {
-
     document.body.classList.add("dark");
-
-    document.getElementById("darkButton").textContent =
-      "☀️";
+    document.getElementById("darkBtn").textContent = "☀️";
   }
 }
-
 
 function toggleMenu() {
 
   document
-    .getElementById("navLinks")
-    .classList.toggle("open");
+    .getElementById("nav")
+    .classList.toggle("show");
 
 }
-
 
 loadDarkMode();
 

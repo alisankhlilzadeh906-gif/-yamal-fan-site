@@ -1,376 +1,795 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Lamine Yamal | هواداران لامین یامال</title>
 
-  <meta
-    name="description"
-    content="سایت هواداری لامین یامال؛ اخبار، افتخارات، پروفایل و ارتباط با هواداران."
-  >
+  <meta name="description"
+        content="سایت هواداری لامین یامال؛ اخبار، افتخارات، آمار، پروفایل و ارتباط با هواداران">
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase-config.js"></script>
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+      transition: 0.3s;
+      line-height: 1.8;
+    }
+
+    body.dark {
+      background: #101010;
+      color: #eee;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #111;
+      border-bottom: 2px solid #d4af37;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      color: #d4af37;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    #darkModeBtn {
+      border: none;
+      background: #d4af37;
+      color: #111;
+      padding: 9px 13px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    #darkModeBtn:hover {
+      background: #f0d66c;
+      transform: translateY(-2px);
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 60px 25px;
+      text-align: center;
+      color: white;
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,0.78),
+          rgba(0,0,0,0.78)
+        ),
+        linear-gradient(135deg, #111, #292929);
+
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    }
+
+    .hero h1 {
+      color: #d4af37;
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #ddd;
+      font-size: 17px;
+      max-width: 750px;
+      margin: auto;
+      line-height: 2;
+    }
+
+    .hero-buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ================= BUTTONS ================= */
+
+    .main-button,
+    .stats-button {
+      display: inline-block;
+      padding: 13px 23px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .main-button {
+      background: #d4af37;
+      color: #111;
+    }
+
+    .stats-button {
+      background: #222;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+    }
+
+    .main-button:hover,
+    .stats-button:hover {
+      transform: translateY(-4px);
+    }
+
+    .main-button:hover {
+      background: #f0d66c;
+    }
+
+    .stats-button:hover {
+      background: #d4af37;
+      color: #111;
+    }
+
+    /* ================= MAIN ================= */
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px 50px;
+    }
+
+    .section-title {
+      text-align: center;
+      color: #bd941f;
+      font-size: 27px;
+      margin: 40px 0 22px;
+    }
+
+    body.dark .section-title {
+      color: #d4af37;
+    }
+
+    /* ================= CARDS ================= */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 7px 22px rgba(0,0,0,0.07);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: #d4af37;
+    }
+
+    body.dark .card {
+      background: #1b1b1b;
+      border-color: #444;
+      box-shadow: 0 7px 22px rgba(0,0,0,0.3);
+    }
+
+    .card-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      color: #bd941f;
+      margin-bottom: 10px;
+    }
+
+    body.dark .card h3 {
+      color: #d4af37;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    body.dark .card p {
+      color: #bbb;
+    }
+
+    .card a {
+      display: inline-block;
+      padding: 9px 17px;
+      border-radius: 8px;
+      background: #d4af37;
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .card a:hover {
+      background: #f0d66c;
+      transform: translateY(-2px);
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 7px 22px rgba(0,0,0,0.07);
+      line-height: 2.2;
+    }
+
+    body.dark .about {
+      background: #1b1b1b;
+      border-color: #444;
+    }
+
+    .about strong {
+      color: #bd941f;
+    }
+
+    body.dark .about strong {
+      color: #d4af37;
+    }
+
+    /* ================= QUICK STATS ================= */
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .mini-stat {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      padding: 20px 10px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    body.dark .mini-stat {
+      background: #1b1b1b;
+      border-color: #444;
+    }
+
+    .mini-stat .number {
+      display: block;
+      color: #bd941f;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    body.dark .mini-stat .number {
+      color: #d4af37;
+    }
+
+    .mini-stat span:last-child {
+      color: #666;
+      font-size: 13px;
+    }
+
+    body.dark .mini-stat span:last-child {
+      color: #bbb;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 28px 15px;
+      border-top: 2px solid #d4af37;
+    }
+
+    footer strong {
+      color: #d4af37;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 850px) {
+
+      .header-container {
+        flex-direction: column;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mini-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+    }
+
+    @media (max-width: 550px) {
+
+      .header-container {
+        padding: 13px 10px;
+      }
+
+      .logo {
+        font-size: 21px;
+      }
+
+      nav {
+        gap: 9px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      #darkModeBtn {
+        font-size: 12px;
+      }
+
+      .hero {
+        margin: 20px 12px;
+        padding: 40px 15px;
+      }
+
+      .hero h1 {
+        font-size: 27px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      main {
+        padding: 0 12px 40px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-stats {
+        gap: 10px;
+      }
+
+      .section-title {
+        font-size: 23px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .main-button,
+      .stats-button {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <header>
 
-  <nav>
+  <div class="header-container">
 
     <a href="index.html" class="logo">
-      ⚽ Lamine Yamal
+      Lamine Yamal
     </a>
 
-    <button
-      class="mobile-menu"
-      onclick="toggleMenu()"
-      aria-label="باز کردن منو"
-    >
-      ☰
-    </button>
+    <nav>
 
-    <div class="nav-links" id="navLinks">
+      <a href="index.html">خانه</a>
 
-      <a href="index.html">
-        خانه
-      </a>
+      <a href="news.html">اخبار</a>
 
-      <a href="news.html">
-        اخبار
-      </a>
+      <a href="stats.html">آمار</a>
 
-      <a href="honors.html">
-        افتخارات
-      </a>
+      <a href="honors.html">افتخارات</a>
 
-      <a href="profile.html">
-        پروفایل
-      </a>
+      <a href="profile.html">پروفایل</a>
 
-      <a href="contact.html">
-        ارتباط با ما
-      </a>
+      <a href="contact.html">تماس</a>
 
-      <!-- چت کاربران -->
-      <a href="chat.html">
-        💬 چت کاربران
-      </a>
-
-      <!-- اعلان‌ها -->
-      <a href="notifications.html">
-        🔔 اعلان‌ها
-      </a>
-
-      <!-- ورود / حساب کاربری -->
-      <a
-        href="login.html"
-        class="login-link"
-        data-login-link
-      >
-        👤 ورود / ثبت‌نام
-      </a>
-
-      <!-- حالت تاریک -->
-      <button
-        onclick="toggleDarkMode()"
-        id="darkButton"
-        data-dark-mode
-        aria-label="تغییر حالت تاریک"
-      >
-        🌙
+      <button id="darkModeBtn">
+        🌙 حالت تاریک
       </button>
 
-      <!-- خروج -->
-      <button
-        onclick="logout()"
-        data-logout
-        style="display:none;"
-      >
-        🚪 خروج
-      </button>
+    </nav>
 
-    </div>
-
-  </nav>
+  </div>
 
 </header>
 
 
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+  <h1>
+    💛 به سایت هواداری لامین یامال خوش آمدید
+  </h1>
+
+  <p>
+    آخرین اخبار، افتخارات، آمار و اطلاعات مربوط به
+    یکی از ستاره‌های بزرگ فوتبال را در اینجا دنبال کنید.
+  </p>
+
+  <div class="hero-buttons">
+
+    <a href="news.html" class="main-button">
+      📰 مشاهده اخبار
+    </a>
+
+    <a href="stats.html" class="stats-button">
+      📊 مشاهده آمار یامال
+    </a>
+
+  </div>
+
+</section>
+
+
 <main>
 
-  <!-- بخش اصلی -->
 
-  <section class="hero">
+<!-- ================= QUICK STATS ================= -->
 
-    <div class="hero-text">
+<h2 class="section-title">
+  ⭐ اطلاعات سریع
+</h2>
 
-      <h1>
-        دنیای
-        <span>لامین یامال</span>
-      </h1>
+<div class="mini-stats">
 
-      <p>
-        به سایت هواداری لامین یامال خوش آمدید.
-        اینجا می‌توانید آخرین اخبار، افتخارات،
-        اطلاعات و اتفاقات مربوط به ستاره جوان فوتبال
-        را دنبال کنید.
-      </p>
+  <div class="mini-stat">
+    <span class="number">10</span>
+    <span>شماره پیراهن</span>
+  </div>
 
-      <div class="buttons">
+  <div class="mini-stat">
+    <span class="number">🇪🇸</span>
+    <span>تیم ملی اسپانیا</span>
+  </div>
 
-        <a
-          href="news.html"
-          class="btn btn-primary"
-        >
-          📰 مشاهده اخبار
-        </a>
+  <div class="mini-stat">
+    <span class="number">🔵🔴</span>
+    <span>بارسلونا</span>
+  </div>
 
-        <a
-          href="profile.html"
-          class="btn btn-secondary"
-        >
-          👤 پروفایل یامال
-        </a>
+  <div class="mini-stat">
+    <span class="number">⚡</span>
+    <span>وینگر</span>
+  </div>
 
-      </div>
+</div>
 
+
+<!-- ================= FEATURES ================= -->
+
+<h2 class="section-title">
+  🚀 بخش‌های سایت
+</h2>
+
+<div class="cards">
+
+
+  <!-- NEWS -->
+
+  <div class="card">
+
+    <div class="card-icon">
+      📰
     </div>
 
+    <h3>
+      اخبار یامال
+    </h3>
 
-    <div class="hero-image">
+    <p>
+      جدیدترین خبرها و اتفاقات مربوط به لامین یامال.
+    </p>
 
-      <img
-        src="yamal.jpg"
-        alt="Lamine Yamal"
-        onerror="this.style.display='none'"
-      >
+    <a href="news.html">
+      مشاهده اخبار
+    </a>
 
+  </div>
+
+
+  <!-- STATS -->
+
+  <div class="card">
+
+    <div class="card-icon">
+      📊
     </div>
 
-  </section>
+    <h3>
+      آمار یامال
+    </h3>
+
+    <p>
+      آمار، عملکرد و اطلاعات آماری لامین یامال.
+    </p>
+
+    <a href="stats.html">
+      مشاهده آمار
+    </a>
+
+  </div>
 
 
-  <!-- بخش‌های سایت -->
+  <!-- HONORS -->
 
-  <section class="section">
+  <div class="card">
 
-    <div class="section-title">
-
-      <h2>
-        بخش‌های سایت
-      </h2>
-
-      <p>
-        همه چیز درباره لامین یامال در یک جا
-      </p>
-
+    <div class="card-icon">
+      🏆
     </div>
 
+    <h3>
+      افتخارات
+    </h3>
 
-    <div class="cards">
+    <p>
+      افتخارات و جوایز مهم دوران حرفه‌ای یامال.
+    </p>
 
-      <!-- اخبار -->
+    <a href="honors.html">
+      مشاهده افتخارات
+    </a>
 
-      <div class="card">
-
-        <div class="card-icon">
-          📰
-        </div>
-
-        <h3>
-          اخبار
-        </h3>
-
-        <p>
-          جدیدترین اخبار و اتفاقات مربوط به
-          لامین یامال را دنبال کنید.
-        </p>
-
-        <a href="news.html">
-          مشاهده اخبار ←
-        </a>
-
-      </div>
+  </div>
 
 
-      <!-- افتخارات -->
+  <!-- PROFILE -->
 
-      <div class="card">
+  <div class="card">
 
-        <div class="card-icon">
-          🏆
-        </div>
-
-        <h3>
-          افتخارات
-        </h3>
-
-        <p>
-          افتخارات و دستاوردهای مهم
-          لامین یامال را مشاهده کنید.
-        </p>
-
-        <a href="honors.html">
-          مشاهده افتخارات ←
-        </a>
-
-      </div>
-
-
-      <!-- پروفایل -->
-
-      <div class="card">
-
-        <div class="card-icon">
-          👤
-        </div>
-
-        <h3>
-          پروفایل
-        </h3>
-
-        <p>
-          اطلاعات و مشخصات فوتبالی
-          لامین یامال را مشاهده کنید.
-        </p>
-
-        <a href="profile.html">
-          مشاهده پروفایل ←
-        </a>
-
-      </div>
-
-
-      <!-- چت -->
-
-      <div class="card">
-
-        <div class="card-icon">
-          💬
-        </div>
-
-        <h3>
-          چت کاربران
-        </h3>
-
-        <p>
-          کاربران سایت را پیدا کن و با
-          هواداران دیگر گفتگو کن.
-        </p>
-
-        <a href="chat.html">
-          ورود به چت ←
-        </a>
-
-      </div>
-
-
-      <!-- اعلان‌ها -->
-
-      <div class="card">
-
-        <div class="card-icon">
-          🔔
-        </div>
-
-        <h3>
-          اعلان‌ها
-        </h3>
-
-        <p>
-          پیام‌ها و اعلان‌های جدید حساب
-          کاربری خود را مشاهده کن.
-        </p>
-
-        <a href="notifications.html">
-          مشاهده اعلان‌ها ←
-        </a>
-
-      </div>
-
+    <div class="card-icon">
+      👤
     </div>
 
-  </section>
+    <h3>
+      پروفایل
+    </h3>
+
+    <p>
+      اطلاعات شخصی و فوتبالی لامین یامال.
+    </p>
+
+    <a href="profile.html">
+      مشاهده پروفایل
+    </a>
+
+  </div>
 
 
-  <!-- معرفی سایت -->
+  <!-- CONTACT -->
 
-  <section class="section">
+  <div class="card">
 
-    <div class="about">
-
-      <h2>
-        💙 هواداران یامال
-      </h2>
-
-      <p>
-        این سایت برای طرفداران لامین یامال ساخته شده
-        تا بتوانند اخبار، افتخارات و اطلاعات مربوط به
-        این بازیکن را در یک محیط زیبا و ساده دنبال کنند.
-      </p>
-
+    <div class="card-icon">
+      📩
     </div>
 
-  </section>
+    <h3>
+      تماس با ما
+    </h3>
+
+    <p>
+      برای ارتباط با مدیریت سایت پیام خود را ارسال کنید.
+    </p>
+
+    <a href="contact.html">
+      تماس با ما
+    </a>
+
+  </div>
 
 
-  <!-- حساب کاربری -->
+  <!-- STATS SPECIAL -->
 
-  <section
-    class="section"
-    data-account-link
-    style="display:none;"
-  >
+  <div class="card">
 
-    <div class="about">
-
-      <h2>
-        👤 حساب کاربری
-      </h2>
-
-      <p>
-        از طریق حساب کاربری می‌توانید وارد
-        داشبورد خود شوید و امکانات سایت را ببینید.
-      </p>
-
-      <br>
-
-      <a
-        href="dashboard.html"
-        class="btn btn-primary"
-      >
-        ورود به داشبورد
-      </a>
-
+    <div class="card-icon">
+      ⭐
     </div>
 
-  </section>
+    <h3>
+      ستاره جوان
+    </h3>
+
+    <p>
+      مسیر رشد و درخشش یکی از استعدادهای فوتبال جهان.
+    </p>
+
+    <a href="stats.html">
+      بررسی عملکرد
+    </a>
+
+  </div>
+
+</div>
+
+
+<!-- ================= ABOUT ================= -->
+
+<h2 class="section-title">
+  💬 درباره سایت
+</h2>
+
+<div class="about">
+
+  <p>
+    این سایت یک پروژه هواداری برای
+    <strong>لامین یامال</strong>
+    است.
+  </p>
+
+  <p>
+    هدف سایت، جمع‌آوری اخبار، اطلاعات، آمار و
+    افتخارات یامال در یک محیط ساده و حرفه‌ای است.
+  </p>
+
+  <p>
+    در نسخه‌های بعدی امکانات تعاملی بیشتری نیز
+    به سایت اضافه خواهد شد.
+  </p>
+
+</div>
 
 </main>
 
 
+<!-- ================= FOOTER ================= -->
+
 <footer>
 
-  <p>
-    © 2026 Lamine Yamal Fan Website
-  </p>
+  © 2026 Lamine Yamal Fan Site
 
-  <p style="margin-top:10px;opacity:0.7;">
-    ساخته شده برای هواداران فوتبال ⚽
-  </p>
+  <br><br>
+
+  ساخته شده برای هواداران
+  <strong>لامین یامال</strong>
+  💛
 
 </footer>
 
 
-<script src="app.js"></script>
+<!-- ================= DARK MODE ================= -->
+
+<script>
+
+  const darkModeBtn =
+    document.getElementById("darkModeBtn");
+
+
+  function updateDarkButton() {
+
+    if (
+      document.body.classList.contains("dark")
+    ) {
+
+      darkModeBtn.textContent =
+        "☀️ حالت روشن";
+
+    } else {
+
+      darkModeBtn.textContent =
+        "🌙 حالت تاریک";
+
+    }
+
+  }
+
+
+  darkModeBtn.addEventListener(
+    "click",
+    function() {
+
+      document.body.classList.toggle("dark");
+
+
+      if (
+        document.body.classList.contains("dark")
+      ) {
+
+        localStorage.setItem(
+          "yamalDarkMode",
+          "on"
+        );
+
+      } else {
+
+        localStorage.setItem(
+          "yamalDarkMode",
+          "off"
+        );
+
+      }
+
+
+      updateDarkButton();
+
+    }
+  );
+
+
+  if (
+    localStorage.getItem("yamalDarkMode")
+    === "on"
+  ) {
+
+    document.body.classList.add("dark");
+
+  }
+
+
+  updateDarkButton();
+
+</script>
 
 </body>
-
 </html>
