@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ورود و ثبت‌نام</title>
 
-  <!-- Supabase -->
+  <title>ورود و ثبت‌نام | Lamine Yamal</title>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -16,263 +16,232 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #111;
-      transition: 0.3s;
-    }
-
-    nav {
-      background: #111;
-      color: white;
-      padding: 15px 25px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #ffd700;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .menu a,
-    .dark-btn {
-      color: white;
-      text-decoration: none;
-      padding: 9px 12px;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
-
-    .menu a:hover,
-    .dark-btn:hover {
-      background: #333;
-    }
-
-    .dark-btn {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .hamburger {
-      display: none;
-      font-size: 28px;
-      color: white;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #004d98, #a50044);
-      color: white;
-      text-align: center;
-      padding: 50px 20px;
-    }
-
-    .hero h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 18px;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: 45px auto;
-      padding: 0 20px;
-    }
-
-    .account-box {
-      background: white;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 5px 25px rgba(0,0,0,.12);
-    }
-
-    .tabs {
-      display: flex;
-      margin-bottom: 25px;
-    }
-
-    .tab {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      background: #eee;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .tab:first-child {
-      border-radius: 10px 0 0 10px;
-    }
-
-    .tab:last-child {
-      border-radius: 0 10px 10px 0;
-    }
-
-    .tab.active {
-      background: #004d98;
-      color: white;
-    }
-
-    .form {
-      display: none;
-    }
-
-    .form.active {
-      display: block;
-    }
-
-    label {
-      display: block;
-      margin: 12px 0 7px;
-      font-weight: bold;
-    }
-
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ccc;
-      border-radius: 9px;
-      font-size: 16px;
-    }
-
-    .main-btn {
-      width: 100%;
-      margin-top: 20px;
-      padding: 13px;
-      border: none;
-      border-radius: 9px;
-      background: #004d98;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .main-btn:hover {
-      background: #00376e;
-    }
-
-    .message {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 8px;
-      display: none;
-      text-align: center;
-    }
-
-    .success {
-      background: #d9f7df;
-      color: #126b25;
-    }
-
-    .error {
-      background: #ffdede;
-      color: #9b1111;
-    }
-
-    .welcome {
-      text-align: center;
-      display: none;
-    }
-
-    .welcome h2 {
-      color: #004d98;
-      margin-bottom: 15px;
-    }
-
-    .logout-btn {
-      margin-top: 20px;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 9px;
-      background: #a50044;
-      color: white;
-      cursor: pointer;
-    }
-
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      margin-top: 40px;
+      font-family: Tahoma, Arial, sans-serif;
+      min-height: 100vh;
+      background: #f5f7fb;
+      color: #172033;
+      transition: .3s;
     }
 
     body.dark {
-      background: #181818;
+      background: #101522;
+      color: #f4f7ff;
+    }
+
+    header {
+      background: rgba(255,255,255,.95);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    body.dark header {
+      background: #101522;
+      border-color: #293247;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .back {
+      text-decoration: none;
+      color: #2563eb;
+    }
+
+    .container {
+      min-height: calc(100vh - 70px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 460px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.08);
+    }
+
+    body.dark .box {
+      background: #171e2d;
+      border-color: #293247;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .title .icon {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+
+    .title h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .title p {
+      color: #667085;
+      line-height: 1.8;
+    }
+
+    body.dark .title p {
+      color: #bac4d5;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 25px;
+      background: #f1f4f9;
+      padding: 5px;
+      border-radius: 12px;
+    }
+
+    body.dark .tabs {
+      background: #20283a;
+    }
+
+    .tab {
+      border: none;
+      padding: 11px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-family: inherit;
+      background: transparent;
+      color: inherit;
+    }
+
+    .tab.active {
+      background: #2563eb;
       color: white;
     }
 
-    body.dark .account-box {
-      background: #252525;
+    .form-group {
+      margin-bottom: 17px;
     }
 
-    body.dark .tab {
-      background: #333;
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #dce1ea;
+      border-radius: 12px;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+      background: white;
+      color: #172033;
+    }
+
+    body.dark .form-group input {
+      background: #101522;
       color: white;
+      border-color: #303a50;
     }
 
-    body.dark .tab.active {
-      background: #0066cc;
+    .form-group input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
     }
 
-    body.dark .welcome h2 {
-      color: #66aaff;
+    .submit {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 5px;
     }
 
-    @media (max-width: 768px) {
-      nav {
-        padding: 14px 18px;
+    .submit:hover {
+      background: #1d4ed8;
+    }
+
+    .submit:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 10px;
+      display: none;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .message.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .message.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .dark-toggle {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: #2563eb;
+      color: white;
+      font-size: 19px;
+    }
+
+    .note {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 12px;
+      color: #7b8495;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 500px) {
+      .box {
+        padding: 25px 20px;
       }
 
-      .hamburger {
-        display: block;
-      }
-
-      .menu {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        background: #111;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 10px;
-        box-shadow: 0 8px 15px rgba(0,0,0,.3);
-      }
-
-      .menu.active {
-        display: flex;
-      }
-
-      .menu a,
-      .dark-btn {
-        width: 100%;
-        text-align: center;
-        padding: 13px;
-      }
-
-      .hero h1 {
-        font-size: 30px;
+      .title h1 {
+        font-size: 25px;
       }
     }
   </style>
@@ -280,662 +249,477 @@
 
 <body>
 
+<header>
   <nav>
-    <div class="logo">LAMINE YAMAL</div>
+    <a href="index.html" class="logo">
+      ⚽ Lamine Yamal
+    </a>
 
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
-
-    <div class="menu" id="menu">
-      <a href="index.html">خانه</a>
-      <a href="news.html">اخبار</a>
-      <a href="honors.html">افتخارات</a>
-      <a href="profile.html">پروفایل</a>
-      <a href="contact.html">تماس با ما</a>
-      <a href="login.html" id="accountLink">ورود / ثبت‌نام</a>
-      <button class="dark-btn" onclick="toggleDarkMode()">🌙 حالت تاریک</button>
-    </div>
+    <a href="index.html" class="back">
+      ← بازگشت به خانه
+    </a>
   </nav>
+</header>
 
-  <section class="hero">
-    <h1>👤 حساب کاربری</h1>
-    <p>ورود یا ساخت حساب در سایت هواداری لامین یامال</p>
+<main class="container">
+
+  <section class="box">
+
+    <div class="title">
+
+      <div class="icon">👤</div>
+
+      <h1 id="title">
+        ورود به حساب
+      </h1>
+
+      <p id="subtitle">
+        وارد حساب کاربری خود شوید
+      </p>
+
+    </div>
+
+    <div class="tabs">
+
+      <button
+        class="tab active"
+        id="loginTab"
+        onclick="showLogin()"
+      >
+        ورود
+      </button>
+
+      <button
+        class="tab"
+        id="registerTab"
+        onclick="showRegister()"
+      >
+        ثبت‌نام
+      </button>
+
+    </div>
+
+
+    <!-- Login -->
+
+    <form id="loginForm">
+
+      <div class="form-group">
+
+        <label for="loginEmail">
+          ایمیل
+        </label>
+
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="example@email.com"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="loginPassword">
+          رمز عبور
+        </label>
+
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="رمز عبور"
+          required
+        >
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="submit"
+        id="loginButton"
+      >
+        ورود
+      </button>
+
+    </form>
+
+
+    <!-- Register -->
+
+    <form id="registerForm" style="display:none;">
+
+      <div class="form-group">
+
+        <label for="registerUsername">
+          نام کاربری
+        </label>
+
+        <input
+          type="text"
+          id="registerUsername"
+          placeholder="مثلاً Alisan"
+          minlength="3"
+          maxlength="30"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="registerEmail">
+          ایمیل
+        </label>
+
+        <input
+          type="email"
+          id="registerEmail"
+          placeholder="example@email.com"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="registerPassword">
+          رمز عبور
+        </label>
+
+        <input
+          type="password"
+          id="registerPassword"
+          placeholder="حداقل 6 کاراکتر"
+          minlength="6"
+          required
+        >
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="submit"
+        id="registerButton"
+      >
+        ساخت حساب
+      </button>
+
+    </form>
+
+
+    <div id="message" class="message"></div>
+
+    <div class="note">
+      اطلاعات حساب از طریق Supabase مدیریت می‌شود.
+    </div>
+
   </section>
 
-  <main class="container">
-
-    <div class="account-box">
-
-      <div id="accountForms">
-
-        <div class="tabs">
-          <button class="tab active" onclick="showForm('login')" id="loginTab">
-            ورود
-          </button>
-
-          <button class="tab" onclick="showForm('register')" id="registerTab">
-            ثبت‌نام
-          </button>
-        </div>
-
-        <!-- LOGIN -->
-
-        <div class="form active" id="loginForm">
-
-          <label>ایمیل</label>
-
-          <input
-            type="email"
-            id="loginEmail"
-            placeholder="ایمیل"
-          >
-
-          <label>رمز عبور</label>
-
-          <input
-            type="password"
-            id="loginPassword"
-            placeholder="رمز عبور"
-          >
-
-          <button class="main-btn" onclick="login()">
-            ورود
-          </button>
-
-          <div id="loginMessage" class="message"></div>
-
-        </div>
+</main>
 
 
-        <!-- REGISTER -->
-
-        <div class="form" id="registerForm">
-
-          <label>نام کاربری</label>
-
-          <input
-            type="text"
-            id="registerUsername"
-            placeholder="نام کاربری"
-          >
-
-          <label>ایمیل</label>
-
-          <input
-            type="email"
-            id="registerEmail"
-            placeholder="example@gmail.com"
-          >
-
-          <label>رمز عبور</label>
-
-          <input
-            type="password"
-            id="registerPassword"
-            placeholder="رمز عبور"
-          >
-
-          <label>تکرار رمز عبور</label>
-
-          <input
-            type="password"
-            id="registerPassword2"
-            placeholder="تکرار رمز عبور"
-          >
-
-          <button class="main-btn" onclick="register()">
-            ثبت‌نام
-          </button>
-
-          <div id="registerMessage" class="message"></div>
-
-        </div>
-
-      </div>
+<button
+  class="dark-toggle"
+  onclick="toggleDarkMode()"
+  id="darkButton"
+>
+  🌙
+</button>
 
 
-      <!-- ACCOUNT -->
+<script>
 
-      <div class="welcome" id="welcome">
+const SUPABASE_URL =
+  "https://kcnxopqwqzxhzaciskwq.supabase.co";
 
-        <h2 id="welcomeName"></h2>
+const SUPABASE_KEY =
+  "sb_publishable_snszD0JjmcAF8f9BDgKbfg_DezmJl6Y";
 
-        <p>
-          با موفقیت وارد حساب کاربری شدی! 🎉
-        </p>
-
-        <button class="logout-btn" onclick="logout()">
-          خروج از حساب
-        </button>
-
-      </div>
-
-    </div>
-
-  </main>
-
-  <footer>
-    <p>© 2026 Lamine Yamal Fan Website</p>
-  </footer>
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-  <script>
+const loginForm =
+  document.getElementById("loginForm");
 
-    /* =========================
-       SUPABASE
-    ========================= */
+const registerForm =
+  document.getElementById("registerForm");
 
-    const SUPABASE_URL =
-      "https://kcnxopqwqzxhzaciskwq.supabase.co";
+const message =
+  document.getElementById("message");
 
-    const SUPABASE_KEY =
-      "sb_publishable_snszD0JjmcAF8f9BDgKbfg_DezmJl6Y";
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
+function showLogin() {
+
+  loginForm.style.display = "block";
+  registerForm.style.display = "none";
+
+  document
+    .getElementById("loginTab")
+    .classList.add("active");
+
+  document
+    .getElementById("registerTab")
+    .classList.remove("active");
+
+  document.getElementById("title").textContent =
+    "ورود به حساب";
+
+  document.getElementById("subtitle").textContent =
+    "وارد حساب کاربری خود شوید";
+
+  clearMessage();
+}
+
+
+function showRegister() {
+
+  loginForm.style.display = "none";
+  registerForm.style.display = "block";
+
+  document
+    .getElementById("registerTab")
+    .classList.add("active");
+
+  document
+    .getElementById("loginTab")
+    .classList.remove("active");
+
+  document.getElementById("title").textContent =
+    "ساخت حساب";
+
+  document.getElementById("subtitle").textContent =
+    "یک حساب جدید بسازید";
+
+  clearMessage();
+}
+
+
+function showMessage(text, type) {
+
+  message.textContent = text;
+
+  message.className =
+    "message " + type;
+}
+
+
+function clearMessage() {
+
+  message.textContent = "";
+
+  message.className =
+    "message";
+}
+
+
+loginForm.addEventListener(
+  "submit",
+  async function(event) {
+
+    event.preventDefault();
+
+    const email =
+      document.getElementById("loginEmail").value.trim();
+
+    const password =
+      document.getElementById("loginPassword").value;
+
+    const button =
+      document.getElementById("loginButton");
+
+    button.disabled = true;
+    button.textContent = "در حال ورود...";
+
+    clearMessage();
+
+    const { data, error } =
+      await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+    if (error) {
+
+      showMessage(
+        "ورود ناموفق بود: " + error.message,
+        "error"
       );
 
+      button.disabled = false;
+      button.textContent = "ورود";
 
-    /* =========================
-       MENU
-    ========================= */
-
-    function toggleMenu() {
-      document
-        .getElementById("menu")
-        .classList.toggle("active");
+      return;
     }
 
+    if (data.user) {
 
-    document
-      .querySelectorAll(".menu a")
-      .forEach(function(link) {
+      localStorage.setItem(
+        "yamalSession",
+        data.user.id
+      );
 
-        link.addEventListener("click", function() {
+      showMessage(
+        "ورود موفق بود! در حال انتقال...",
+        "success"
+      );
 
-          document
-            .getElementById("menu")
-            .classList.remove("active");
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 800);
+    }
 
-        });
+  }
+);
+
+
+registerForm.addEventListener(
+  "submit",
+  async function(event) {
+
+    event.preventDefault();
+
+    const username =
+      document
+        .getElementById("registerUsername")
+        .value
+        .trim();
+
+    const email =
+      document
+        .getElementById("registerEmail")
+        .value
+        .trim();
+
+    const password =
+      document.getElementById("registerPassword").value;
+
+    const button =
+      document.getElementById("registerButton");
+
+    if (username.length < 3) {
+
+      showMessage(
+        "نام کاربری باید حداقل ۳ حرف باشد.",
+        "error"
+      );
+
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = "در حال ساخت حساب...";
+
+    clearMessage();
+
+    const { data, error } =
+      await supabaseClient.auth.signUp({
+
+        email: email,
+
+        password: password,
+
+        options: {
+          data: {
+            username: username
+          }
+        }
 
       });
 
 
-    /* =========================
-       DARK MODE
-    ========================= */
+    if (error) {
 
-    function toggleDarkMode() {
+      showMessage(
+        "ثبت‌نام ناموفق بود: " + error.message,
+        "error"
+      );
 
-      document.body.classList.toggle("dark");
+      button.disabled = false;
+      button.textContent = "ساخت حساب";
+
+      return;
+    }
+
+
+    if (data.user) {
 
       localStorage.setItem(
-        "yamalDarkMode",
-        document.body.classList.contains("dark")
+        "yamalSession",
+        data.user.id
       );
-
-    }
-
-
-    if (
-      localStorage.getItem("yamalDarkMode") === "true"
-    ) {
-
-      document.body.classList.add("dark");
-
-    }
-
-
-    /* =========================
-       FORM SWITCH
-    ========================= */
-
-    function showForm(type) {
-
-      const loginForm =
-        document.getElementById("loginForm");
-
-      const registerForm =
-        document.getElementById("registerForm");
-
-      const loginTab =
-        document.getElementById("loginTab");
-
-      const registerTab =
-        document.getElementById("registerTab");
-
-
-      if (type === "login") {
-
-        loginForm.classList.add("active");
-        registerForm.classList.remove("active");
-
-        loginTab.classList.add("active");
-        registerTab.classList.remove("active");
-
-      } else {
-
-        registerForm.classList.add("active");
-        loginForm.classList.remove("active");
-
-        registerTab.classList.add("active");
-        loginTab.classList.remove("active");
-
-      }
-
-    }
-
-
-    /* =========================
-       MESSAGE
-    ========================= */
-
-    function showMessage(id, text, type) {
-
-      const box =
-        document.getElementById(id);
-
-      box.textContent = text;
-
-      box.className =
-        "message " + type;
-
-      box.style.display = "block";
-
-    }
-
-
-    /* =========================
-       REGISTER
-    ========================= */
-
-    async function register() {
-
-      const username =
-        document
-          .getElementById("registerUsername")
-          .value
-          .trim();
-
-      const email =
-        document
-          .getElementById("registerEmail")
-          .value
-          .trim();
-
-      const password =
-        document
-          .getElementById("registerPassword")
-          .value;
-
-      const password2 =
-        document
-          .getElementById("registerPassword2")
-          .value;
-
-
-      if (
-        !username ||
-        !email ||
-        !password ||
-        !password2
-      ) {
-
-        showMessage(
-          "registerMessage",
-          "لطفاً همه قسمت‌ها را پر کن.",
-          "error"
-        );
-
-        return;
-      }
-
-
-      if (password !== password2) {
-
-        showMessage(
-          "registerMessage",
-          "رمزهای عبور یکسان نیستند.",
-          "error"
-        );
-
-        return;
-      }
-
-
-      if (password.length < 6) {
-
-        showMessage(
-          "registerMessage",
-          "رمز عبور باید حداقل ۶ کاراکتر باشد.",
-          "error"
-        );
-
-        return;
-      }
-
-
-      showMessage(
-        "registerMessage",
-        "در حال ساخت حساب...",
-        "success"
-      );
-
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient.auth.signUp({
-
-            email: email,
-
-            password: password
-
-          });
-
-
-        if (error) {
-
-          showMessage(
-            "registerMessage",
-            error.message,
-            "error"
-          );
-
-          return;
-        }
-
-
-        if (!data.user) {
-
-          showMessage(
-            "registerMessage",
-            "ساخت حساب انجام نشد.",
-            "error"
-          );
-
-          return;
-        }
-
-
-        const userId =
-          data.user.id;
-
-
-        const {
-          error: profileError
-        } =
-          await supabaseClient
-            .from("profiles")
-            .insert({
-
-              id: userId,
-
-              username: username
-
-            });
-
-
-        if (profileError) {
-
-          showMessage(
-            "registerMessage",
-            "حساب ساخته شد، اما ذخیره نام کاربری انجام نشد: " +
-            profileError.message,
-            "error"
-          );
-
-          return;
-        }
-
-
-        showMessage(
-          "registerMessage",
-          "ثبت‌نام با موفقیت انجام شد! 🎉",
-          "success"
-        );
-
-
-        document.getElementById(
-          "registerUsername"
-        ).value = "";
-
-        document.getElementById(
-          "registerEmail"
-        ).value = "";
-
-        document.getElementById(
-          "registerPassword"
-        ).value = "";
-
-        document.getElementById(
-          "registerPassword2"
-        ).value = "";
-
-
-        setTimeout(function() {
-
-          showForm("login");
-
-        }, 1200);
-
-
-      } catch (error) {
-
-        showMessage(
-          "registerMessage",
-          "خطایی رخ داد. دوباره امتحان کن.",
-          "error"
-        );
-
-        console.error(error);
-
-      }
-
-    }
-
-
-    /* =========================
-       LOGIN
-    ========================= */
-
-    async function login() {
-
-      const email =
-        document
-          .getElementById("loginEmail")
-          .value
-          .trim();
-
-      const password =
-        document
-          .getElementById("loginPassword")
-          .value;
-
-
-      if (!email || !password) {
-
-        showMessage(
-          "loginMessage",
-          "ایمیل و رمز عبور را وارد کن.",
-          "error"
-        );
-
-        return;
-      }
-
-
-      showMessage(
-        "loginMessage",
-        "در حال ورود...",
-        "success"
-      );
-
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient.auth.signInWithPassword({
-
-            email: email,
-
-            password: password
-
-          });
-
-
-        if (error) {
-
-          showMessage(
-            "loginMessage",
-            "ایمیل یا رمز عبور اشتباه است.",
-            "error"
-          );
-
-          return;
-        }
-
-
-        if (data.user) {
-
-          await showAccount(data.user);
-
-        }
-
-
-      } catch (error) {
-
-        showMessage(
-          "loginMessage",
-          "خطایی در ورود رخ داد.",
-          "error"
-        );
-
-        console.error(error);
-
-      }
-
-    }
-
-
-    /* =========================
-       SHOW ACCOUNT
-    ========================= */
-
-    async function showAccount(user) {
-
-      if (!user) {
-
-        const result =
-          await supabaseClient.auth.getUser();
-
-        user = result.data.user;
-
-      }
-
-
-      if (!user) return;
-
-
-      let username =
-        user.user_metadata?.username;
-
-
-      const {
-        data: profile
-      } =
-        await supabaseClient
-          .from("profiles")
-          .select("username")
-          .eq("id", user.id)
-          .maybeSingle();
-
-
-      if (profile) {
-
-        username = profile.username;
-
-      }
-
-
-      if (!username) {
-
-        username = user.email;
-
-      }
-
-
-      document.getElementById(
-        "accountForms"
-      ).style.display = "none";
-
-
-      document.getElementById(
-        "welcome"
-      ).style.display = "block";
-
-
-      document.getElementById(
-        "welcomeName"
-      ).textContent =
-        "سلام " + username + " 👋";
-
-
-      document.getElementById(
-        "accountLink"
-      ).textContent =
-        "👤 " + username;
-
-    }
-
-
-    /* =========================
-       LOGOUT
-    ========================= */
-
-    async function logout() {
-
-      await supabaseClient.auth.signOut();
-
-      location.reload();
-
-    }
-
-
-    /* =========================
-       CHECK CURRENT SESSION
-    ========================= */
-
-    async function checkSession() {
-
-      const {
-        data
-      } =
-        await supabaseClient.auth.getSession();
-
 
       if (data.session) {
 
-        await showAccount(
-          data.session.user
+        showMessage(
+          "حساب با موفقیت ساخته شد! در حال انتقال...",
+          "success"
         );
 
-      }
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 800);
 
+      } else {
+
+        showMessage(
+          "حساب ساخته شد. ایمیل خود را برای تأیید بررسی کنید.",
+          "success"
+        );
+
+        button.disabled = false;
+        button.textContent = "ساخت حساب";
+      }
     }
 
+  }
+);
 
-    checkSession();
 
-  </script>
+function toggleDarkMode() {
+
+  document.body.classList.toggle("dark");
+
+  const dark =
+    document.body.classList.contains("dark");
+
+  localStorage.setItem(
+    "yamalDarkMode",
+    dark ? "true" : "false"
+  );
+
+  document.getElementById("darkButton").textContent =
+    dark ? "☀️" : "🌙";
+}
+
+
+function loadDarkMode() {
+
+  const dark =
+    localStorage.getItem("yamalDarkMode") === "true";
+
+  if (dark) {
+
+    document.body.classList.add("dark");
+
+    document.getElementById("darkButton").textContent =
+      "☀️";
+  }
+}
+
+
+loadDarkMode();
+
+</script>
 
 </body>
 </html>

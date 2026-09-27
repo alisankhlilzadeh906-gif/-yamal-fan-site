@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تماس با ما | Lamine Yamal</title>
+
+  <title>ارتباط با ما | Lamine Yamal</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <style>
     * {
@@ -13,230 +16,255 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #111;
-      transition: 0.3s;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      transition: .3s;
+    }
+
+    body.dark {
+      background: #101522;
+      color: #f4f7ff;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    body.dark header {
+      background: rgba(16,21,34,.95);
+      border-color: #293247;
     }
 
     nav {
-      background: #111;
-      color: white;
-      padding: 15px 25px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 15px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
 
     .logo {
+      color: #2563eb;
+      text-decoration: none;
       font-size: 22px;
       font-weight: bold;
-      color: #ffd700;
     }
 
-    .menu {
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .menu a,
-    .dark-btn {
-      color: white;
-      text-decoration: none;
-      padding: 9px 12px;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
-
-    .menu a:hover,
-    .dark-btn:hover {
-      background: #333;
-    }
-
-    .dark-btn {
+    .nav-links a,
+    .nav-links button {
       border: none;
       background: transparent;
+      color: inherit;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 10px;
       cursor: pointer;
-      font-size: 16px;
+      font-family: inherit;
     }
 
-    .hamburger {
+    .nav-links a:hover,
+    .nav-links button:hover {
+      background: #eaf0ff;
+      color: #2563eb;
+    }
+
+    body.dark .nav-links a:hover,
+    body.dark .nav-links button:hover {
+      background: #202a3d;
+    }
+
+    .mobile-menu {
       display: none;
-      font-size: 28px;
-      color: white;
-      background: none;
       border: none;
+      background: #eaf0ff;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 20px;
       cursor: pointer;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #004d98, #a50044);
+    body.dark .mobile-menu {
+      background: #202a3d;
       color: white;
-      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
       padding: 55px 20px;
     }
 
-    .hero h1 {
+    .title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .title h1 {
       font-size: 40px;
       margin-bottom: 12px;
     }
 
-    .hero p {
-      font-size: 18px;
+    .title p {
+      color: #667085;
+      line-height: 1.8;
     }
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 45px 20px;
+    body.dark .title p {
+      color: #bac4d5;
     }
 
     .contact-box {
       background: white;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.12);
-    }
-
-    .contact-box h2 {
-      text-align: center;
-      color: #004d98;
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      margin: 14px 0 7px;
-      font-weight: bold;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ccc;
-      border-radius: 9px;
-      font-family: inherit;
-      font-size: 16px;
-    }
-
-    textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-
-    .send-btn {
-      width: 100%;
-      margin-top: 20px;
-      padding: 13px;
-      border: none;
-      border-radius: 9px;
-      background: #004d98;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .send-btn:hover {
-      background: #00376e;
-    }
-
-    .send-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .success,
-    .error {
-      display: none;
-      margin-top: 18px;
-      padding: 13px;
-      border-radius: 9px;
-      text-align: center;
-    }
-
-    .success {
-      background: #d9f7df;
-      color: #126b25;
-    }
-
-    .error {
-      background: #ffdede;
-      color: #a00000;
-    }
-
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      margin-top: 20px;
-    }
-
-    body.dark {
-      background: #181818;
-      color: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 15px 40px rgba(0,0,0,.05);
     }
 
     body.dark .contact-box {
-      background: #252525;
+      background: #171e2d;
+      border-color: #293247;
     }
 
-    body.dark .contact-box h2 {
-      color: #66aaff;
+    .form-group {
+      margin-bottom: 18px;
     }
 
-    body.dark input,
-    body.dark textarea {
-      background: #333;
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #dce1ea;
+      border-radius: 12px;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+      background: white;
+      color: #172033;
+    }
+
+    body.dark .form-group input,
+    body.dark .form-group textarea {
+      background: #101522;
       color: white;
-      border-color: #555;
+      border-color: #303a50;
     }
 
-    @media (max-width: 768px) {
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
 
-      nav {
-        padding: 14px 18px;
-      }
+    textarea {
+      min-height: 170px;
+      resize: vertical;
+    }
 
-      .hamburger {
-        display: block;
-      }
+    .submit {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-      .menu {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        background: #111;
+    .submit:hover {
+      background: #1d4ed8;
+    }
+
+    .submit:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 13px;
+      border-radius: 10px;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .message.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .message.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    footer {
+      margin-top: 50px;
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    @media (max-width: 800px) {
+
+      .nav-links {
         display: none;
+        position: absolute;
+        top: 70px;
+        right: 15px;
+        left: 15px;
+        background: white;
+        padding: 15px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.12);
         flex-direction: column;
-        align-items: stretch;
-        padding: 10px;
-        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
       }
 
-      .menu.active {
+      body.dark .nav-links {
+        background: #171e2d;
+      }
+
+      .nav-links.open {
         display: flex;
       }
 
-      .menu a,
-      .dark-btn {
-        width: 100%;
-        text-align: center;
-        padding: 13px;
-      }
-
-      .hero h1 {
-        font-size: 32px;
+      .mobile-menu {
+        display: block;
       }
 
       .contact-box {
-        padding: 22px;
+        padding: 25px 20px;
+      }
+
+      .title h1 {
+        font-size: 32px;
       }
     }
   </style>
@@ -244,57 +272,62 @@
 
 <body>
 
+<header>
+
   <nav>
 
-    <div class="logo">
-      LAMINE YAMAL
-    </div>
+    <a href="index.html" class="logo">
+      ⚽ Lamine Yamal
+    </a>
 
-    <button class="hamburger" onclick="toggleMenu()">
+    <button
+      class="mobile-menu"
+      onclick="toggleMenu()"
+    >
       ☰
     </button>
 
-    <div class="menu" id="menu">
+    <div class="nav-links" id="navLinks">
 
       <a href="index.html">خانه</a>
       <a href="news.html">اخبار</a>
       <a href="honors.html">افتخارات</a>
       <a href="profile.html">پروفایل</a>
-      <a href="contact.html">تماس با ما</a>
+      <a href="contact.html">ارتباط با ما</a>
 
-      <a href="login.html" id="accountLink">
-        ورود / ثبت‌نام
-      </a>
-
-      <button class="dark-btn" onclick="toggleDarkMode()">
-        🌙 حالت تاریک
+      <button
+        onclick="toggleDarkMode()"
+        id="darkButton"
+      >
+        🌙
       </button>
 
     </div>
 
   </nav>
 
+</header>
 
-  <section class="hero">
 
-    <h1>📩 تماس با ما</h1>
+<main class="container">
+
+  <div class="title">
+
+    <h1>📩 ارتباط با ما</h1>
 
     <p>
-      پیام خودت را برای ما ارسال کن
+      اگر پیشنهادی، نظری یا پیامی دارید، از فرم زیر برای
+      ارسال پیام استفاده کنید.
     </p>
 
-  </section>
+  </div>
 
 
-  <main class="container">
+  <section class="contact-box">
 
-    <div class="contact-box">
+    <form id="contactForm">
 
-      <h2>
-        ارسال پیام
-      </h2>
-
-      <form id="contact-form">
+      <div class="form-group">
 
         <label for="name">
           نام
@@ -304,9 +337,14 @@
           type="text"
           id="name"
           name="name"
-          placeholder="نام خود را وارد کنید"
+          placeholder="نام شما"
           required
         >
+
+      </div>
+
+
+      <div class="form-group">
 
         <label for="email">
           ایمیل
@@ -320,201 +358,181 @@
           required
         >
 
-        <label for="message">
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="messageText">
           پیام
         </label>
 
         <textarea
-          id="message"
+          id="messageText"
           name="message"
           placeholder="پیام خود را بنویسید..."
           required
         ></textarea>
 
-        <button
-          type="submit"
-          class="send-btn"
-          id="sendButton">
-          ارسال پیام
-        </button>
-
-      </form>
-
-      <div id="successMessage" class="success">
-        ✅ پیام شما با موفقیت ارسال شد!
       </div>
 
-      <div id="errorMessage" class="error">
-        ❌ ارسال پیام ناموفق بود. دوباره تلاش کنید.
-      </div>
 
-    </div>
+      <button
+        type="submit"
+        class="submit"
+        id="sendButton"
+      >
+        📤 ارسال پیام
+      </button>
 
-  </main>
-
-
-  <footer>
-    <p>
-      © 2026 Lamine Yamal Fan Website
-    </p>
-  </footer>
+    </form>
 
 
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <div
+      id="statusMessage"
+      class="message"
+    ></div>
 
-  <script>
+  </section>
 
-    /* EmailJS */
-
-    emailjs.init({
-      publicKey: "UrmDIfyGXYH0n1QeS"
-    });
+</main>
 
 
-    /* Mobile Menu */
+<footer>
 
-    function toggleMenu() {
+  <p>
+    © 2026 Lamine Yamal Fan Website
+  </p>
 
-      document
-        .getElementById("menu")
-        .classList.toggle("active");
+  <p style="margin-top:10px; opacity:.7;">
+    ساخته شده برای هواداران فوتبال ⚽
+  </p>
 
-    }
-
-
-    /* Close menu */
-
-    document.querySelectorAll(".menu a").forEach(function(link) {
-
-      link.addEventListener("click", function() {
-
-        document
-          .getElementById("menu")
-          .classList.remove("active");
-
-      });
-
-    });
+</footer>
 
 
-    /* Dark Mode */
+<script>
 
-    function toggleDarkMode() {
+const EMAILJS_PUBLIC_KEY =
+  "UrmDIfyGXYH0n1QeS";
 
-      document.body.classList.toggle("dark");
+const EMAILJS_SERVICE_ID =
+  "service_nfzwg99";
 
-      localStorage.setItem(
-        "yamalDarkMode",
-        document.body.classList.contains("dark")
+const EMAILJS_TEMPLATE_ID =
+  "template_ch7tvtg";
+
+
+emailjs.init({
+  publicKey: EMAILJS_PUBLIC_KEY
+});
+
+
+const contactForm =
+  document.getElementById("contactForm");
+
+const sendButton =
+  document.getElementById("sendButton");
+
+const statusMessage =
+  document.getElementById("statusMessage");
+
+
+contactForm.addEventListener(
+  "submit",
+  async function(event) {
+
+    event.preventDefault();
+
+    sendButton.disabled = true;
+    sendButton.textContent =
+      "در حال ارسال...";
+
+    statusMessage.className =
+      "message";
+
+    statusMessage.textContent = "";
+
+    try {
+
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        contactForm
       );
 
-    }
+      statusMessage.className =
+        "message success";
 
+      statusMessage.textContent =
+        "✅ پیام شما با موفقیت ارسال شد.";
 
-    if (
-      localStorage.getItem("yamalDarkMode") === "true"
-    ) {
+      contactForm.reset();
 
-      document.body.classList.add("dark");
+    } catch (error) {
 
-    }
+      console.error(error);
 
+      statusMessage.className =
+        "message error";
 
-    /* Account */
-
-    function updateAccount() {
-
-      const accountLink =
-        document.getElementById("accountLink");
-
-      const session =
-        localStorage.getItem("yamalSession");
-
-      if (session) {
-
-        try {
-
-          const user =
-            JSON.parse(session);
-
-          if (user.username) {
-
-            accountLink.textContent =
-              "👤 " + user.username;
-
-          }
-
-        } catch (error) {
-
-          console.log("Session error");
-
-        }
-
-      }
+      statusMessage.textContent =
+        "❌ ارسال پیام انجام نشد. تنظیمات EmailJS را بررسی کنید.";
 
     }
 
-    updateAccount();
+    sendButton.disabled = false;
+
+    sendButton.textContent =
+      "📤 ارسال پیام";
+
+  }
+);
 
 
-    /* Contact Form */
+function toggleDarkMode() {
 
-    const contactForm =
-      document.getElementById("contact-form");
+  document.body.classList.toggle("dark");
 
-    const sendButton =
-      document.getElementById("sendButton");
+  const dark =
+    document.body.classList.contains("dark");
 
-    const successMessage =
-      document.getElementById("successMessage");
+  localStorage.setItem(
+    "yamalDarkMode",
+    dark ? "true" : "false"
+  );
 
-    const errorMessage =
-      document.getElementById("errorMessage");
-
-
-    contactForm.addEventListener("submit", function(event) {
-
-      event.preventDefault();
-
-      successMessage.style.display = "none";
-      errorMessage.style.display = "none";
-
-      sendButton.disabled = true;
-      sendButton.textContent = "در حال ارسال...";
+  document.getElementById("darkButton").textContent =
+    dark ? "☀️" : "🌙";
+}
 
 
-      emailjs.sendForm(
-        "service_nfzwg99",
-        "template_ch7tvtg",
-        contactForm
-      )
+function loadDarkMode() {
 
-      .then(function() {
+  const dark =
+    localStorage.getItem("yamalDarkMode") === "true";
 
-        successMessage.style.display = "block";
+  if (dark) {
 
-        contactForm.reset();
+    document.body.classList.add("dark");
 
-        sendButton.disabled = false;
-        sendButton.textContent = "ارسال پیام";
+    document.getElementById("darkButton").textContent =
+      "☀️";
+  }
+}
 
-      })
 
-      .catch(function(error) {
+function toggleMenu() {
 
-        console.error("EmailJS Error:", error);
+  document
+    .getElementById("navLinks")
+    .classList.toggle("open");
+}
 
-        errorMessage.style.display = "block";
 
-        sendButton.disabled = false;
-        sendButton.textContent = "ارسال پیام";
+loadDarkMode();
 
-      });
-
-    });
-
-  </script>
+</script>
 
 </body>
 </html>

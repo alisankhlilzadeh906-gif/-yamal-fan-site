@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>اعلان‌ها | Lamine Yamal</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+</head>
+
+<body>
+
+<header>
+  <nav>
+
+    <a href="index.html" class="logo">
+      ⚽ Lamine Yamal
+    </a>
+
+    <button
+      class="mobile-menu"
+      onclick="toggleMenu()"
+      aria-label="باز کردن منو"
+    >
+      ☰
+    </button>
+
+    <div class="nav-links" id="navLinks">
+
+      <a href="index.html">خانه</a>
+      <a href="news.html">اخبار</a>
+      <a href="honors.html">افتخارات</a>
+      <a href="profile.html">پروفایل</a>
+      <a href="chat.html">💬 چت کاربران</a>
+      <a href="dashboard.html">👤 حساب من</a>
+
+      <button
+        id="darkButton"
+        data-dark-mode
+        onclick="toggleDarkMode()"
+      >
+        🌙
+      </button>
+
+      <button
+        data-logout
+        onclick="logout()"
+      >
+        🚪 خروج
+      </button>
+
+    </div>
+
+  </nav>
+</header>
+
+
+<main>
+
+<section class="section">
+
+  <div class="section-title">
+
+    <h2>🔔 اعلان‌ها</h2>
+
+    <p>
+      پیام‌ها و اتفاقات جدید حساب کاربری
+    </p>
+
+  </div>
+
+
+  <div
+    class="card"
+    style="
+      max-width:800px;
+      margin:auto;
+      text-align:right;
+    "
+  >
+
+    <div
+      style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:15px;
+        margin-bottom:20px;
+        flex-wrap:wrap;
+      "
+    >
+
+      <h3>
+        اعلان‌های من
+      </h3>
+
+      <button
+        id="markAllButton"
+        class="btn btn-primary"
+        style="
+          border:none;
+          cursor:pointer;
+        "
+      >
+        ✓ همه را خوانده‌شده کن
+      </button>
+
+    </div>
+
+
+    <div id="notificationsList">
+
+      <p style="text-align:center;opacity:.7;">
+        در حال بارگذاری اعلان‌ها...
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <p>
+    © 2026 Lamine Yamal Fan Website
+  </p>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+
+<script>
+
+let currentUser = null;
+let notificationChannel = null;
+
+
+// دریافت کاربر
+async function getCurrentUser() {
+
+  const {
+    data,
+    error
+  } = await sb.auth.getUser();
+
+
+  if (error || !data.user) {
+
+    window.location.href = "login.html";
+
+    return null;
+  }
+
+
+  currentUser = data.user;
+
+  return currentUser;
+
+}
+
+
+// فرمت زمان
+function formatDate(dateString) {
+
+  const date =
+    new Date(dateString);
+
+
+  return date.toLocaleString(
+    "fa-IR",
+    {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    }
+  );
+
+}
+
+
+// جلوگیری از HTML خطرناک
+function escapeHTML(text) {
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    String(text || "");
+
+  return div.innerHTML;
+
+}
+
+
+// نمایش اعلان‌ها
+async function loadNotifications() {
+
+  const list =
+    document.getElementById(
+      "notificationsList"
+    );
+
+
+  list.innerHTML = `
+    <p style="text-align:center;opacity:.7;">
+      در حال بارگذاری اعلان‌ها...
+    </p>
+  `;
+
+
+  const {
+    data,
+    error
+  } = await sb
+    .from("notifications")
+    .select(`
+      id,
+      title,
+      content,
+      is_read,
+      created_at
+    `)
+    .eq("user_id", currentUser.id)
+    .order("created_at", {
+      ascending: false
+    });
+
+
+  if (error) {
+
+    console.error(error);
+
+    list.innerHTML = `
+      <div
+        style="
+          padding:20px;
+          border-radius:12px;
+          background:#fee2e2;
+          color:#991b1b;
+        "
+      >
+        خطا در بارگذاری اعلان‌ها:
+        ${escapeHTML(error.message)}
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  if (!data || data.length === 0) {
+
+    list.innerHTML = `
+      <div
+        style="
+          text-align:center;
+          padding:50px 20px;
+          opacity:.65;
+        "
+      >
+        <div style="font-size:50px;">
+          🔔
+        </div>
+
+        <p style="margin-top:15px;">
+          هنوز اعلانی نداری.
+        </p>
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  list.innerHTML = "";
+
+
+  data.forEach(notification => {
+
+    const item =
+      document.createElement("div");
+
+
+    item.style.cssText = `
+      padding:18px;
+      border-radius:15px;
+      margin-bottom:12px;
+      border:1px solid #293247;
+      cursor:pointer;
+      transition:.2s;
+    `;
+
+
+    if (notification.is_read) {
+
+      item.style.opacity = "0.65";
+
+    } else {
+
+      item.style.background =
+        document.body.classList.contains("dark")
+          ? "#202a3d"
+          : "#eef2ff";
+
+      item.style.borderColor =
+        "#2563eb";
+
+    }
+
+
+    item.innerHTML = `
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          gap:10px;
+          align-items:flex-start;
+        "
+      >
+
+        <strong>
+          ${escapeHTML(
+            notification.title || "🔔 اعلان جدید"
+          )}
+        </strong>
+
+        ${
+          !notification.is_read
+            ? `
+              <span
+                style="
+                  background:#2563eb;
+                  color:white;
+                  padding:3px 8px;
+                  border-radius:20px;
+                  font-size:11px;
+                "
+              >
+                جدید
+              </span>
+            `
+            : ""
+        }
+
+      </div>
+
+
+      <p
+        style="
+          margin-top:8px;
+          line-height:1.8;
+        "
+      >
+        ${escapeHTML(
+          notification.content || ""
+        )}
+      </p>
+
+
+      <div
+        style="
+          margin-top:8px;
+          font-size:11px;
+          opacity:.6;
+        "
+      >
+        ${formatDate(notification.created_at)}
+      </div>
+
+    `;
+
+
+    // کلیک = خوانده‌شده
+    item.addEventListener(
+      "click",
+      async function() {
+
+        if (notification.is_read) {
+          return;
+        }
+
+
+        const {
+          error
+        } = await sb
+          .from("notifications")
+          .update({
+            is_read: true
+          })
+          .eq("id", notification.id)
+          .eq("user_id", currentUser.id);
+
+
+        if (!error) {
+
+          notification.is_read = true;
+
+          loadNotifications();
+
+        }
+
+      }
+    );
+
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+// خوانده‌شدن همه اعلان‌ها
+async function markAllRead() {
+
+  const {
+    error
+  } = await sb
+    .from("notifications")
+    .update({
+      is_read: true
+    })
+    .eq("user_id", currentUser.id)
+    .eq("is_read", false);
+
+
+  if (error) {
+
+    console.error(error);
+
+    app.toast(
+      "خطا در تغییر وضعیت اعلان‌ها",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  app.toast(
+    "همه اعلان‌ها خوانده شدند ✅",
+    "success"
+  );
+
+
+  await loadNotifications();
+
+}
+
+
+// اعلان لحظه‌ای
+function subscribeNotifications() {
+
+  notificationChannel =
+    sb
+      .channel(
+        "notifications-" +
+        currentUser.id +
+        "-" +
+        Date.now()
+      )
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "notifications",
+          filter:
+            "user_id=eq." +
+            currentUser.id
+        },
+        payload => {
+
+          app.toast(
+            "🔔 اعلان جدید دریافت کردی!",
+            "success"
+          );
+
+
+          loadNotifications();
+
+        }
+      )
+      .subscribe();
+
+}
+
+
+// دکمه همه خوانده شد
+document
+  .getElementById("markAllButton")
+  .addEventListener(
+    "click",
+    markAllRead
+  );
+
+
+// شروع
+async function initNotifications() {
+
+  const user =
+    await getCurrentUser();
+
+
+  if (!user) return;
+
+
+  await loadNotifications();
+
+  subscribeNotifications();
+
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  initNotifications
+);
+
+</script>
+
+</body>
+</html>

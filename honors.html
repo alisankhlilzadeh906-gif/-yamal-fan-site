@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>افتخارات لامین یامال</title>
+
+  <title>افتخارات | Lamine Yamal</title>
 
   <style>
     * {
@@ -13,205 +14,250 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #111;
-      transition: 0.3s;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      transition: .3s;
     }
 
-    /* Navbar */
+    body.dark {
+      background: #101522;
+      color: #f4f7ff;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    body.dark header {
+      background: rgba(16,21,34,.95);
+      border-color: #293247;
+    }
+
     nav {
-      background: #111;
-      color: white;
-      padding: 15px 25px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 15px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
 
     .logo {
+      color: #2563eb;
+      text-decoration: none;
       font-size: 22px;
       font-weight: bold;
-      color: #ffd700;
     }
 
-    .menu {
+    .nav-links {
       display: flex;
+      gap: 8px;
       align-items: center;
-      gap: 10px;
     }
 
-    .menu a,
-    .dark-btn {
-      color: white;
-      text-decoration: none;
-      padding: 9px 12px;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
-
-    .menu a:hover,
-    .dark-btn:hover {
-      background: #333;
-    }
-
-    .dark-btn {
+    .nav-links a,
+    .nav-links button {
       border: none;
       background: transparent;
+      color: inherit;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 10px;
       cursor: pointer;
-      font-size: 16px;
+      font-family: inherit;
     }
 
-    /* Hamburger */
-    .hamburger {
+    .nav-links a:hover,
+    .nav-links button:hover {
+      background: #eaf0ff;
+      color: #2563eb;
+    }
+
+    body.dark .nav-links a:hover,
+    body.dark .nav-links button:hover {
+      background: #202a3d;
+    }
+
+    .mobile-menu {
       display: none;
-      font-size: 28px;
-      color: white;
-      background: none;
       border: none;
+      background: #eaf0ff;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 20px;
       cursor: pointer;
     }
 
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, #004d98, #a50044);
+    body.dark .mobile-menu {
+      background: #202a3d;
       color: white;
-      text-align: center;
-      padding: 60px 20px;
     }
 
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 19px;
-    }
-
-    /* Container */
     .container {
       max-width: 1100px;
       margin: auto;
-      padding: 50px 20px;
+      padding: 55px 20px;
     }
 
-    .section-title {
+    .title {
       text-align: center;
-      font-size: 30px;
-      margin-bottom: 35px;
+      margin-bottom: 45px;
     }
 
-    /* Cards */
+    .title h1 {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .title p {
+      color: #667085;
+      line-height: 1.8;
+    }
+
+    body.dark .title p {
+      color: #b9c2d3;
+    }
+
     .honors {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 22px;
     }
 
-    .card {
+    .honor {
       background: white;
-      padding: 28px 20px;
-      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      padding: 30px 24px;
       text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      transition: 0.25s;
+      transition: .25s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
+    body.dark .honor {
+      background: #171e2d;
+      border-color: #293247;
     }
 
-    .icon {
-      font-size: 48px;
-      margin-bottom: 15px;
+    .honor:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 18px 40px rgba(0,0,0,.09);
     }
 
-    .card h2 {
-      color: #004d98;
+    .honor-icon {
+      font-size: 55px;
+      margin-bottom: 18px;
+    }
+
+    .honor h2 {
+      font-size: 21px;
       margin-bottom: 12px;
     }
 
-    .card p {
-      line-height: 1.8;
+    .honor p {
+      color: #667085;
+      line-height: 1.9;
     }
 
-    /* Footer */
+    body.dark .honor p {
+      color: #bac4d5;
+    }
+
+    .year {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 7px 14px;
+      background: #eaf0ff;
+      color: #2563eb;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    body.dark .year {
+      background: #202a3d;
+      color: #cfe0ff;
+    }
+
+    .special {
+      grid-column: span 3;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      border: none;
+    }
+
+    .special p {
+      color: #e7edff;
+    }
+
+    .special .year {
+      background: rgba(255,255,255,.18);
+      color: white;
+    }
+
     footer {
-      background: #111;
+      margin-top: 50px;
+      background: #111827;
       color: white;
       text-align: center;
-      padding: 25px;
-      margin-top: 20px;
+      padding: 30px;
     }
 
-    /* Dark mode */
-    body.dark {
-      background: #181818;
-      color: white;
-    }
+    @media (max-width: 850px) {
 
-    body.dark .card {
-      background: #252525;
-      color: white;
-    }
-
-    body.dark .card h2 {
-      color: #66aaff;
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-
-      nav {
-        padding: 14px 18px;
-      }
-
-      .hamburger {
-        display: block;
-      }
-
-      .menu {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        background: #111;
+      .nav-links {
         display: none;
+        position: absolute;
+        top: 70px;
+        right: 15px;
+        left: 15px;
+        background: white;
+        padding: 15px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.12);
         flex-direction: column;
-        align-items: stretch;
-        padding: 10px;
-        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
       }
 
-      .menu.active {
+      body.dark .nav-links {
+        background: #171e2d;
+      }
+
+      .nav-links.open {
         display: flex;
       }
 
-      .menu a,
-      .dark-btn {
-        width: 100%;
-        text-align: center;
-        padding: 13px;
+      .mobile-menu {
+        display: block;
       }
 
-      .hero h1 {
-        font-size: 32px;
+      .honors {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .hero p {
-        font-size: 17px;
+      .special {
+        grid-column: span 2;
       }
+    }
+
+    @media (max-width: 550px) {
 
       .honors {
         grid-template-columns: 1fr;
       }
 
-      .section-title {
-        font-size: 26px;
+      .special {
+        grid-column: span 1;
+      }
+
+      .title h1 {
+        font-size: 32px;
       }
     }
   </style>
@@ -219,18 +265,22 @@
 
 <body>
 
-  <!-- Navbar -->
+<header>
+
   <nav>
 
-    <div class="logo">
-      LAMINE YAMAL
-    </div>
+    <a href="index.html" class="logo">
+      ⚽ Lamine Yamal
+    </a>
 
-    <button class="hamburger" onclick="toggleMenu()">
+    <button
+      class="mobile-menu"
+      onclick="toggleMenu()"
+    >
       ☰
     </button>
 
-    <div class="menu" id="menu">
+    <div class="nav-links" id="navLinks">
 
       <a href="index.html">خانه</a>
 
@@ -240,229 +290,220 @@
 
       <a href="profile.html">پروفایل</a>
 
-      <a href="contact.html">تماس با ما</a>
+      <a href="contact.html">ارتباط با ما</a>
 
-      <a href="login.html" id="accountLink">
-        ورود / ثبت‌نام
-      </a>
-
-      <button class="dark-btn" onclick="toggleDarkMode()">
-        🌙 حالت تاریک
+      <button
+        onclick="toggleDarkMode()"
+        id="darkButton"
+      >
+        🌙
       </button>
 
     </div>
 
   </nav>
 
+</header>
 
-  <!-- Hero -->
-  <section class="hero">
+
+<main class="container">
+
+  <div class="title">
 
     <h1>🏆 افتخارات لامین یامال</h1>
 
     <p>
-      برخی از دستاوردهای مهم دوران حرفه‌ای لامین یامال
+      برخی از مهم‌ترین افتخارات و دستاوردهای دوران حرفه‌ای
+      لامین یامال
     </p>
+
+  </div>
+
+
+  <section class="honors">
+
+
+    <article class="honor special">
+
+      <div class="honor-icon">🇪🇸</div>
+
+      <h2>
+        قهرمانی اروپا با اسپانیا
+      </h2>
+
+      <p>
+        یامال در مسیر موفقیت تیم ملی اسپانیا در رقابت‌های
+        یورو ۲۰۲۴ نقش مهمی داشت.
+      </p>
+
+      <span class="year">
+        EURO 2024
+      </span>
+
+    </article>
+
+
+    <article class="honor">
+
+      <div class="honor-icon">🏆</div>
+
+      <h2>
+        لالیگا
+      </h2>
+
+      <p>
+        قهرمانی در رقابت‌های لالیگا با بارسلونا.
+      </p>
+
+      <span class="year">
+        2024–25
+      </span>
+
+    </article>
+
+
+    <article class="honor">
+
+      <div class="honor-icon">🥇</div>
+
+      <h2>
+        کوپا دل ری
+      </h2>
+
+      <p>
+        حضور در مسیر موفقیت بارسلونا در رقابت‌های
+        جام حذفی اسپانیا.
+      </p>
+
+      <span class="year">
+        2024–25
+      </span>
+
+    </article>
+
+
+    <article class="honor">
+
+      <div class="honor-icon">🏅</div>
+
+      <h2>
+        سوپرکاپ اسپانیا
+      </h2>
+
+      <p>
+        کسب عنوان قهرمانی با بارسلونا در سوپرکاپ اسپانیا.
+      </p>
+
+      <span class="year">
+        2025
+      </span>
+
+    </article>
+
+
+    <article class="honor">
+
+      <div class="honor-icon">⭐</div>
+
+      <h2>
+        جایزه کوپا
+      </h2>
+
+      <p>
+        دریافت جایزه کوپا به عنوان یکی از برترین
+        بازیکنان جوان فوتبال جهان.
+      </p>
+
+      <span class="year">
+        2024
+      </span>
+
+    </article>
+
+
+    <article class="honor">
+
+      <div class="honor-icon">🌟</div>
+
+      <h2>
+        بهترین بازیکن جوان
+      </h2>
+
+      <p>
+        کسب جوایز و عناوین مختلف فردی در سنین بسیار پایین.
+      </p>
+
+      <span class="year">
+        Career
+      </span>
+
+    </article>
+
 
   </section>
 
+</main>
 
-  <!-- Honors -->
-  <main class="container">
 
-    <h2 class="section-title">
-      🏅 افتخارات و دستاوردها
-    </h2>
+<footer>
 
-    <div class="honors">
+  <p>
+    © 2026 Lamine Yamal Fan Website
+  </p>
 
-      <div class="card">
+  <p style="margin-top:10px; opacity:.7;">
+    ساخته شده برای هواداران فوتبال ⚽
+  </p>
 
-        <div class="icon">🏆</div>
+</footer>
 
-        <h2>قهرمانی لالیگا</h2>
 
-        <p>
-          یامال همراه با بارسلونا در رقابت‌های داخلی حضور داشته و
-          در مسیر موفقیت‌های تیم نقش داشته است.
-        </p>
+<script>
 
-      </div>
+function toggleDarkMode() {
 
+  document.body.classList.toggle("dark");
 
-      <div class="card">
+  const dark =
+    document.body.classList.contains("dark");
 
-        <div class="icon">🥇</div>
+  localStorage.setItem(
+    "yamalDarkMode",
+    dark ? "true" : "false"
+  );
 
-        <h2>موفقیت با تیم ملی اسپانیا</h2>
+  document.getElementById("darkButton").textContent =
+    dark ? "☀️" : "🌙";
+}
 
-        <p>
-          یامال در رده ملی اسپانیا نیز حضور داشته و در مسابقات
-          مهم بین‌المللی بازی کرده است.
-        </p>
 
-      </div>
+function loadDarkMode() {
 
+  const dark =
+    localStorage.getItem("yamalDarkMode") === "true";
 
-      <div class="card">
+  if (dark) {
 
-        <div class="icon">⭐</div>
+    document.body.classList.add("dark");
 
-        <h2>جوان‌ترین رکوردها</h2>
+    document.getElementById("darkButton").textContent =
+      "☀️";
+  }
+}
 
-        <p>
-          یامال در سنین بسیار پایین به سطح بالای فوتبال اروپا
-          رسید و چندین رکورد سنی را ثبت کرد.
-        </p>
 
-      </div>
+function toggleMenu() {
 
+  document
+    .getElementById("navLinks")
+    .classList.toggle("open");
 
-      <div class="card">
+}
 
-        <div class="icon">⚽</div>
 
-        <h2>درخشش در بارسلونا</h2>
+loadDarkMode();
 
-        <p>
-          عملکرد او در ترکیب بارسلونا باعث شد توجه زیادی از طرف
-          هواداران و رسانه‌های فوتبال به او جلب شود.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="icon">🌟</div>
-
-        <h2>جوایز فردی</h2>
-
-        <p>
-          یامال در دوران جوانی خود در مراسم‌ها و جوایز مختلف
-          فوتبال مورد توجه قرار گرفته است.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="icon">🇪🇸</div>
-
-        <h2>تیم ملی اسپانیا</h2>
-
-        <p>
-          حضور در تیم ملی اسپانیا یکی از مهم‌ترین بخش‌های
-          دوران حرفه‌ای او محسوب می‌شود.
-        </p>
-
-      </div>
-
-    </div>
-
-  </main>
-
-
-  <!-- Footer -->
-  <footer>
-
-    <p>
-      © 2026 Lamine Yamal Fan Website
-    </p>
-
-  </footer>
-
-
-  <script>
-
-    /* Mobile Menu */
-
-    function toggleMenu() {
-
-      const menu = document.getElementById("menu");
-
-      menu.classList.toggle("active");
-
-    }
-
-
-    /* Close menu */
-
-    document.querySelectorAll(".menu a").forEach(function(link) {
-
-      link.addEventListener("click", function() {
-
-        document
-          .getElementById("menu")
-          .classList.remove("active");
-
-      });
-
-    });
-
-
-    /* Dark Mode */
-
-    function toggleDarkMode() {
-
-      document.body.classList.toggle("dark");
-
-      localStorage.setItem(
-        "yamalDarkMode",
-        document.body.classList.contains("dark")
-      );
-
-    }
-
-
-    /* Load Dark Mode */
-
-    if (
-      localStorage.getItem("yamalDarkMode") === "true"
-    ) {
-
-      document.body.classList.add("dark");
-
-    }
-
-
-    /* Account */
-
-    function updateAccount() {
-
-      const accountLink =
-        document.getElementById("accountLink");
-
-      const session =
-        localStorage.getItem("yamalSession");
-
-      if (session) {
-
-        try {
-
-          const user = JSON.parse(session);
-
-          if (user.username) {
-
-            accountLink.textContent =
-              "👤 " + user.username;
-
-          }
-
-        } catch (error) {
-
-          console.log("Session error");
-
-        }
-
-      }
-
-    }
-
-    updateAccount();
-
-  </script>
+</script>
 
 </body>
 </html>

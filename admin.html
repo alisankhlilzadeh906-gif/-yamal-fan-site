@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>پنل مدیریت | Lamine Yamal</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    body.dark {
+      background: #0d1320;
+      color: #f4f7fb;
+    }
+
+    header {
+      background: linear-gradient(135deg, #111827, #7f1d1d);
+      color: white;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a,
+    nav button {
+      color: white;
+      text-decoration: none;
+      border: 0;
+      background: rgba(255,255,255,.1);
+      padding: 9px 13px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    main {
+      width: min(1100px, 94%);
+      margin: 30px auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.07);
+    }
+
+    body.dark .card {
+      background: #151d2d;
+      box-shadow: 0 8px 30px rgba(0,0,0,.25);
+    }
+
+    .title {
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #64748b;
+      margin-bottom: 22px;
+    }
+
+    body.dark .subtitle {
+      color: #aab4c7;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
+    .stat {
+      background: #f1f5f9;
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    body.dark .stat {
+      background: #202a3d;
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .search {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search input {
+      flex: 1;
+      padding: 13px;
+      border: 1px solid #d7dce5;
+      border-radius: 11px;
+      background: transparent;
+      color: inherit;
+      outline: none;
+    }
+
+    body.dark .search input {
+      border-color: #344158;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 16px;
+      cursor: pointer;
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      opacity: .9;
+    }
+
+    .btn.danger {
+      background: #dc2626;
+    }
+
+    .btn.secondary {
+      background: #64748b;
+    }
+
+    .users {
+      display: grid;
+      gap: 12px;
+    }
+
+    .user {
+      background: #f8fafc;
+      border-radius: 15px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    body.dark .user {
+      background: #202a3d;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #dbeafe;
+    }
+
+    .username {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .user-id {
+      font-size: 11px;
+      color: #64748b;
+      direction: ltr;
+    }
+
+    .admin-badge {
+      display: inline-block;
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      margin-right: 5px;
+    }
+
+    body.dark .admin-badge {
+      background: #4c1d1d;
+      color: #fecaca;
+    }
+
+    .actions {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .loading,
+    .empty,
+    .error {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .error {
+      color: #dc2626;
+    }
+
+    .access-denied {
+      max-width: 600px;
+      margin: 80px auto;
+      text-align: center;
+    }
+
+    .access-denied h1 {
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+      }
+
+      .search {
+        flex-direction: column;
+      }
+
+      .user {
+        align-items: flex-start;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      .actions button {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    🛠️ پنل مدیریت
+  </div>
+
+  <nav>
+    <a href="index.html">خانه</a>
+    <a href="dashboard.html">داشبورد</a>
+    <a href="news.html">اخبار</a>
+
+    <button id="darkBtn">🌙</button>
+
+    <button id="logoutBtn">
+      خروج
+    </button>
+  </nav>
+
+</header>
+
+<main>
+
+  <section id="loading" class="card loading">
+    در حال بررسی دسترسی...
+  </section>
+
+  <section id="denied" class="card access-denied" style="display:none;">
+
+    <h1>⛔ دسترسی ممنوع</h1>
+
+    <p style="margin:15px 0;">
+      این صفحه فقط برای مدیر سایت قابل دسترسی است.
+    </p>
+
+    <a
+      href="index.html"
+      class="btn"
+      style="display:inline-block;text-decoration:none;"
+    >
+      برگشت به خانه
+    </a>
+
+  </section>
+
+  <div id="adminPanel" style="display:none;">
+
+    <section class="card">
+
+      <h1 class="title">
+        👑 پنل مدیریت سایت
+      </h1>
+
+      <p class="subtitle">
+        مدیریت کاربران سایت Lamine Yamal
+      </p>
+
+      <div class="stats">
+
+        <div class="stat">
+          <div
+            class="stat-number"
+            id="totalUsers"
+          >
+            0
+          </div>
+
+          <div>
+            تعداد کاربران
+          </div>
+        </div>
+
+        <div class="stat">
+          <div
+            class="stat-number"
+            id="totalAdmins"
+          >
+            0
+          </div>
+
+          <div>
+            مدیران
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="card">
+
+      <h2 style="margin-bottom:8px;">
+        👥 کاربران
+      </h2>
+
+      <p class="subtitle">
+        جستجو و مشاهده کاربران سایت
+      </p>
+
+      <div class="search">
+
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="جستجوی نام کاربری..."
+        >
+
+        <button
+          class="btn"
+          id="searchBtn"
+        >
+          جستجو
+        </button>
+
+        <button
+          class="btn secondary"
+          id="refreshBtn"
+        >
+          🔄 تازه‌سازی
+        </button>
+
+      </div>
+
+      <div id="users" class="users">
+
+        <div class="loading">
+          در حال دریافت کاربران...
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<script>
+
+  let currentUser = null;
+  let usersData = [];
+
+  // --------------------------------
+  // Dark mode
+  // --------------------------------
+
+  const darkBtn =
+    document.getElementById("darkBtn");
+
+  function loadDarkMode() {
+
+    const dark =
+      localStorage.getItem(
+        "yamalDarkMode"
+      ) === "true";
+
+    if (dark) {
+
+      document.body.classList.add("dark");
+
+      darkBtn.textContent = "☀️";
+
+    }
+
+  }
+
+  darkBtn.addEventListener(
+    "click",
+    () => {
+
+      document.body.classList.toggle("dark");
+
+      const enabled =
+        document.body.classList.contains(
+          "dark"
+        );
+
+      localStorage.setItem(
+        "yamalDarkMode",
+        enabled
+      );
+
+      darkBtn.textContent =
+        enabled ? "☀️" : "🌙";
+
+    }
+  );
+
+  loadDarkMode();
+
+  // --------------------------------
+  // Logout
+  // --------------------------------
+
+  document
+    .getElementById("logoutBtn")
+    .addEventListener(
+      "click",
+      async () => {
+
+        await supabase.auth.signOut();
+
+        localStorage.removeItem(
+          "yamalSession"
+        );
+
+        location.href =
+          "login.html";
+
+      }
+    );
+
+  // --------------------------------
+  // Escape HTML
+  // --------------------------------
+
+  function escapeHtml(value) {
+
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
+
+  // --------------------------------
+  // Check admin
+  // --------------------------------
+
+  async function checkAdmin() {
+
+    const {
+      data: {
+        session
+      }
+    } =
+      await supabase.auth.getSession();
+
+    if (!session?.user) {
+
+      location.href =
+        "login.html";
+
+      return false;
+
+    }
+
+    currentUser =
+      session.user;
+
+    const {
+      data: profile,
+      error
+    } =
+      await supabase
+        .from("profiles")
+        .select(
+          "username, is_admin"
+        )
+        .eq(
+          "id",
+          currentUser.id
+        )
+        .maybeSingle();
+
+    if (error) {
+
+      console.error(error);
+
+      showDenied();
+
+      return false;
+
+    }
+
+    if (!profile?.is_admin) {
+
+      showDenied();
+
+      return false;
+
+    }
+
+    return true;
+
+  }
+
+  // --------------------------------
+  // Show denied
+  // --------------------------------
+
+  function showDenied() {
+
+    document
+      .getElementById("loading")
+      .style.display = "none";
+
+    document
+      .getElementById("denied")
+      .style.display = "block";
+
+  }
+
+  // --------------------------------
+  // Load users
+  // --------------------------------
+
+  async function loadUsers(
+    search = ""
+  ) {
+
+    const usersEl =
+      document.getElementById(
+        "users"
+      );
+
+    usersEl.innerHTML = `
+      <div class="loading">
+        در حال دریافت کاربران...
+      </div>
+    `;
+
+    let query =
+      supabase
+        .from("profiles")
+        .select(
+          "id, username, avatar_url, is_admin, created_at"
+        )
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+    if (search.trim()) {
+
+      query =
+        query.ilike(
+          "username",
+          "%" +
+          search.trim() +
+          "%"
+        );
+
+    }
+
+    const {
+      data,
+      error
+    } = await query;
+
+    if (error) {
+
+      console.error(error);
+
+      usersEl.innerHTML = `
+        <div class="error">
+          خطا در دریافت کاربران.
+        </div>
+      `;
+
+      return;
+
+    }
+
+    usersData =
+      data || [];
+
+    updateStats(
+      usersData
+    );
+
+    renderUsers(
+      usersData
+    );
+
+  }
+
+  // --------------------------------
+  // Stats
+  // --------------------------------
+
+  function updateStats(users) {
+
+    document
+      .getElementById(
+        "totalUsers"
+      )
+      .textContent =
+      users.length;
+
+    document
+      .getElementById(
+        "totalAdmins"
+      )
+      .textContent =
+      users.filter(
+        user => user.is_admin
+      ).length;
+
+  }
+
+  // --------------------------------
+  // Render users
+  // --------------------------------
+
+  function renderUsers(users) {
+
+    const usersEl =
+      document.getElementById(
+        "users"
+      );
+
+    usersEl.innerHTML = "";
+
+    if (users.length === 0) {
+
+      usersEl.innerHTML = `
+        <div class="empty">
+          کاربری پیدا نشد.
+        </div>
+      `;
+
+      return;
+
+    }
+
+    users.forEach(user => {
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+      div.className = "user";
+
+      const avatar =
+        user.avatar_url ||
+        "yamal.jpg";
+
+      const adminBadge =
+        user.is_admin
+          ? `<span class="admin-badge">مدیر</span>`
+          : "";
+
+      const date =
+        user.created_at
+          ? new Date(
+              user.created_at
+            ).toLocaleDateString(
+              "fa-IR"
+            )
+          : "--";
+
+      div.innerHTML = `
+
+        <div class="user-info">
+
+          <img
+            class="avatar"
+            src="${escapeHtml(avatar)}"
+            alt="avatar"
+            onerror="this.src='yamal.jpg'"
+          >
+
+          <div>
+
+            <div class="username">
+              @${escapeHtml(
+                user.username || "کاربر"
+              )}
+
+              ${adminBadge}
+            </div>
+
+            <div class="user-id">
+              ${escapeHtml(user.id)}
+            </div>
+
+            <div style="font-size:12px;margin-top:5px;color:#64748b;">
+              عضویت: ${date}
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="btn secondary"
+            data-copy="${escapeHtml(user.id)}"
+          >
+            📋 کپی ID
+          </button>
+
+        </div>
+
+      `;
+
+      const copyBtn =
+        div.querySelector(
+          "[data-copy]"
+        );
+
+      copyBtn.addEventListener(
+        "click",
+        async () => {
+
+          try {
+
+            await navigator.clipboard.writeText(
+              user.id
+            );
+
+            copyBtn.textContent =
+              "✅ کپی شد";
+
+            setTimeout(() => {
+
+              copyBtn.textContent =
+                "📋 کپی ID";
+
+            }, 1500);
+
+          } catch {
+
+            alert(
+              "کپی کردن انجام نشد."
+            );
+
+          }
+
+        }
+      );
+
+      usersEl.appendChild(div);
+
+    });
+
+  }
+
+  // --------------------------------
+  // Search
+  // --------------------------------
+
+  document
+    .getElementById(
+      "searchBtn"
+    )
+    .addEventListener(
+      "click",
+      () => {
+
+        loadUsers(
+          document
+            .getElementById(
+              "searchInput"
+            )
+            .value
+        );
+
+      }
+    );
+
+  document
+    .getElementById(
+      "searchInput"
+    )
+    .addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Enter"
+        ) {
+
+          loadUsers(
+            event.target.value
+          );
+
+        }
+
+      }
+    );
+
+  // --------------------------------
+  // Refresh
+  // --------------------------------
+
+  document
+    .getElementById(
+      "refreshBtn"
+    )
+    .addEventListener(
+      "click",
+      () => {
+
+        document
+          .getElementById(
+            "searchInput"
+          )
+          .value = "";
+
+        loadUsers();
+
+      }
+    );
+
+  // --------------------------------
+  // Init
+  // --------------------------------
+
+  async function init() {
+
+    const isAdmin =
+      await checkAdmin();
+
+    if (!isAdmin) return;
+
+    document
+      .getElementById(
+        "loading"
+      )
+      .style.display = "none";
+
+    document
+      .getElementById(
+        "adminPanel"
+      )
+      .style.display = "block";
+
+    await loadUsers();
+
+  }
+
+  init();
+
+</script>
+
+</body>
+</html>
